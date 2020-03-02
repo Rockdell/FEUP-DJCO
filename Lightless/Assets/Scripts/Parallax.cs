@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
+    private const float moveForwardSpeed = 20f;
     private float length, startpos;
-    public GameObject cam;
     public float parallaxEffect;
 
     // Start is called before the first frame update
@@ -18,14 +18,10 @@ public class Parallax : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        float tmp = (cam.transform.position.x * (1 - parallaxEffect));
-        float dist = (cam.transform.position.x * parallaxEffect);
+        if (transform.position.x < startpos - length)
+            transform.position = new Vector3(startpos, transform.position.y, transform.position.z);
 
-        transform.position = new Vector3(startpos + dist, transform.position.y, transform.position.z);
-
-        if (tmp > startpos + length)
-            startpos += length;
-        else if (tmp < startpos - length)
-            startpos -= length;
+        transform.position -= new Vector3(parallaxEffect * moveForwardSpeed * Time.fixedDeltaTime, 0f, 0f);
     }
+
 }
