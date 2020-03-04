@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour {
+public class PlayerScript : MonoBehaviour {
+
     public float moveSpeed;
     public Rigidbody2D rb;
     public GameObject crosshair;
@@ -60,42 +61,20 @@ public class Player : MonoBehaviour {
         rb.MovePosition(new Vector2(Mathf.Clamp(nextPosition.x, -screenBounds.x, screenBounds.x), Mathf.Clamp(nextPosition.y, -screenBounds.y, screenBounds.y)));
     }
 
-    //private void Aim() {
-    //    Debug.Log("aim");
-    //}
-
     private void Shoot() {
-        //Debug.Log("shoot");
         isAiming = false;
         lineVisual.positionCount = 0;
 
-        GameObject lightGrenade = Instantiate(grenadePrefab) as GameObject;
-        lightGrenade.transform.position = grenadeStart.transform.position;
-        lightGrenade.GetComponent<Rigidbody2D>().AddForce(new Vector2(horizontalVelocity, CalculateVerticalVelocity(crosshairInput)), ForceMode2D.Impulse);
-    }
-
-    private float CalculateVerticalVelocity(Vector3 finalPosition) {
-        Vector3 initialPosition = grenadeStart.transform.position;
-        return (horizontalVelocity * (finalPosition.y - initialPosition.y)) / (finalPosition.x - initialPosition.x) - (Physics2D.gravity.y * ((finalPosition.x - initialPosition.x) / (horizontalVelocity))) / 2f;
-    }
-
-    private Vector2 CalculatePositionInTime(float verticalVelocity, float time) {
-        return new Vector2(grenadeStart.transform.position.x + horizontalVelocity * time, grenadeStart.transform.position.y + verticalVelocity * time + (Physics2D.gravity.y * time * time) / 2f);
+        Instantiate(grenadePrefab).GetComponent<GrenadeScript>().Throw(crosshairInput);
     }
 
     private void DrawTrajectory() {
         float timePerSegment = (crosshairInput.x - grenadeStart.transform.position.x) / (horizontalVelocity * linePrecision);
+        Vector3 initialPosition = grenadeStart.transform.position;
         for (int i = 0; i < linePrecision; i++) {
-            lineVisual.SetPosition(i, CalculatePositionInTime(CalculateVerticalVelocity(crosshairInput), i * timePerSegment));
+            lineVisual.SetPosition(i, Tools.CalculatePositionInTime(initialPosition, horizontalVelocity, Tools.CalculateVerticalVelocity(initialPosition, crosshairInput, horizontalVelocity), i * timePerSegment));
         }
     }
-
-    //private void CalculatePositionInTime(Vector3 velocity, float time) {
-    //    Vector3 Vxz = vo;
-    //    vo.y = 0f;
-
-    //    Vector3 result = crosshairInput.position
-    //}
 
     private void OnEnable() {
         inputActions.Enable();
