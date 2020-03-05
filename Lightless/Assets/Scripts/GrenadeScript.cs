@@ -6,7 +6,7 @@ public class GrenadeScript : MonoBehaviour {
 
     public float horizontalVelocity;
 
-    void Awake() {
+    void OnEnable() {
         transform.position = GameObject.FindGameObjectWithTag("GrenadeStart").transform.position;
     }
 
@@ -17,7 +17,8 @@ public class GrenadeScript : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Boundary")) {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            //Destroy(gameObject);
         }
     }
 

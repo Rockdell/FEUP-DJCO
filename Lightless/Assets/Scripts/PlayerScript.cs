@@ -65,7 +65,15 @@ public class PlayerScript : MonoBehaviour {
         isAiming = false;
         lineVisual.positionCount = 0;
 
-        Instantiate(grenadePrefab).GetComponent<GrenadeScript>().Throw(crosshairInput);
+        GameObject grenade = GameManager.instance.GetGrenade();
+
+        if (grenade != null)
+        {
+            grenade.SetActive(true);
+            grenade.GetComponent<GrenadeScript>().Throw(crosshairInput);
+        }
+
+        // Instantiate(grenadePrefab).GetComponent<GrenadeScript>().Throw(crosshairInput);
     }
 
     private void DrawTrajectory() {
