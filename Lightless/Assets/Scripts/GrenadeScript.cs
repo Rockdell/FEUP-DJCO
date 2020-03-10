@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class GrenadeScript : MonoBehaviour {
 
-    public float horizontalVelocity;
+    public float distancePerTimeUnit;
+    public float minTime;
 
     void OnEnable() {
         transform.position = GameObject.FindGameObjectWithTag("GrenadeStart").transform.position;
     }
 
     public void Throw(Vector2 targetLocation) {
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(horizontalVelocity, Tools.CalculateVerticalVelocity(transform.position, targetLocation, horizontalVelocity)), ForceMode2D.Impulse);
-        GetComponent<Rigidbody2D>().AddTorque(50f);
+        GetComponent<Rigidbody2D>().AddForce(Tools.CalculateVelocity(transform.position, targetLocation, (Mathf.Abs(transform.position.x - targetLocation.x) / distancePerTimeUnit) + minTime), ForceMode2D.Impulse);
+        //GetComponent<Rigidbody2D>().AddTorque(50f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
