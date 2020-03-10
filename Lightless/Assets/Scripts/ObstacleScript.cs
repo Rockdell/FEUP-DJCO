@@ -15,7 +15,7 @@ public class ObstacleScript : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 nextPosition = rb.position + new Vector2(-1.0f, 0.0f) * moveSpeed * Time.fixedDeltaTime;
-        rb.MovePosition(new Vector2(nextPosition.x, 0.0f));
+        rb.MovePosition(new Vector2(nextPosition.x, rb.position.y));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

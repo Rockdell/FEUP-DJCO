@@ -16,7 +16,7 @@ public class ObstacleSpawner : MonoBehaviour
     void Spawn()
     {
         GameObject obj = obstacles.GetObject();
-        obj.GetComponent<ObstacleScript>().Spawn(new Vector3(70.0f, 10.0f, 0.0f), Quaternion.identity);
+        obj.GetComponent<ObstacleScript>().Spawn(new Vector3(70, 15), Quaternion.identity);
         obj.SetActive(true);
     }
 }
