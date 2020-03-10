@@ -9,6 +9,7 @@ public class PlayerScript : MonoBehaviour {
     public Rigidbody2D rb;
     public GameObject crosshair;
     public GameObject grenadePrefab;
+    public GameObject grenadeHolder;
     public GameObject grenadeStart;
     public float horizontalVelocity;
 
@@ -66,14 +67,8 @@ public class PlayerScript : MonoBehaviour {
         lineVisual.positionCount = 0;
 
         GameObject grenade = GameManager.instance.GetGrenade();
-
-        if (grenade != null)
-        {
-            grenade.SetActive(true);
-            grenade.GetComponent<GrenadeScript>().Throw(crosshairInput);
-        }
-
-        // Instantiate(grenadePrefab).GetComponent<GrenadeScript>().Throw(crosshairInput);
+        grenade.SetActive(true);
+        grenade.GetComponent<GrenadeScript>().Throw(crosshairInput);
     }
 
     private void DrawTrajectory() {
