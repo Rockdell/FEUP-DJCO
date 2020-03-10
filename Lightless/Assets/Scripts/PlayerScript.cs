@@ -7,7 +7,6 @@ public class PlayerScript : MonoBehaviour {
 
     public float moveSpeed;
     public GameObject crosshair;
-    public GameObject grenadePrefab;
     public GameObject grenadeHolder;
     public GameObject grenadeStart;
     private Rigidbody2D rb;

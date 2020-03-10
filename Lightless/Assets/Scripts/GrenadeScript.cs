@@ -6,6 +6,7 @@ public class GrenadeScript : MonoBehaviour {
 
     public float distancePerTimeUnit;
     public float minTime;
+    public GameObject grenadeFire;
 
     void OnEnable() {
         transform.position = GameObject.FindGameObjectWithTag("GrenadeStart").transform.position;
@@ -17,9 +18,15 @@ public class GrenadeScript : MonoBehaviour {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
+
         if (collision.gameObject.CompareTag("Boundary")) {
             gameObject.SetActive(false);
             //Destroy(gameObject);
+            //Debug.Log(collision.GetContact(0).point);
+            if (collision.gameObject.name == "Boundary Bottom") {
+                GameObject gf = Instantiate(grenadeFire);
+                gf.transform.position = collision.GetContact(0).point;
+            }
         }
     }
 
@@ -30,6 +37,7 @@ public class GrenadeScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
+        Vector2 vel2D = GetComponent<Rigidbody2D>().velocity;
+        transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(vel2D.y, vel2D.x) * Mathf.Rad2Deg, Vector3.forward);
     }
 }

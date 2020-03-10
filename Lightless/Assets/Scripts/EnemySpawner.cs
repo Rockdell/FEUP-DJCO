@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
     void Spawn()
     {
         GameObject obj = enemies.GetObject();
-        obj.GetComponent<EnemyScript>().Spawn(new Vector3(38, -15), Quaternion.identity);
+        obj.GetComponent<EnemyScript>().Spawn(new Vector3(38, -12), Quaternion.identity);
         obj.SetActive(true);
     }
 }
