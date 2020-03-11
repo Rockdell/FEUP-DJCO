@@ -5,13 +5,21 @@ using UnityEngine.InputSystem;
 
 public class PlayerScript : MonoBehaviour {
 
+    [Header("Player Stats")]
     public float moveSpeed;
+    public int maxHealth;
+    public int healthLossPerSecond;
+    private float currentHealth;
+
+    [Header("Player Options")]
+    public HealthBarScript healthBar;
     public GameObject crosshair;
     public GameObject grenadeHolder;
     public GameObject grenadeStart;
     private Rigidbody2D rb;
 
     /* Trajectory */
+    [Header("Trajectory Settings")]
     public LineRenderer lineVisual;
     public int linePrecision;
 
@@ -24,16 +32,15 @@ public class PlayerScript : MonoBehaviour {
 
     private bool isAiming;
 
-    private void Awake() {
-
-    }
-
     void Start() {
         cam = Camera.main;
         isAiming = false;
         rb = GetComponent<Rigidbody2D>();
         screenBounds = cam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         //Cursor.visible = false;
+
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -45,8 +52,17 @@ public class PlayerScript : MonoBehaviour {
     }
 
     void FixedUpdate() {
+        //Update Rigibody position
         Vector2 nextPosition = rb.position + movementInput * moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(new Vector2(Mathf.Clamp(nextPosition.x, -screenBounds.x, screenBounds.x), Mathf.Clamp(nextPosition.y, -screenBounds.y, screenBounds.y)));
+
+        //Update HP (Light)
+        if (currentHealth <= 0)
+            Debug.Log("You have Corona, Im sorry you're dead.");
+        else {
+            currentHealth -= healthLossPerSecond * Time.fixedDeltaTime;
+            healthBar.SetHealth((int)currentHealth);
+        }
     }
 
     public void Shoot() {

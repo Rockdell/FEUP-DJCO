@@ -1,0 +1,427 @@
+fileFormatVersion: 2
+guid: d76ebf87eb81fac448cad5394217a4f7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4019350567853204069
+    second: flamy dude ui fill_0
+  - first:
+      213: 5108823307779386162
+    second: flamy dude ui fill_1
+  - first:
+      213: -7635226370920087426
+    second: flamy dude ui fill_2
+  - first:
+      213: -6735124147621623460
+    second: flamy dude ui fill_3
+  - first:
+      213: -5999148377408588262
+    second: flamy dude ui fill_4
+  - first:
+      213: -4892190335095455891
+    second: flamy dude ui fill_5
+  - first:
+      213: -7675678818405003865
+    second: flamy dude ui fill_6
+  - first:
+      213: 7834045409510903005
+    second: flamy dude ui fill_7
+  - first:
+      213: 8448547396681495256
+    second: flamy dude ui fill_8
+  - first:
+      213: 6258881039502856218
+    second: flamy dude ui fill_9
+  - first:
+      213: -2737748942728360847
+    second: flamy dude ui fill_10
+  - first:
+      213: -752822648479688323
+    second: flamy dude ui fill_11
+  - first:
+      213: -2358932690644655853
+    second: flamy dude ui fill_0
+  - first:
+      213: 6621767761728377439
+    second: flamy dude ui fill_1
+  - first:
+      213: 5728653665031645183
+    second: flamy dude ui fill_2
+  - first:
+      213: -6822883227417957236
+    second: flamy dude ui fill_3
+  - first:
+      213: 7369125326517168654
+    second: flamy dude ui fill_4
+  - first:
+      213: -6780678002392292571
+    second: flamy dude ui fill_5
+  - first:
+      213: 8202638202035002786
+    second: flamy dude ui fill_6
+  - first:
+      213: 6987374687598902037
+    second: flamy dude ui fill_7
+  - first:
+      213: -9133103518713642566
+    second: flamy dude ui fill_8
+  - first:
+      213: -192785964854318384
+    second: flamy dude ui fill_9
+  - first:
+      213: 2070397022496756822
+    second: flamy dude ui fill_10
+  - first:
+      213: -7735709664794030660
+    second: flamy dude ui fill_11
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: flamy dude ui fill_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 52
+        width: 512
+        height: 350
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 311a11d4733634fd0800000000000000
+      internalID: -2358932690644655853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flamy dude ui fill_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 52
+        width: 512
+        height: 350
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5214f612be35eb50800000000000000
+      internalID: 6621767761728377439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flamy dude ui fill_2
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 52
+        width: 512
+        height: 350
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff763791824408f40800000000000000
+      internalID: 5728653665031645183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flamy dude ui fill_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 52
+        width: 512
+        height: 350
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8c28c59adf3051a0800000000000000
+      internalID: -6822883227417957236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flamy dude ui fill_4
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 52
+        width: 512
+        height: 350
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0ae360f074644660800000000000000
+      internalID: 7369125326517168654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flamy dude ui fill_5
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 52
+        width: 512
+        height: 350
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5232a1b484136e1a0800000000000000
+      internalID: -6780678002392292571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flamy dude ui fill_6
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 52
+        width: 512
+        height: 350
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ad585d3cff95d170800000000000000
+      internalID: 8202638202035002786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flamy dude ui fill_7
+      rect:
+        serializedVersion: 2
+        x: 3584
+        y: 52
+        width: 512
+        height: 350
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51b73e6f14428f060800000000000000
+      internalID: 6987374687598902037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flamy dude ui fill_8
+      rect:
+        serializedVersion: 2
+        x: 4096
+        y: 52
+        width: 512
+        height: 350
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab1043e2db2b04180800000000000000
+      internalID: -9133103518713642566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flamy dude ui fill_9
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 52
+        width: 512
+        height: 350
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0da6d27bf26135df0800000000000000
+      internalID: -192785964854318384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flamy dude ui fill_10
+      rect:
+        serializedVersion: 2
+        x: 5120
+        y: 52
+        width: 512
+        height: 350
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65412fd5f178bbc10800000000000000
+      internalID: 2070397022496756822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flamy dude ui fill_11
+      rect:
+        serializedVersion: 2
+        x: 5632
+        y: 52
+        width: 512
+        height: 350
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbd4560ab0d35a490800000000000000
+      internalID: -7735709664794030660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
