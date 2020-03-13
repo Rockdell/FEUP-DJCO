@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+ 
 public class HealthBarScript : MonoBehaviour
 {
     private Slider slider;
@@ -13,15 +13,19 @@ public class HealthBarScript : MonoBehaviour
         slider = GetComponent<Slider>();
     }
 
-    public void SetMaxHealth(int maxHp) {
+    public void SetMaxHealth(float maxHp) {
         slider.maxValue = maxHp;
         slider.value = maxHp;
-        text.text = maxHp.ToString();
+        SetText(maxHp);
     }
 
-    public void SetHealth(int hp) {
+    public void SetHealth(float hp) {
         slider.value = hp;
-        text.text = hp.ToString();
+        SetText(hp);
+    }
+
+    private void SetText(float number) {
+        text.text = ((int)number).ToString();
     }
 
 }

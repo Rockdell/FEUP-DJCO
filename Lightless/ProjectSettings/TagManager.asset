@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - GrenadeStart
   - Boundary
   - Grenade
+  - PlayerProjectileStart
   layers:
   - Default
   - TransparentFX
@@ -46,4 +46,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 1528882431
     locked: 0
