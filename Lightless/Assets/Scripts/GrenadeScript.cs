@@ -6,31 +6,41 @@ public class GrenadeScript : Entity {
 
     public float distancePerTimeUnit;
     public float minTime;
-    public GameObject grenadeFire;
 
+    // public GameObject firePrefab;
+    
     void Start()
     {
         SetBehaviour(new ArchBehaviour());
     }
     
-    void OnEnable() {
+    void OnEnable() 
+    {
         Spawn(GameObject.FindGameObjectWithTag("PlayerProjectileStart").transform.position, Quaternion.identity);
     }
 
-    void OnCollisionEnter2D(Collision2D collision) {
+    void OnCollisionEnter2D(Collision2D collision) 
+    {
 
-        if (collision.gameObject.CompareTag("Boundary")) {
+        if (collision.gameObject.CompareTag("Boundary")) 
+        {
             gameObject.SetActive(false);
-            //Destroy(gameObject);
-            //Debug.Log(collision.GetContact(0).point);
-            if (collision.gameObject.name == "Boundary Bottom") {
-                GameObject gf = Instantiate(grenadeFire);
-                gf.transform.position = collision.GetContact(0).point;
+            
+            if (collision.gameObject.name == "Boundary Bottom")
+            {
+                // GameObject gf = Instantiate(firePrefab); 
+                GameObject grenadeFire = GameManager.Instance.GetObject(GameManager.ObjectType.GrenadeFire);
+                // gf.transform.position = collision.GetContact(0).point;
+                grenadeFire.SetActive(true);
+
+                grenadeFire.GetComponent<GrenadeFireScript>().Spawn(collision.GetContact(0).point, Quaternion.identity);
+
             }
         }
     }
     
-    public void Throw(Vector2 targetLocation) {
+    public void Throw(Vector2 targetLocation) 
+    {
         EntityBody.AddForce(Tools.CalculateVelocity(transform.position, targetLocation, (Mathf.Abs(transform.position.x - targetLocation.x) / distancePerTimeUnit) + minTime), ForceMode2D.Impulse);
     }
 }

@@ -9,18 +9,21 @@ public class LightBulletScript : Entity
     private Animator animator;
     private AnimationClip explosionAnimation;
 
-    protected override void Awake() {
+    protected override void Awake() 
+    {
         base.Awake();
         animator = GetComponent<Animator>();
         explosionAnimation = animator.runtimeAnimatorController.animationClips[1];
     }
 
-    void OnEnable() {
+    void OnEnable() 
+    {
         Spawn(GameObject.FindGameObjectWithTag("PlayerProjectileStart").transform.position, Quaternion.identity);
         // gameObject.GetComponentInChildren<Light2D>().pointLightOuterRadius = 8.0f;
     }
 
-    private IEnumerator OnCollisionEnter2D(Collision2D collision) {
+    private IEnumerator OnCollisionEnter2D(Collision2D collision) 
+    {
 
         animator.SetBool("collided", true);
 
@@ -39,7 +42,8 @@ public class LightBulletScript : Entity
         //}
     }
     
-    public void Shoot(Vector2 targetLocation) {
+    public void Shoot(Vector2 targetLocation) 
+    {
         EntityBody.AddForce((targetLocation - new Vector2(transform.position.x, transform.position.y)).normalized * distancePerTimeUnit, ForceMode2D.Impulse);
     }
 }

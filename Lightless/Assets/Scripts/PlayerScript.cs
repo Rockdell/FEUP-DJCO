@@ -23,7 +23,7 @@ public class PlayerScript : MonoBehaviour {
     private float currentGrenadeCooldown = 0;
     private bool grenadeOnCooldown = false;
 
-    public GameObject lightBulletPrefab;
+    // public GameObject lightBulletPrefab;
 
     [Header("Player Options")]
     public HealthBarScript healthBarUI;

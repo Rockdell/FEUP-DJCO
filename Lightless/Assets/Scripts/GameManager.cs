@@ -5,12 +5,13 @@ public class GameManager : MonoBehaviour
 {
     public enum ObjectType
     {
-        LightBullet, Grenade, Enemy, Obstacle
+        LightBullet, Grenade, GrenadeFire, Enemy, Obstacle
     };
 
     public static GameManager Instance;
     public GameObject lightBulletPrefab;
     public GameObject grenadePrefab;
+    public GameObject grenadeFirePrefab;
     public GameObject enemyPrefab;
     public GameObject obstaclePrefab;
     private Dictionary<ObjectType, ObjectPool> _objectPools;
@@ -23,14 +24,15 @@ public class GameManager : MonoBehaviour
         _objectPools = new Dictionary<ObjectType, ObjectPool>();
         AddPool(ObjectType.LightBullet, lightBulletPrefab);
         AddPool(ObjectType.Grenade, grenadePrefab);
+        AddPool(ObjectType.GrenadeFire, grenadeFirePrefab);
         AddPool(ObjectType.Enemy, enemyPrefab);
         AddPool(ObjectType.Obstacle, obstaclePrefab);
     }
 
     void Start()
     {
-        InvokeRepeating("SpawnEnemies", 1.0f, 1.0f);
-        InvokeRepeating("SpawnObstacles", 1.0f, 1.0f);
+        // InvokeRepeating("SpawnEnemies", 1.0f, 1.0f);
+        // InvokeRepeating("SpawnObstacles", 1.0f, 2.0f);
     }
 
     void AddPool(ObjectType type, GameObject prefab)

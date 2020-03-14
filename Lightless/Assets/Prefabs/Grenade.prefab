@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distancePerTimeUnit: 40
   minTime: 0.5
-  grenadeFire: {fileID: 5994955042869800912, guid: a8600b5daff5310449caff6dc6c09638,
+  firePrefab: {fileID: 5994955042869800912, guid: a8600b5daff5310449caff6dc6c09638,
     type: 3}
 --- !u!95 &2824102309675704659
 Animator:
