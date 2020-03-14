@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrenadeScript : MonoBehaviour {
+public class GrenadeScript : Entity {
 
     public float distancePerTimeUnit;
     public float minTime;
     public GameObject grenadeFire;
 
+    void Start()
+    {
+        SetBehaviour(new ArchBehaviour());
+    }
+    
     void OnEnable() {
-        transform.position = GameObject.FindGameObjectWithTag("PlayerProjectileStart").transform.position;
+        Spawn(GameObject.FindGameObjectWithTag("PlayerProjectileStart").transform.position, Quaternion.identity);
     }
 
-    public void Throw(Vector2 targetLocation) {
-        GetComponent<Rigidbody2D>().AddForce(Tools.CalculateVelocity(transform.position, targetLocation, (Mathf.Abs(transform.position.x - targetLocation.x) / distancePerTimeUnit) + minTime), ForceMode2D.Impulse);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision) {
+    void OnCollisionEnter2D(Collision2D collision) {
 
         if (collision.gameObject.CompareTag("Boundary")) {
             gameObject.SetActive(false);
@@ -28,10 +29,8 @@ public class GrenadeScript : MonoBehaviour {
             }
         }
     }
-
-    // Update is called once per frame
-    void Update() {
-        Vector2 vel2D = GetComponent<Rigidbody2D>().velocity;
-        transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(vel2D.y, vel2D.x) * Mathf.Rad2Deg, Vector3.forward);
+    
+    public void Throw(Vector2 targetLocation) {
+        EntityBody.AddForce(Tools.CalculateVelocity(transform.position, targetLocation, (Mathf.Abs(transform.position.x - targetLocation.x) / distancePerTimeUnit) + minTime), ForceMode2D.Impulse);
     }
 }

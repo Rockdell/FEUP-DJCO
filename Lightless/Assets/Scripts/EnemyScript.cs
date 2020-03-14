@@ -8,7 +8,7 @@ public class EnemyScript : Entity
 {
     void Start()
     {
-        AddBehaviour("scroll", new ScrollableBehaviour());
+        SetBehaviour(new ScrollableBehaviour());
     }
     
     private void OnCollisionEnter2D(Collision2D collision)
@@ -16,7 +16,6 @@ public class EnemyScript : Entity
         if (collision.gameObject.CompareTag("Grenade") || collision.gameObject.CompareTag("Boundary"))
         {
             gameObject.SetActive(false);
-            //Destroy(gameObject);
         }
     }
 }

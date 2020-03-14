@@ -6,7 +6,7 @@ public class ObstacleScript : Entity
 {
     void Start()
     {
-        AddBehaviour("scroll", new ScrollableBehaviour());
+        SetBehaviour(new ScrollableBehaviour());
     }
     
     private void OnCollisionEnter2D(Collision2D collision)

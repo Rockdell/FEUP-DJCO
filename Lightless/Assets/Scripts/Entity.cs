@@ -5,24 +5,24 @@ using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
 {
-    protected Rigidbody2D Rigidbody { get; private set; }
-    private Dictionary<string, IBehaviour> Behaviours;
+    protected Rigidbody2D EntityBody { get; private set; }
+    private IBehaviour Behaviour;
 
     protected virtual void Awake()
     {
-        Behaviours = new Dictionary<string, IBehaviour>();
-        Rigidbody = GetComponent<Rigidbody2D>();
+        EntityBody = GetComponent<Rigidbody2D>();
     }
 
     protected void FixedUpdate()
     {
-        // Execute attached behaviours
-        foreach (var entry in Behaviours)
-        {
-            entry.Value.action(Rigidbody);
-        }
+        Behaviour.Action(EntityBody);
     }
 
+    protected void SetBehaviour(IBehaviour behaviour)
+    {
+        Behaviour = behaviour;
+    }
+    
     /**
      * Spawns entity with the given position and rotation
      */
@@ -30,15 +30,5 @@ public abstract class Entity : MonoBehaviour
     {
         transform.position = position;
         transform.rotation = rotation;
-    }
-
-    protected void AddBehaviour(string behaviourTag, IBehaviour behaviour)
-    {
-        Behaviours.Add(behaviourTag, behaviour);
-    }
-
-    protected void RemoveBehaviour(string behaviourTag)
-    {
-        Behaviours.Remove(behaviourTag);
     }
 }

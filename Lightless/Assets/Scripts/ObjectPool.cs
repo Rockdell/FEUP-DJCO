@@ -13,6 +13,13 @@ public class ObjectPool
     {
         pool = new List<GameObject>();
         (this.prefab, this.holder) = (prefab, holder);
+        
+        for (int i = 0; i < DEFAULT_POOL_SIZE; i++)
+        {
+            GameObject obj = Object.Instantiate(prefab, holder);
+            obj.SetActive(false);
+            pool.Add(obj);
+        }
     }
 
     public GameObject GetObject()

@@ -123,7 +123,7 @@ public class PlayerScript : MonoBehaviour {
 
         if (!grenadeOnCooldown) {
             grenadeOnCooldown = true;
-            GameObject grenade = GameManager.instance.GetGrenade();
+            GameObject grenade = GameManager.Instance.GetObject(GameManager.ObjectType.Grenade);
             grenade.SetActive(true);
             grenade.GetComponent<GrenadeScript>().Throw(crosshairInput);
         }
