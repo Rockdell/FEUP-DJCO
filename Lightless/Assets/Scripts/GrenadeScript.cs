@@ -13,7 +13,7 @@ public class GrenadeScript : Entity {
     {
         SetBehaviour(new ArchBehaviour());
     }
-    
+
     void OnEnable() 
     {
         Spawn(GameObject.FindGameObjectWithTag("PlayerProjectileStart").transform.position, Quaternion.identity);
@@ -21,20 +21,15 @@ public class GrenadeScript : Entity {
 
     void OnCollisionEnter2D(Collision2D collision) 
     {
-
         if (collision.gameObject.CompareTag("Boundary")) 
         {
             gameObject.SetActive(false);
             
             if (collision.gameObject.name == "Boundary Bottom")
             {
-                // GameObject gf = Instantiate(firePrefab); 
                 GameObject grenadeFire = GameManager.Instance.GetObject(GameManager.ObjectType.GrenadeFire);
-                // gf.transform.position = collision.GetContact(0).point;
+                grenadeFire.GetComponent<GrenadeFireScript>().Spawn(new Vector3(38, -12 + Random.Range(0, 5)), Quaternion.identity);
                 grenadeFire.SetActive(true);
-
-                grenadeFire.GetComponent<GrenadeFireScript>().Spawn(collision.GetContact(0).point, Quaternion.identity);
-
             }
         }
     }

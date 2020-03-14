@@ -4,14 +4,14 @@ public class GrenadeFireScript : Entity
 {
     void Start()
     {
-        SetBehaviour(new ScrollableBehaviour());       
+        SetBehaviour(new ScrollableBehaviour());
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.gameObject.CompareTag("Boundary")) {
-    
-            if (collision.gameObject.name == "Boundary Left" || collision.gameObject.name == "Boundary Top")
+        if (collider.gameObject.CompareTag("Boundary"))
+        {
+            if (collider.gameObject.name == "Boundary Left" || collider.gameObject.name == "Boundary Top")
             {
                 gameObject.SetActive(false);
             }

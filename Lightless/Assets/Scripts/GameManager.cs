@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // InvokeRepeating("SpawnEnemies", 1.0f, 1.0f);
+        //InvokeRepeating("SpawnEnemies", 1.0f, 1.0f);
         // InvokeRepeating("SpawnObstacles", 1.0f, 2.0f);
     }
 
