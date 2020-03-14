@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2603422476844570288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.25, y: -3.5, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.63383764, y: 0.6338376, z: 0.6338376}
   m_Children:
   - {fileID: 4443997990513470718}
   m_Father: {fileID: 0}
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.5, y: 1.5}
+  m_Size: {x: 5.17, y: 2.772705}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb197fdfe9d16cf408448eaaa661d6a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distancePerTimeUnit: 40
+  distancePerTimeUnit: 30
   minTime: 0.5
 --- !u!95 &2824102309675704659
 Animator:
@@ -181,7 +181,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4443997990513470719}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.4040554, w: 0.91473454}
   m_LocalPosition: {x: 1.11, y: 0, z: 0}
   m_LocalScale: {x: 1.9442012, y: 1.9442012, z: 1.9442012}
   m_Children: []
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.8
+  m_FalloffIntensity: 0.4
   m_Color: {r: 0.9811321, g: 0.8196993, b: 0.39337844, a: 1}
   m_Intensity: 1
   m_LightVolumeOpacity: 0
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 6
+  m_PointLightOuterRadius: 10
   m_PointLightDistance: 3
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 5
