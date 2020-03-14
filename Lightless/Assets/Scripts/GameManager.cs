@@ -5,10 +5,11 @@ public class GameManager : MonoBehaviour
 {
     public enum ObjectType
     {
-        Grenade, Enemy, Obstacle
+        LightBullet, Grenade, Enemy, Obstacle
     };
 
     public static GameManager Instance;
+    public GameObject lightBulletPrefab;
     public GameObject grenadePrefab;
     public GameObject enemyPrefab;
     public GameObject obstaclePrefab;
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
         
         // Initialize object pools
         _objectPools = new Dictionary<ObjectType, ObjectPool>();
+        AddPool(ObjectType.LightBullet, lightBulletPrefab);
         AddPool(ObjectType.Grenade, grenadePrefab);
         AddPool(ObjectType.Enemy, enemyPrefab);
         AddPool(ObjectType.Obstacle, obstaclePrefab);
@@ -34,8 +36,7 @@ public class GameManager : MonoBehaviour
     void AddPool(ObjectType type, GameObject prefab)
     {
         // Create new child component to hold pool objects
-        GameObject child = new GameObject();
-        child.name = type + " Pool"; 
+        GameObject child = new GameObject(type + " Pool");
         child.transform.parent = transform;
 
         _objectPools.Add(type, new ObjectPool(prefab, child.transform));

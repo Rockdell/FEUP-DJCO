@@ -3,23 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
-public class LightBulletScript : MonoBehaviour
+public class LightBulletScript : Entity
 {
     public float distancePerTimeUnit;
     private Animator animator;
     private AnimationClip explosionAnimation;
 
-    void Awake() {
+    protected override void Awake() {
+        base.Awake();
         animator = GetComponent<Animator>();
         explosionAnimation = animator.runtimeAnimatorController.animationClips[1];
     }
 
     void OnEnable() {
-        transform.position = GameObject.FindGameObjectWithTag("PlayerProjectileStart").transform.position;
-    }
-
-    public void Shoot(Vector2 targetLocation) {
-        GetComponent<Rigidbody2D>().AddForce((targetLocation - new Vector2(transform.position.x, transform.position.y)).normalized * distancePerTimeUnit, ForceMode2D.Impulse);
+        Spawn(GameObject.FindGameObjectWithTag("PlayerProjectileStart").transform.position, Quaternion.identity);
+        // gameObject.GetComponentInChildren<Light2D>().pointLightOuterRadius = 8.0f;
     }
 
     private IEnumerator OnCollisionEnter2D(Collision2D collision) {
@@ -27,7 +25,7 @@ public class LightBulletScript : MonoBehaviour
         animator.SetBool("collided", true);
 
         yield return new WaitForSeconds(explosionAnimation.length);
-
+        
         gameObject.SetActive(false);
 
         //if (collision.gameObject.CompareTag("Boundary")) {
@@ -40,9 +38,8 @@ public class LightBulletScript : MonoBehaviour
         //    }
         //}
     }
-
-    // Update is called once per frame
-    void Update() {
-
+    
+    public void Shoot(Vector2 targetLocation) {
+        EntityBody.AddForce((targetLocation - new Vector2(transform.position.x, transform.position.y)).normalized * distancePerTimeUnit, ForceMode2D.Impulse);
     }
 }

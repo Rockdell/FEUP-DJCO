@@ -111,7 +111,7 @@ public class PlayerScript : MonoBehaviour {
     public void Shoot() {
         if (!lightBulletOnCooldown) {
             lightBulletOnCooldown = true;
-            GameObject lightBullet = Instantiate(lightBulletPrefab);
+            GameObject lightBullet = GameManager.Instance.GetObject(GameManager.ObjectType.LightBullet);
             lightBullet.SetActive(true);
             lightBullet.GetComponent<LightBulletScript>().Shoot(crosshairInput);
         }

@@ -15,7 +15,7 @@ public abstract class Entity : MonoBehaviour
 
     protected void FixedUpdate()
     {
-        Behaviour.Action(EntityBody);
+        Behaviour?.Action(EntityBody);
     }
 
     protected void SetBehaviour(IBehaviour behaviour)
