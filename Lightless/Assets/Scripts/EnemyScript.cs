@@ -1,24 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class EnemyScript : MonoBehaviour
+public class EnemyScript : Entity
 {
-    private Rigidbody2D rb;
-    private float moveSpeed = 15f;
-
-    // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        AddBehaviour("scroll", new ScrollableBehaviour());
     }
-
-    void FixedUpdate()
-    {
-        Vector2 nextPosition = rb.position + new Vector2(-1, 0) * moveSpeed * Time.fixedDeltaTime;
-        rb.MovePosition(new Vector2(nextPosition.x, rb.position.y));
-    }
-
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Grenade") || collision.gameObject.CompareTag("Boundary"))
@@ -26,11 +18,5 @@ public class EnemyScript : MonoBehaviour
             gameObject.SetActive(false);
             //Destroy(gameObject);
         }
-    }
-
-    public void Spawn(Vector3 position, Quaternion rotation)
-    {
-        transform.position = position;
-        transform.rotation = rotation;
     }
 }
