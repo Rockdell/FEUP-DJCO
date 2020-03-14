@@ -812,8 +812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9638b3d7a09b3744cb81559704a8a66a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefab: {fileID: 2354999473251233983, guid: 1b9b0d10bb749ec4bb3110b133eddebd,
-    type: 3}
 --- !u!4 &360989918
 Transform:
   m_ObjectHideFlags: 0
@@ -1329,8 +1327,6 @@ MonoBehaviour:
   minLightRadius: 2.5
   lightBulletCooldown: 0.5
   grenadeCooldown: 5
-  lightBulletPrefab: {fileID: 1755862351017179930, guid: 07a6e88732ba50040af2cae12f618a33,
-    type: 3}
   healthBarUI: {fileID: 1408492360}
   grenadeCooldownUI: {fileID: 122797777}
   crosshair: {fileID: 616673630}
@@ -2098,8 +2094,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090b91b1941fa414bbbbf89da84f2d5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1589874691885056025, guid: 79e6682ebc47a3649b0beac541ecfe83,
-    type: 3}
 --- !u!4 &1062882047
 Transform:
   m_ObjectHideFlags: 0
@@ -3574,5 +3568,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d83acfe6b19eeadc8e35de78f95c740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightBulletPrefab: {fileID: 1755862351017179930, guid: 07a6e88732ba50040af2cae12f618a33,
+    type: 3}
   grenadePrefab: {fileID: 2603422476844570288, guid: b59dc3ab6ab78c3478d1686eef0c4111,
+    type: 3}
+  grenadeFirePrefab: {fileID: 5994955042869800912, guid: a8600b5daff5310449caff6dc6c09638,
+    type: 3}
+  enemyPrefab: {fileID: 1589874691885056025, guid: 79e6682ebc47a3649b0beac541ecfe83,
+    type: 3}
+  obstaclePrefab: {fileID: 2354999473251233983, guid: 1b9b0d10bb749ec4bb3110b133eddebd,
     type: 3}
