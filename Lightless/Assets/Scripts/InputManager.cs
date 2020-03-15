@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour {
 
+    public GameObject player;
+    public GameObject pauseMenuCanvas;
     private InputActions inputActions;
-    private PlayerScript player;
+    private PlayerScript playerScript;
+    private PauseMenu pauseMenuScript;
 
     private void Awake() {
         inputActions = new InputActions();
-        player = GetComponent<PlayerScript>();
-        inputActions.Player.Move.performed += ctx => player.UpdateMovement(ctx.ReadValue<Vector2>());
-        inputActions.Player.Look.performed += ctx => player.UpdateCrosshair(ctx.ReadValue<Vector2>());
-        inputActions.Player.Shoot.performed += _ => player.Shoot();
-        inputActions.Player.GrenadeThrow.performed += _ => player.SetIsAimingToTrue();
-        inputActions.Player.GrenadeThrow.canceled += _ => player.ThrowGrenade();
+        playerScript = player.GetComponent<PlayerScript>();
+        pauseMenuScript = pauseMenuCanvas.GetComponent<PauseMenu>();
+        inputActions.Player.Move.performed += ctx => playerScript.UpdateMovement(ctx.ReadValue<Vector2>());
+        inputActions.Player.Look.performed += ctx => playerScript.UpdateCrosshair(ctx.ReadValue<Vector2>());
+        inputActions.Player.Shoot.performed += _ => playerScript.Shoot();
+        inputActions.Player.Pause.performed += _ => pauseMenuScript.PauseKeyPressed();
+        
+        //TODO remove?
+        inputActions.Player.GrenadeThrow.performed += _ => playerScript.SetIsAimingToTrue();
+        //
+
+        inputActions.Player.GrenadeThrow.canceled += _ => playerScript.ThrowGrenade();
     }
 
     private void OnEnable() {
