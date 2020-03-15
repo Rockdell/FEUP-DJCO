@@ -1,0 +1,705 @@
+fileFormatVersion: 2
+guid: 49031b3ac99dae64b9daa030e03c981c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1071145901922951974
+    second: ZombieToast projectile_0
+  - first:
+      213: -6560108268535454904
+    second: ZombieToast projectile_1
+  - first:
+      213: 2994984353621713072
+    second: ZombieToast projectile_2
+  - first:
+      213: 8681014295052965234
+    second: ZombieToast projectile_3
+  - first:
+      213: 3313834693916625268
+    second: ZombieToast projectile_4
+  - first:
+      213: -9086737888259922833
+    second: ZombieToast projectile_5
+  - first:
+      213: -75721409457387280
+    second: ZombieToast projectile_6
+  - first:
+      213: -3134078713463546048
+    second: ZombieToast projectile_7
+  - first:
+      213: 9198153250201127848
+    second: ZombieToast projectile_8
+  - first:
+      213: 5650625866100873041
+    second: ZombieToast projectile_9
+  - first:
+      213: 5598118338143565181
+    second: ZombieToast projectile_10
+  - first:
+      213: -5963758722807761135
+    second: ZombieToast projectile_11
+  - first:
+      213: -5983167115934268464
+    second: ZombieToast projectile_12
+  - first:
+      213: 8442202317127220834
+    second: ZombieToast projectile_13
+  - first:
+      213: 6385057593674593309
+    second: ZombieToast projectile_14
+  - first:
+      213: 9162068717796249229
+    second: ZombieToast projectile_15
+  - first:
+      213: 3292450589714088985
+    second: ZombieToast projectile_16
+  - first:
+      213: 5850711473540487857
+    second: ZombieToast projectile_17
+  - first:
+      213: 2932955904708425808
+    second: ZombieToast projectile_18
+  - first:
+      213: -168824955352036314
+    second: ZombieToast projectile_19
+  - first:
+      213: -2910252162669916728
+    second: ZombieToast projectile_20
+  - first:
+      213: -6194765771557113408
+    second: ZombieToast projectile_21
+  - first:
+      213: -3406040728740353343
+    second: ZombieToast projectile_22
+  - first:
+      213: 372155625805464835
+    second: ZombieToast projectile_23
+  - first:
+      213: -3224403813853665301
+    second: ZombieToast projectile_24
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ZombieToast projectile_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adc54453a768221f0800000000000000
+      internalID: -1071145901922951974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_1
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84367d56940d5f4a0800000000000000
+      internalID: -6560108268535454904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_2
+      rect:
+        serializedVersion: 2
+        x: 1158
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b0a979c662509920800000000000000
+      internalID: 2994984353621713072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_3
+      rect:
+        serializedVersion: 2
+        x: 1737
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27558b2e188297870800000000000000
+      internalID: 8681014295052965234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_4
+      rect:
+        serializedVersion: 2
+        x: 2316
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 479044fb81b1dfd20800000000000000
+      internalID: 3313834693916625268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_5
+      rect:
+        serializedVersion: 2
+        x: 2895
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f642f23c80c65e180800000000000000
+      internalID: -9086737888259922833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_6
+      rect:
+        serializedVersion: 2
+        x: 3474
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f8866f77cbf2fef0800000000000000
+      internalID: -75721409457387280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_7
+      rect:
+        serializedVersion: 2
+        x: 4053
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04f54e1e3048184d0800000000000000
+      internalID: -3134078713463546048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_8
+      rect:
+        serializedVersion: 2
+        x: 4632
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8abc7dba5a766af70800000000000000
+      internalID: 9198153250201127848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_9
+      rect:
+        serializedVersion: 2
+        x: 5211
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1579393794e0b6e40800000000000000
+      internalID: 5650625866100873041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_10
+      rect:
+        serializedVersion: 2
+        x: 5790
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d75b5abe7f280bd40800000000000000
+      internalID: 5598118338143565181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_11
+      rect:
+        serializedVersion: 2
+        x: 6369
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 117f7e8f9097c3da0800000000000000
+      internalID: -5963758722807761135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_12
+      rect:
+        serializedVersion: 2
+        x: 6948
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d380fe453587fca0800000000000000
+      internalID: -5983167115934268464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_13
+      rect:
+        serializedVersion: 2
+        x: 7527
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26ef85a574ab82570800000000000000
+      internalID: 8442202317127220834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_14
+      rect:
+        serializedVersion: 2
+        x: 8106
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d14726d4d084c9850800000000000000
+      internalID: 6385057593674593309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_15
+      rect:
+        serializedVersion: 2
+        x: 8685
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8ec6f3c4f4362f70800000000000000
+      internalID: 9162068717796249229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_16
+      rect:
+        serializedVersion: 2
+        x: 9264
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9140f600e5221bd20800000000000000
+      internalID: 3292450589714088985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_17
+      rect:
+        serializedVersion: 2
+        x: 9843
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1badea73617e13150800000000000000
+      internalID: 5850711473540487857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_18
+      rect:
+        serializedVersion: 2
+        x: 10422
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 058b70a1bd3f3b820800000000000000
+      internalID: 2932955904708425808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_19
+      rect:
+        serializedVersion: 2
+        x: 11001
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62c450bf89638adf0800000000000000
+      internalID: -168824955352036314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_20
+      rect:
+        serializedVersion: 2
+        x: 11580
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cd4f35c315bc97d0800000000000000
+      internalID: -2910252162669916728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_21
+      rect:
+        serializedVersion: 2
+        x: 12159
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c1f69f1a55c70aa0800000000000000
+      internalID: -6194765771557113408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_22
+      rect:
+        serializedVersion: 2
+        x: 12738
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ca2be0d0005bb0d0800000000000000
+      internalID: -3406040728740353343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_23
+      rect:
+        serializedVersion: 2
+        x: 13317
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3054c45e1992a2500800000000000000
+      internalID: 372155625805464835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ZombieToast projectile_24
+      rect:
+        serializedVersion: 2
+        x: 13896
+        y: 0
+        width: 579.56
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be766de90dd9043d0800000000000000
+      internalID: -3224403813853665301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: ff084fc21c0540b4cb51a36901e2dbeb, type: 3}
+      name: _NormalMap
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
