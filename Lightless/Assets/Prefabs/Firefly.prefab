@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5319840948068333108}
   - component: {fileID: 1352079465}
   - component: {fileID: 1352079464}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Firefly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5319840949740451320}
   - component: {fileID: 5319840949740451323}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}

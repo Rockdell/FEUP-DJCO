@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class DropLight : Entity
+public class DropLightScript : Entity
 {
     void Start()
     {
@@ -9,6 +9,6 @@ public class DropLight : Entity
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public enum ObjectType
     {
-        LightBullet, Grenade, GrenadeFire, Enemy, Obstacle, Firefly
+        LightBullet, Grenade, GrenadeFire, 
+        Enemy, Obstacle, Firefly, DropLight
     };
 
     public static GameManager Instance { get; private set; }
@@ -19,6 +21,8 @@ public class GameManager : MonoBehaviour
     public GameObject enemyPrefab;
     public GameObject obstaclePrefab;
     public GameObject fireflyPrefab;
+    public GameObject dropLightPrefab;
+
     private Dictionary<ObjectType, ObjectPool> _objectPools;
 
     void Awake()
@@ -36,12 +40,15 @@ public class GameManager : MonoBehaviour
         AddPool(ObjectType.Enemy, enemyPrefab);
         AddPool(ObjectType.Obstacle, obstaclePrefab);
         AddPool(ObjectType.Firefly, fireflyPrefab);
+        AddPool(ObjectType.DropLight, dropLightPrefab);
     }
 
     void Start()
     {
+        StartCoroutine("SpawnDropLight");
+
         //InvokeRepeating("SpawnEnemies", 1.0f, 1.0f);
-        InvokeRepeating("SpawnObstacles", 1.0f, 2.0f);
+        //InvokeRepeating("SpawnObstacles", 1.0f, 2.0f);
     }
 
     void AddPool(ObjectType type, GameObject prefab)
@@ -57,8 +64,20 @@ public class GameManager : MonoBehaviour
     {
         return _objectPools[type].GetObject();
     }
-    
+
     // Spawners
+
+    private IEnumerator SpawnDropLight()
+    {
+        while (true)
+        {
+            GameObject dropLight = GetObject(ObjectType.DropLight);
+            dropLight.GetComponent<DropLightScript>().Spawn(new Vector3(70.0f, Random.Range(-10, 10)), Quaternion.identity);
+            dropLight.SetActive(true);
+
+            yield return new WaitForSeconds(1.0f);
+        }
+    }
     
     void SpawnEnemies()
     {

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5319511735258536789}
   - component: {fileID: 5319511735258536785}
   - component: {fileID: 5319511735258536790}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ZombieToast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
