@@ -15,6 +15,8 @@ public class PlayerScript : MonoBehaviour {
     private float currentHealth;
 
     [Header("Player Weapons")]
+    public WeaponData lightBullet;
+
     public float lightBulletCooldown;
     private float currentLightBulletCooldown = 0;
     private bool lightBulletOnCooldown = false;
@@ -102,15 +104,11 @@ public class PlayerScript : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // Pickups
-        if (collision.gameObject.CompareTag("Pickup"))
+        // Drop light
+        if (collision.gameObject.CompareTag("DropLight"))
         {
-            // Drop light
-            if (collision.gameObject.name == "DropLight")
-            {
-                currentHealth = Mathf.Min(currentHealth + 20, maxHealth);
-                healthBarUI.SetHealth((int)currentHealth);
-            }
+            currentHealth = Mathf.Min(currentHealth + 20, maxHealth);
+            healthBarUI.SetHealth((int)currentHealth);
         }
     }
 

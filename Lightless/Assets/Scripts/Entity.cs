@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
 {
     protected Rigidbody2D EntityBody { get; private set; }
-    private IBehaviour Behaviour;
+    protected IBehaviour Behaviour { get; set; }
 
     protected virtual void Awake()
     {

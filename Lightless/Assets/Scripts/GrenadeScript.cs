@@ -31,14 +31,14 @@ public class GrenadeScript : Entity {
         GetComponentInChildren<Light2D>().pointLightOuterRadius = lightRadius;
     }
 
-    private IEnumerator OnCollisionEnter2D(Collision2D collision) {
+    IEnumerator OnCollisionEnter2D(Collision2D collision) {
 
         EntityBody.constraints = RigidbodyConstraints2D.FreezeAll;
         animator.SetBool("collided", true);
         yield return new WaitForSeconds(explosionAnimation.length);
         EntityBody.constraints = RigidbodyConstraints2D.None;
 
-        if (collision.gameObject.CompareTag("Boundary")) {
+        //if (collision.gameObject.CompareTag("Boundary")) {
             gameObject.SetActive(false);
             
             //if (collision.gameObject.name == "Boundary Bottom")
@@ -47,7 +47,7 @@ public class GrenadeScript : Entity {
             //    grenadeFire.GetComponent<GrenadeFireScript>().Spawn(collision.GetContact(0).point, Quaternion.identity);
             //    grenadeFire.SetActive(true);
             //}
-        }
+        //}
     }
     
     public void Throw(Vector2 targetLocation) 

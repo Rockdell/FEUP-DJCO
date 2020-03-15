@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3980108391586698370}
   m_Layer: 13
   m_Name: DropLight
-  m_TagString: Pickup
+  m_TagString: DropLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +95,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7813916188050199904}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 9c1cd9af760cb5748915ad9fd10e803d, type: 2}
   m_CullingMode: 0

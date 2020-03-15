@@ -6,8 +6,10 @@ public class GameManager : MonoBehaviour
 {
     public enum ObjectType
     {
-        LightBullet, Grenade, GrenadeFire, 
-        Enemy, Obstacle, Firefly, DropLight
+        LightBullet, Grenade, 
+        Zombie, ZombieBullet,
+        //Firefly, 
+        DropLight
     };
 
     public static GameManager Instance { get; private set; }
@@ -17,10 +19,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject lightBulletPrefab;
     public GameObject grenadePrefab;
-    public GameObject grenadeFirePrefab;
-    public GameObject enemyPrefab;
-    public GameObject obstaclePrefab;
-    public GameObject fireflyPrefab;
+    public GameObject zombiePrefab;
+    //public GameObject grenadeFirePrefab;
+    //public GameObject enemyPrefab;
+    //public GameObject obstaclePrefab;
+    //public GameObject fireflyPrefab;
     public GameObject dropLightPrefab;
 
     private Dictionary<ObjectType, ObjectPool> _objectPools;
@@ -36,19 +39,17 @@ public class GameManager : MonoBehaviour
         _objectPools = new Dictionary<ObjectType, ObjectPool>();
         AddPool(ObjectType.LightBullet, lightBulletPrefab);
         AddPool(ObjectType.Grenade, grenadePrefab);
-        AddPool(ObjectType.GrenadeFire, grenadeFirePrefab);
-        AddPool(ObjectType.Enemy, enemyPrefab);
-        AddPool(ObjectType.Obstacle, obstaclePrefab);
-        AddPool(ObjectType.Firefly, fireflyPrefab);
+        AddPool(ObjectType.Zombie, zombiePrefab);
+        //AddPool(ObjectType.GrenadeFire, grenadeFirePrefab);
+        //AddPool(ObjectType.Enemy, enemyPrefab);
+        //AddPool(ObjectType.Obstacle, obstaclePrefab);
+        //AddPool(ObjectType.Firefly, fireflyPrefab);
         AddPool(ObjectType.DropLight, dropLightPrefab);
     }
 
     void Start()
     {
-        StartCoroutine("SpawnDropLight");
-
-        //InvokeRepeating("SpawnEnemies", 1.0f, 1.0f);
-        //InvokeRepeating("SpawnObstacles", 1.0f, 2.0f);
+        StartCoroutine("SpawnWaves");
     }
 
     void AddPool(ObjectType type, GameObject prefab)
@@ -65,32 +66,16 @@ public class GameManager : MonoBehaviour
         return _objectPools[type].GetObject();
     }
 
-    // Spawners
-
-    private IEnumerator SpawnDropLight()
+    private IEnumerator SpawnWaves()
     {
+        IWave currentWave = new WaveI();
+
         while (true)
         {
-            GameObject dropLight = GetObject(ObjectType.DropLight);
-            dropLight.GetComponent<DropLightScript>().Spawn(new Vector3(70.0f, Random.Range(-10, 10)), Quaternion.identity);
-            dropLight.SetActive(true);
-
-            yield return new WaitForSeconds(1.0f);
+            if (!currentWave.isOver())
+                yield return new WaitForSeconds(2.5f);
+            else
+                currentWave = new WaveI();
         }
     }
-    
-    void SpawnEnemies()
-    {
-        GameObject obj = GetObject(ObjectType.Enemy);
-        obj.GetComponent<EnemyScript>().Spawn(new Vector3(38, -12), Quaternion.identity);
-        obj.SetActive(true);
-    }
-
-    void SpawnObstacles()
-    {
-        GameObject obj =  GetObject(ObjectType.Obstacle);
-        obj.GetComponent<ObstacleScript>().Spawn(new Vector3(70, 15), Quaternion.identity);
-        obj.SetActive(true);
-    }
-
 }

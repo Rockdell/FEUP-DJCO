@@ -5,7 +5,7 @@ public class ObjectPool
 {
     private const int DEFAULT_POOL_SIZE = 10;
     private List<GameObject> pool;
-    
+
     private GameObject prefab;
     private Transform holder;
 
@@ -28,7 +28,6 @@ public class ObjectPool
         for (int i = 0; i < DEFAULT_POOL_SIZE; i++)
         {
             GameObject obj = Object.Instantiate(prefab, holder);
-            obj.name = prefab.name;
             obj.SetActive(false);
             pool.Add(obj);
         }
