@@ -16,12 +16,10 @@ public class PlayerScript : MonoBehaviour {
 
     [Header("Player Weapons")]
     public WeaponData lightBullet;
-
-    public float lightBulletCooldown;
     private float currentLightBulletCooldown = 0;
     private bool lightBulletOnCooldown = false;
-
-    public float grenadeCooldown;
+    
+    public WeaponData grenade;
     private float currentGrenadeCooldown = 0;
     private bool grenadeOnCooldown = false;
 
@@ -53,7 +51,7 @@ public class PlayerScript : MonoBehaviour {
 
         currentHealth = maxHealth;
         healthBarUI.SetMaxHealth(maxHealth);
-        grenadeCooldownUI.SetMaxCooldown(grenadeCooldown);
+        grenadeCooldownUI.SetMaxCooldown(grenade.weaponCooldown);
     }
 
     // Update is called once per frame
@@ -74,7 +72,7 @@ public class PlayerScript : MonoBehaviour {
 
         //Cooldowns
         if (lightBulletOnCooldown) {
-            if (currentLightBulletCooldown < lightBulletCooldown) {
+            if (currentLightBulletCooldown < lightBullet.weaponCooldown) {
                 currentLightBulletCooldown += Time.deltaTime;
             }
             else {
@@ -84,14 +82,14 @@ public class PlayerScript : MonoBehaviour {
         }
 
         if (grenadeOnCooldown) {
-            if (currentGrenadeCooldown < grenadeCooldown) {
+            if (currentGrenadeCooldown < grenade.weaponCooldown) {
                 currentGrenadeCooldown += Time.deltaTime;
                 grenadeCooldownUI.SetCooldown(currentGrenadeCooldown);
             }
             else {
                 grenadeOnCooldown = false;
                 currentGrenadeCooldown = 0;
-                grenadeCooldownUI.SetCooldown(grenadeCooldown);
+                grenadeCooldownUI.SetCooldown(grenade.weaponCooldown);
             }
         }
     }
@@ -104,10 +102,14 @@ public class PlayerScript : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // Drop light
-        if (collision.gameObject.CompareTag("DropLight"))
+        if (collision.gameObject.CompareTag("DropLight"))   // Drop light
         {
             currentHealth = Mathf.Min(currentHealth + 20, maxHealth);
+            healthBarUI.SetHealth((int)currentHealth);
+        }
+        else if (collision.gameObject.CompareTag("ZombieBullet"))   // Zombie bullet
+        {
+            currentHealth -= collision.gameObject.GetComponent<ZombieBulletScript>().weaponData.weaponDamage;
             healthBarUI.SetHealth((int)currentHealth);
         }
     }

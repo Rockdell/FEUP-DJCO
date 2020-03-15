@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1972,8 +1972,7 @@ MonoBehaviour:
   maxLightRadius: 15
   minLightRadius: 2.5
   lightBullet: {fileID: 11400000, guid: 24707219a05dd5640bd56f0ae3683214, type: 2}
-  lightBulletCooldown: 0.5
-  grenadeCooldown: 0.5
+  grenade: {fileID: 11400000, guid: 072cdfb5c8e6d80499e626236e96a922, type: 2}
   healthBarUI: {fileID: 1408492360}
   grenadeCooldownUI: {fileID: 122797777}
   crosshair: {fileID: 616673630}
@@ -6149,6 +6148,8 @@ MonoBehaviour:
   grenadePrefab: {fileID: 2603422476844570288, guid: b59dc3ab6ab78c3478d1686eef0c4111,
     type: 3}
   zombiePrefab: {fileID: 5319511735258536778, guid: bcacd3458de785b48a0914b9e34a1113,
+    type: 3}
+  zombieBulletPrefab: {fileID: 1502511126608940579, guid: ea23bb4b4535dc6429166cd29ce2577e,
     type: 3}
   dropLightPrefab: {fileID: 7813916188050199904, guid: 2eb0b5ce1946e9142bda5fe87d8a2bcc,
     type: 3}

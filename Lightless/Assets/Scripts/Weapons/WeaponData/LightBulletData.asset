@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IWeapon
   weaponDamage: 20
   weaponCooldown: 0.5
+  distancePerTimeUnit: 40

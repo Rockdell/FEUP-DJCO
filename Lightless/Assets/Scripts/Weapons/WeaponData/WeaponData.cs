@@ -6,5 +6,10 @@ using UnityEngine;
 public class WeaponData : ScriptableObject
 {
     public float weaponDamage;
+
     public float weaponCooldown;
+
+    public float weaponRange;
+
+    public float distancePerTimeUnit;
 }

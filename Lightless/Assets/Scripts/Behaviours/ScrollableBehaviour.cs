@@ -7,9 +7,9 @@ public class ScrollableBehaviour : IBehaviour
 {
     public float scrollSpeed { get; set; }
 
-    public ScrollableBehaviour()
+    public ScrollableBehaviour(float speed = 10.0f)
     {
-        scrollSpeed = 10.0f;
+        scrollSpeed = speed;
     }
     
     public void Action(Rigidbody2D rigidbody)

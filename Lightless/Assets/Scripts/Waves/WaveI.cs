@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaveI : IWave
 {
-    private const int numberZombies = 5;
+    private const int numberZombies = 1;
     private List<GameObject> zombies;
 
     public WaveI()

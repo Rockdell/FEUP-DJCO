@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1755862351017179935}
   - component: {fileID: 1755862351017179932}
   - component: {fileID: 1755862351017179933}
-  - component: {fileID: 1563477810758882637}
   - component: {fileID: 6237717344017364154}
   - component: {fileID: 3815349688011788422}
+  - component: {fileID: 1563477810758882637}
   m_Layer: 9
   m_Name: LightBullet
   m_TagString: LightBullet
@@ -106,19 +106,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1563477810758882637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1755862351017179930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32e9888a848104c42a7fcdbb90e29b89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distancePerTimeUnit: 40
 --- !u!50 &6237717344017364154
 Rigidbody2D:
   serializedVersion: 4
@@ -156,6 +143,19 @@ CircleCollider2D:
   m_Offset: {x: -0.07, y: -0.1}
   serializedVersion: 2
   m_Radius: 0.79
+--- !u!114 &1563477810758882637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755862351017179930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32e9888a848104c42a7fcdbb90e29b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponData: {fileID: 11400000, guid: 24707219a05dd5640bd56f0ae3683214, type: 2}
 --- !u!1 &7362991075255923783
 GameObject:
   m_ObjectHideFlags: 0

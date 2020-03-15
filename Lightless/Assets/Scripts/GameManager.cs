@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject lightBulletPrefab;
     public GameObject grenadePrefab;
     public GameObject zombiePrefab;
+    public GameObject zombieBulletPrefab;
     //public GameObject grenadeFirePrefab;
     //public GameObject enemyPrefab;
     //public GameObject obstaclePrefab;
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
         AddPool(ObjectType.LightBullet, lightBulletPrefab);
         AddPool(ObjectType.Grenade, grenadePrefab);
         AddPool(ObjectType.Zombie, zombiePrefab);
+        AddPool(ObjectType.ZombieBullet, zombieBulletPrefab);
         //AddPool(ObjectType.GrenadeFire, grenadeFirePrefab);
         //AddPool(ObjectType.Enemy, enemyPrefab);
         //AddPool(ObjectType.Obstacle, obstaclePrefab);
@@ -64,6 +66,11 @@ public class GameManager : MonoBehaviour
     public GameObject GetObject(ObjectType type)
     {
         return _objectPools[type].GetObject();
+    }
+
+    public GameObject GetPlayer()
+    {
+        return GameObject.FindGameObjectWithTag("Player");
     }
 
     private IEnumerator SpawnWaves()
