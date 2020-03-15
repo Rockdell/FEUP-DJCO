@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public enum ObjectType
     {
-        LightBullet, Grenade, GrenadeFire, Enemy, Obstacle
+        LightBullet, Grenade, GrenadeFire, Enemy, Obstacle, Firefly
     };
 
     public static GameManager Instance;
@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject grenadeFirePrefab;
     public GameObject enemyPrefab;
     public GameObject obstaclePrefab;
+    public GameObject fireflyPrefab;
     private Dictionary<ObjectType, ObjectPool> _objectPools;
 
     void Awake()
@@ -27,12 +28,13 @@ public class GameManager : MonoBehaviour
         AddPool(ObjectType.GrenadeFire, grenadeFirePrefab);
         AddPool(ObjectType.Enemy, enemyPrefab);
         AddPool(ObjectType.Obstacle, obstaclePrefab);
+        AddPool(ObjectType.Firefly, fireflyPrefab);
     }
 
     void Start()
     {
         //InvokeRepeating("SpawnEnemies", 1.0f, 1.0f);
-        // InvokeRepeating("SpawnObstacles", 1.0f, 2.0f);
+        InvokeRepeating("SpawnObstacles", 1.0f, 2.0f);
     }
 
     void AddPool(ObjectType type, GameObject prefab)
