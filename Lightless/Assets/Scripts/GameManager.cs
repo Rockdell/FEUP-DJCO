@@ -8,7 +8,11 @@ public class GameManager : MonoBehaviour
         LightBullet, Grenade, GrenadeFire, Enemy, Obstacle, Firefly
     };
 
-    public static GameManager Instance;
+    public static GameManager Instance { get; private set; }
+
+    public Camera gameCamera { get; private set; }
+    public Vector2 screenBounds { get; private set; }
+
     public GameObject lightBulletPrefab;
     public GameObject grenadePrefab;
     public GameObject grenadeFirePrefab;
@@ -20,7 +24,10 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        
+
+        gameCamera = Camera.main;
+        screenBounds = gameCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+
         // Initialize object pools
         _objectPools = new Dictionary<ObjectType, ObjectPool>();
         AddPool(ObjectType.LightBullet, lightBulletPrefab);

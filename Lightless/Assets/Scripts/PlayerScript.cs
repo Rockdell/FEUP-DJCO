@@ -23,8 +23,6 @@ public class PlayerScript : MonoBehaviour {
     private float currentGrenadeCooldown = 0;
     private bool grenadeOnCooldown = false;
 
-    // public GameObject lightBulletPrefab;
-
     [Header("Player Options")]
     public HealthBarScript healthBarUI;
     public CooldownScript grenadeCooldownUI;
@@ -42,19 +40,13 @@ public class PlayerScript : MonoBehaviour {
     private Vector2 movementInput;
     private Vector2 crosshairInput;
 
-    private Camera cam;
-    private Vector2 screenBounds;
-
-    private bool isAiming = false;
+    //private bool isAiming = false;
 
     void Start() {
-        cam = Camera.main;
-
         rb = GetComponent<Rigidbody2D>();
         light2D = GetComponent<Light2D>();
         light2D.pointLightOuterRadius = maxLightRadius;
 
-        screenBounds = cam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         //Cursor.visible = false;
 
         currentHealth = maxHealth;
@@ -105,7 +97,21 @@ public class PlayerScript : MonoBehaviour {
     void FixedUpdate() {
         //Update Rigibody position
         Vector2 nextPosition = rb.position + movementInput * moveSpeed * Time.fixedDeltaTime;
-        rb.MovePosition(new Vector2(Mathf.Clamp(nextPosition.x, -screenBounds.x, screenBounds.x), Mathf.Clamp(nextPosition.y, -screenBounds.y, screenBounds.y)));
+        rb.MovePosition(new Vector2(Mathf.Clamp(nextPosition.x, -GameManager.Instance.screenBounds.x, GameManager.Instance.screenBounds.x), Mathf.Clamp(nextPosition.y, -GameManager.Instance.screenBounds.y, GameManager.Instance.screenBounds.y)));
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Pickups
+        if (collision.gameObject.CompareTag("Pickup"))
+        {
+            // Drop light
+            if (collision.gameObject.name == "DropLight")
+            {
+                currentHealth = Mathf.Min(currentHealth + 20, maxHealth);
+                healthBarUI.SetHealth((int)currentHealth);
+            }
+        }
     }
 
     public void Shoot() {
@@ -118,7 +124,7 @@ public class PlayerScript : MonoBehaviour {
     }
 
     public void ThrowGrenade() {
-        isAiming = false;
+        //isAiming = false;
         //lineVisual.positionCount = 0;
 
         if (!grenadeOnCooldown) {
@@ -142,11 +148,12 @@ public class PlayerScript : MonoBehaviour {
     }
 
     public void UpdateCrosshair(Vector2 input) {
-        crosshairInput = cam.ScreenToWorldPoint(new Vector3(input.x, input.y, 0));
+        crosshairInput = GameManager.Instance.gameCamera.ScreenToWorldPoint(new Vector3(input.x, input.y, 0));
     }
 
-    public void SetIsAimingToTrue() {
-        isAiming = true;
+    public void SetIsAimingToTrue()
+    {
+        //isAiming = true;
     }
 
 }
