@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponDamage: 20
   weaponCooldown: 1
-  weaponRange: 0
+  weaponRange: 70
   distancePerTimeUnit: 50
