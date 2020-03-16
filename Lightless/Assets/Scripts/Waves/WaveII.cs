@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaveII : IWave
 {
-    private const int numberFireflies = 1;
+    private const int numberFireflies = 25;
     private List<GameObject> fireflies;
 
     public WaveII()
@@ -16,34 +16,8 @@ public class WaveII : IWave
 
     protected override void Spawn()
     {
-        for (int i = 0; i < numberFireflies; i++)
-        {
-            GameObject firefly = GameManager.Instance.GetObject(GameManager.ObjectType.Firefly);
-            //firefly.GetComponent<FireflyScript>().Spawn(new Vector2(70.0f, 0.0f), Quaternion.identity);
-            firefly.SetActive(true);
-
-            fireflies.Add(firefly);
-        }
-
-
-        //var spawningPosition = GameManager.Instance.screenBounds.x + 20;
-        //var closestPosition = -GameManager.Instance.screenBounds.x + 20;
-        //var spacePerZombie = (GameManager.Instance.screenBounds.x + Mathf.Abs(closestPosition)) / numberZombies;
-
-        //for (int i = 0; i < numberZombies; i++)
-        //{
-        //    GameObject zombie = GameManager.Instance.GetObject(GameManager.ObjectType.Zombie);
-
-        //    var zombieScript = zombie.GetComponent<ZombieScript>();
-        //    zombieScript.targetPosition = closestPosition + i * spacePerZombie;
-        //    zombieScript.Spawn(new Vector2(spawningPosition + i * 10, -12.0f), Quaternion.identity);
-        //    zombie.SetActive(true);
-
-        //    fireflies.Add(zombie);
-        //}
+        GameManager.Instance.StartCoroutine(SpawnOverTime());
     }
-
-
 
     public override bool isOver()
     {
@@ -54,5 +28,28 @@ public class WaveII : IWave
         }
 
         return true;
+    }
+
+    IEnumerator SpawnOverTime()
+    {
+        var spawningPosition = GameManager.Instance.screenBounds.x + 20;
+        var upperHeight = GameManager.Instance.screenBounds.y - 10;
+        var lowerHeight = -GameManager.Instance.screenBounds.y + 10;
+
+        while (fireflies.Count != numberFireflies)
+        {
+            GameObject firefly = GameManager.Instance.GetObject(GameManager.ObjectType.Firefly);
+
+            var fireflyScript = firefly.GetComponent<FireflyScript>();
+            fireflyScript.sleep = 0;
+            fireflyScript.Spawn(new Vector2(spawningPosition, Random.Range(lowerHeight, upperHeight)), Quaternion.identity);
+            firefly.SetActive(true);
+
+            fireflies.Add(firefly);
+
+            yield return new WaitForSeconds(0.8f);
+        }
+
+        yield return null;
     }
 }

@@ -6,12 +6,13 @@ public class FireflyScript : Entity
     [Header("Firefly Stats")]
     public EnemyData enemyData;
     private float currentHealth;
+    public float sleep { get; set; }
 
     [Header("Firefly Weapons")]
     public WeaponData fireflyExplosion;
 
     // State
-    private enum State { Init, Chase, Die };
+    private enum State { Init, Idle, Chase, Die };
     private State currentState = State.Init;
     private bool playerHit;
 
@@ -30,6 +31,18 @@ public class FireflyScript : Entity
     {
         if (currentState == State.Die)
             return;
+       
+        if (currentState == State.Idle)
+        {
+            sleep -= Time.deltaTime;
+
+            if (sleep <= 0)
+            {
+                SetState(State.Chase);
+            }
+
+            return;
+        }
         
         var targetPosition = GameManager.Instance.GetPlayer().transform.position;
 
@@ -42,7 +55,7 @@ public class FireflyScript : Entity
     void OnEnable()
     {
         currentHealth = enemyData.maxHealth;
-        SetState(State.Chase);
+        SetState(State.Idle);
         playerHit = false;
     }
 
@@ -74,11 +87,14 @@ public class FireflyScript : Entity
 
         switch (nextState)
         {
+            case State.Idle:
+                Behaviour = new ScrollableBehaviour(0.0f);
+                break;
             case State.Chase:
                 Behaviour = new HomingBehaviour(enemyData.moveSpeed);
                 break;
             case State.Die:
-                //Behaviour = new ScrollableBehaviour(0.0f);
+                Behaviour = new HomingBehaviour(enemyData.moveSpeed / 3);
                 break;
         }
 

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FireflyData
   m_EditorClassIdentifier: 
   maxHealth: 10
-  moveSpeed: 20
+  moveSpeed: 30

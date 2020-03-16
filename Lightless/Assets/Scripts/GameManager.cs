@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
             if (!currentWave.isOver())
                 yield return new WaitForSeconds(2.5f);
             else
-                currentWave = new WaveII();
+                currentWave = new WaveI();
         }
     }
 }
