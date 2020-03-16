@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FireflyScript : Entity
@@ -14,6 +13,7 @@ public class FireflyScript : Entity
     // State
     private enum State { Init, Chase, Die };
     private State currentState = State.Init;
+    private bool playerHit;
 
     // Animations
     private Animator animator;
@@ -30,27 +30,36 @@ public class FireflyScript : Entity
     {
         if (currentState == State.Die)
             return;
+        
+        var targetPosition = GameManager.Instance.GetPlayer().transform.position;
+
+        if (Vector2.Distance(targetPosition, EntityBody.position) <= fireflyExplosion.weaponRange)
+        {
+            StartCoroutine(Die());
+        }
     }
 
     void OnEnable()
     {
         currentHealth = enemyData.maxHealth;
         SetState(State.Chase);
+        playerHit = false;
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Player"))
+        // Check animation for trigger radius only on explosion
+
+        if (!playerHit && collider.gameObject.CompareTag("Player"))
         {
             collider.gameObject.GetComponent<PlayerScript>().ChangeHealth(-fireflyExplosion.weaponDamage);
+            playerHit = true;
         }
     }
 
     public void ChangeHealth(float value)
     {
         currentHealth = Mathf.Clamp(currentHealth + value, 0, enemyData.maxHealth);
-
-        Debug.Log(currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -66,11 +75,10 @@ public class FireflyScript : Entity
         switch (nextState)
         {
             case State.Chase:
-                Behaviour = new HomingBehaviour();
-                //GetComponent<SpriteRenderer>().flipX = false;
+                Behaviour = new HomingBehaviour(enemyData.moveSpeed);
                 break;
             case State.Die:
-                Behaviour = new ScrollableBehaviour(0.0f);
+                //Behaviour = new ScrollableBehaviour(0.0f);
                 break;
         }
 
@@ -80,11 +88,12 @@ public class FireflyScript : Entity
     IEnumerator Die()
     {
         SetState(State.Die);
+        currentHealth = 0;
 
-        EntityBody.constraints = RigidbodyConstraints2D.FreezeAll;
+        //EntityBody.constraints = RigidbodyConstraints2D.FreezeAll;
         animator.SetBool("isDead", true);
         yield return new WaitForSeconds(deathAnimation.length);
-        EntityBody.constraints = RigidbodyConstraints2D.None;
+        //EntityBody.constraints = RigidbodyConstraints2D.None;
         gameObject.SetActive(false);
     }
 }

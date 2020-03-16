@@ -122,7 +122,7 @@ public class ZombieScript : Entity
 
                 if (!zombieBulletOnCooldown)
                 {
-                    if (Vector2.Distance(targetPosition, EntityBody.position) < zombieBullet.weaponRange)
+                    if (Vector2.Distance(targetPosition, EntityBody.position) <= zombieBullet.weaponRange)
                     {
                         zombieBulletOnCooldown = true;
                         GameObject zombieBullet = GameManager.Instance.GetObject(GameManager.ObjectType.ZombieBullet);
@@ -141,6 +141,7 @@ public class ZombieScript : Entity
     IEnumerator Die()
     {
         SetState(State.Die);
+        currentHealth = 0;
 
         animator.SetBool("isDead", true);
         yield return new WaitForSeconds(deathAnimation.length);

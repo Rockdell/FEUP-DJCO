@@ -6,7 +6,7 @@ public class DropLightScript : Entity
 
     void Start()
     {
-        SetBehaviour(new FloatBehaviour());
+        SetBehaviour(new FloatBehaviour(10.0f));
     }
 
     void OnCollisionEnter2D(Collision2D collision)
