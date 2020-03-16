@@ -64,14 +64,19 @@ public class PlayerScript : MonoBehaviour {
 
         //Update HP (Light)
         if (currentHealth <= 0)
+        {
             Debug.Log("You Died");
+            currentHealth = 0;
+            healthBarUI.SetHealth((int)currentHealth);
+        }
         else {
             currentHealth -= healthLossPerSecond * Time.deltaTime;
             healthBarUI.SetHealth((int)currentHealth);
         }
 
         //Cooldowns
-        if (lightBulletOnCooldown) {
+        if (lightBulletOnCooldown) 
+        {
             if (currentLightBulletCooldown < lightBullet.weaponCooldown) {
                 currentLightBulletCooldown += Time.deltaTime;
             }
@@ -100,18 +105,9 @@ public class PlayerScript : MonoBehaviour {
         rb.MovePosition(new Vector2(Mathf.Clamp(nextPosition.x, -GameManager.Instance.screenBounds.x, GameManager.Instance.screenBounds.x), Mathf.Clamp(nextPosition.y, -GameManager.Instance.screenBounds.y, GameManager.Instance.screenBounds.y)));
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    public void ChangeHealth(float value)
     {
-        if (collision.gameObject.CompareTag("DropLight"))   // Drop light
-        {
-            currentHealth = Mathf.Min(currentHealth + 20, maxHealth);
-            healthBarUI.SetHealth((int)currentHealth);
-        }
-        else if (collision.gameObject.CompareTag("ZombieBullet"))   // Zombie bullet
-        {
-            currentHealth -= collision.gameObject.GetComponent<ZombieBulletScript>().weaponData.weaponDamage;
-            healthBarUI.SetHealth((int)currentHealth);
-        }
+        currentHealth = Mathf.Clamp(currentHealth + value, 0, maxHealth);
     }
 
     public void Shoot() {

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -921769008826046296}
   m_Layer: 10
   m_Name: ZombieToast
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,4 +164,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f77ed6327b8bdb54db5d77f0e1e650fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: 8c9f4a15f936b3d46acef6120a186ed0, type: 2}
   zombieBullet: {fileID: 11400000, guid: 0085346f0c51a8d4cb31803a1bf72b85, type: 2}

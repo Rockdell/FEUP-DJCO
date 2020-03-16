@@ -37,22 +37,20 @@ public class GrenadeScript : Entity
 
     IEnumerator OnCollisionEnter2D(Collision2D collision) 
     {
+        if (collision.gameObject.CompareTag("Zombie"))
+        {
+            collision.gameObject.GetComponent<ZombieScript>().ChangeHealth(-weaponData.weaponDamage);
+        }
+        else if (collision.gameObject.CompareTag("Firefly"))
+        {
+            collision.gameObject.GetComponent<FireflyScript>().ChangeHealth(-weaponData.weaponDamage);
+        }
 
         EntityBody.constraints = RigidbodyConstraints2D.FreezeAll;
         animator.SetBool("collided", true);
         yield return new WaitForSeconds(explosionAnimation.length);
         EntityBody.constraints = RigidbodyConstraints2D.None;
-
-        //if (collision.gameObject.CompareTag("Boundary")) {
-            gameObject.SetActive(false);
-            
-            //if (collision.gameObject.name == "Boundary Bottom")
-            //{
-            //    GameObject grenadeFire = GameManager.Instance.GetObject(GameManager.ObjectType.GrenadeFire);
-            //    grenadeFire.GetComponent<GrenadeFireScript>().Spawn(collision.GetContact(0).point, Quaternion.identity);
-            //    grenadeFire.SetActive(true);
-            //}
-        //}
+        gameObject.SetActive(false);
     }
     
     public void Throw(Vector2 targetLocation) 

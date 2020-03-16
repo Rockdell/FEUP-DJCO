@@ -6151,6 +6151,8 @@ MonoBehaviour:
     type: 3}
   zombieBulletPrefab: {fileID: 1502511126608940579, guid: ea23bb4b4535dc6429166cd29ce2577e,
     type: 3}
+  fireflyPrefab: {fileID: 5319840948068333107, guid: 5dadefc99cd74064986b091a2efae625,
+    type: 3}
   dropLightPrefab: {fileID: 7813916188050199904, guid: 2eb0b5ce1946e9142bda5fe87d8a2bcc,
     type: 3}
 --- !u!114 &2022817467

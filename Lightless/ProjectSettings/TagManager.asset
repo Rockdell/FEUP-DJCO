@@ -10,6 +10,8 @@ TagManager:
   - DropLight
   - LightBullet
   - ZombieBullet
+  - Firefly
+  - Zombie
   layers:
   - Default
   - TransparentFX

@@ -3,21 +3,23 @@ using UnityEngine;
 
 public class ZombieScript : Entity
 {
-    // State
-    private enum State { Init, Idle, Chase, Run, Die };
-    private State currentState = State.Init;
-
-    // Stats
-    public float currentHealth;
+    [Header("Zombie Stats")]
+    public EnemyData enemyData;
+    private float currentHealth;
     public float targetPosition { get; set; }
-
-    private Animator animator;
-    private AnimationClip deathAnimation;
 
     [Header("Zombie Weapons")]
     public WeaponData zombieBullet;
     private float currentZombieBulletCooldown = 0;
     private bool zombieBulletOnCooldown = false;
+
+    // State
+    private enum State { Init, Idle, Chase, Run, Die };
+    private State currentState = State.Init;
+
+    // Animations
+    private Animator animator;
+    private AnimationClip deathAnimation;
 
     protected override void Awake()
     {
@@ -65,29 +67,17 @@ public class ZombieScript : Entity
 
     void OnEnable()
     {
-        currentHealth = 100.0f;
+        currentHealth = enemyData.maxHealth;
         SetState(State.Chase);
     }
 
-    IEnumerator OnCollisionEnter2D(Collision2D collision)
+    public void ChangeHealth(float value)
     {
-        if (collision.gameObject.CompareTag("LightBullet"))     // Light bullet
-        {
-            currentHealth -= collision.gameObject.GetComponent<LightBulletScript>().weaponData.weaponDamage;
-        }
-        else if (collision.gameObject.CompareTag("Grenade"))    // Grenade
-        {
-            currentHealth -= collision.gameObject.GetComponent<GrenadeScript>().weaponData.weaponDamage;
-        }
+        currentHealth = Mathf.Clamp(currentHealth + value, 0, enemyData.maxHealth);
 
-        // Check health
         if (currentHealth <= 0)
         {
-            SetState(State.Die);
-
-            animator.SetBool("isDead", true);
-            yield return new WaitForSeconds(deathAnimation.length);
-            gameObject.SetActive(false);
+            StartCoroutine(Die());
         }
     }
 
@@ -102,7 +92,7 @@ public class ZombieScript : Entity
                 Behaviour = new ScrollableBehaviour(0.0f);
                 break;
             case State.Chase:
-                Behaviour = new ScrollableBehaviour(10.0f);
+                Behaviour = new ScrollableBehaviour(enemyData.moveSpeed);
                 GetComponent<SpriteRenderer>().flipX = false;
                 break;
             case State.Run:
@@ -110,7 +100,7 @@ public class ZombieScript : Entity
                 GetComponent<SpriteRenderer>().flipX = true;
                 break;
             case State.Die:
-                Behaviour = new ScrollableBehaviour(20.0f);
+                Behaviour = new ScrollableBehaviour(2 * enemyData.moveSpeed);
                 break;
         }
 
@@ -121,27 +111,25 @@ public class ZombieScript : Entity
     {
         while (true)
         {
-            if (currentState != State.Die)
+
+            if (currentState == State.Run)  
             {
-                if (currentState == State.Run)  
-                {
-                    animator.SetTrigger("jump");
-                }
-                else
-                {
-                    var targetPosition = GameManager.Instance.GetPlayer().transform.position;
+                animator.SetTrigger("jump");
+            }
+            else if (currentState == State.Idle || currentState == State.Chase)
+            {
+                var targetPosition = GameManager.Instance.GetPlayer().transform.position;
 
-                    if (!zombieBulletOnCooldown)
+                if (!zombieBulletOnCooldown)
+                {
+                    if (Vector2.Distance(targetPosition, EntityBody.position) < zombieBullet.weaponRange)
                     {
-                        if (Vector2.Distance(targetPosition, EntityBody.position) < zombieBullet.weaponRange)
-                        {
-                            zombieBulletOnCooldown = true;
-                            GameObject zombieBullet = GameManager.Instance.GetObject(GameManager.ObjectType.ZombieBullet);
-                            zombieBullet.GetComponent<ZombieBulletScript>().Spawn(EntityBody.position, Quaternion.identity);
-                            zombieBullet.SetActive(true);
-                            zombieBullet.GetComponent<ZombieBulletScript>().Shoot(targetPosition);
+                        zombieBulletOnCooldown = true;
+                        GameObject zombieBullet = GameManager.Instance.GetObject(GameManager.ObjectType.ZombieBullet);
+                        zombieBullet.GetComponent<ZombieBulletScript>().Spawn(EntityBody.position, Quaternion.identity);
+                        zombieBullet.SetActive(true);
+                        zombieBullet.GetComponent<ZombieBulletScript>().Shoot(targetPosition);
 
-                        }
                     }
                 }
             }
@@ -149,24 +137,13 @@ public class ZombieScript : Entity
             yield return new WaitForSeconds(Random.Range(0, 2));
         }
     }
-}
 
-public class ZombieSM
-{
-    public enum State
+    IEnumerator Die()
     {
-        RunTo, RunFrom, Attack, Jump, Die
-    };
+        SetState(State.Die);
 
-    private State currentState;
-
-    public ZombieSM()
-    {
-        currentState = State.RunTo;
-    }
-
-    void SetState(State nextState)
-    {
-        currentState = nextState;
+        animator.SetBool("isDead", true);
+        yield return new WaitForSeconds(deathAnimation.length);
+        gameObject.SetActive(false);
     }
 }

@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveI : IWave
 {
-    private const int numberZombies = 3;
+    private const int numberZombies = 1;
     private List<GameObject> zombies;
 
     public WaveI()

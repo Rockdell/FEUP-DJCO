@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ZombieBulletScript : Entity
 {
@@ -8,6 +6,11 @@ public class ZombieBulletScript : Entity
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Player"))    
+        {
+            collision.gameObject.GetComponent<PlayerScript>().ChangeHealth(-weaponData.weaponDamage);
+        }
+
         gameObject.SetActive(false);
     }
 

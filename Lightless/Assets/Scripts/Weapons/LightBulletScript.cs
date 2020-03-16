@@ -6,7 +6,6 @@ public class LightBulletScript : Entity
 {
     public WeaponData weaponData;
 
-    //public float distancePerTimeUnit;
     private Animator animator;
     private AnimationClip explosionAnimation;
     private float lightRadius;
@@ -31,6 +30,15 @@ public class LightBulletScript : Entity
 
     private IEnumerator OnCollisionEnter2D(Collision2D collision) 
     {
+        if (collision.gameObject.CompareTag("Zombie"))
+        {
+            collision.gameObject.GetComponent<ZombieScript>().ChangeHealth(-weaponData.weaponDamage);
+        }
+        else if (collision.gameObject.CompareTag("Firefly"))
+        {
+            collision.gameObject.GetComponent<FireflyScript>().ChangeHealth(-weaponData.weaponDamage);
+        }
+
         EntityBody.constraints = RigidbodyConstraints2D.FreezeAll;
         animator.SetBool("collided", true);
         yield return new WaitForSeconds(explosionAnimation.length);

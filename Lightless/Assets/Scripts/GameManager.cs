@@ -6,10 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public enum ObjectType
     {
-        LightBullet, Grenade, 
-        Zombie, ZombieBullet,
-        //Firefly, 
-        DropLight
+        LightBullet, Grenade, Zombie, ZombieBullet,
+        Firefly, DropLight
     };
 
     public static GameManager Instance { get; private set; }
@@ -21,10 +19,12 @@ public class GameManager : MonoBehaviour
     public GameObject grenadePrefab;
     public GameObject zombiePrefab;
     public GameObject zombieBulletPrefab;
+    public GameObject fireflyPrefab;
+
+
     //public GameObject grenadeFirePrefab;
     //public GameObject enemyPrefab;
     //public GameObject obstaclePrefab;
-    //public GameObject fireflyPrefab;
     public GameObject dropLightPrefab;
 
     private Dictionary<ObjectType, ObjectPool> _objectPools;
@@ -42,10 +42,10 @@ public class GameManager : MonoBehaviour
         AddPool(ObjectType.Grenade, grenadePrefab);
         AddPool(ObjectType.Zombie, zombiePrefab);
         AddPool(ObjectType.ZombieBullet, zombieBulletPrefab);
+        AddPool(ObjectType.Firefly, fireflyPrefab);
         //AddPool(ObjectType.GrenadeFire, grenadeFirePrefab);
         //AddPool(ObjectType.Enemy, enemyPrefab);
         //AddPool(ObjectType.Obstacle, obstaclePrefab);
-        //AddPool(ObjectType.Firefly, fireflyPrefab);
         AddPool(ObjectType.DropLight, dropLightPrefab);
     }
 
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
             if (!currentWave.isOver())
                 yield return new WaitForSeconds(2.5f);
             else
-                currentWave = new WaveI();
+                currentWave = new WaveII();
         }
     }
 }
