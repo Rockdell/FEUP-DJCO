@@ -12,7 +12,7 @@ public class FireflyScript : Entity
     public WeaponData fireflyExplosion;
 
     // State
-    private enum State { Init, Idle, Chase, Die };
+    private enum State { Init, Chase, Die };
     private State currentState = State.Init;
 
     // Animations
@@ -26,11 +26,6 @@ public class FireflyScript : Entity
         deathAnimation = animator.runtimeAnimatorController.animationClips[1];
     }
 
-    void Start()
-    {
-        //StartCoroutine("Attack");
-    }
-
     void Update()
     {
         if (currentState == State.Die)
@@ -40,12 +35,15 @@ public class FireflyScript : Entity
     void OnEnable()
     {
         currentHealth = enemyData.maxHealth;
-        SetState(State.Idle);
+        SetState(State.Chase);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("Hit");
+        if (collider.gameObject.CompareTag("Player"))
+        {
+            collider.gameObject.GetComponent<PlayerScript>().ChangeHealth(-fireflyExplosion.weaponDamage);
+        }
     }
 
     public void ChangeHealth(float value)
@@ -67,12 +65,9 @@ public class FireflyScript : Entity
 
         switch (nextState)
         {
-            case State.Idle:
-                Behaviour = new ScrollableBehaviour(0);
-                break;
             case State.Chase:
-                Behaviour = new ScrollableBehaviour(0);
-                GetComponent<SpriteRenderer>().flipX = false;
+                Behaviour = new HomingBehaviour();
+                //GetComponent<SpriteRenderer>().flipX = false;
                 break;
             case State.Die:
                 Behaviour = new ScrollableBehaviour(0.0f);
@@ -81,11 +76,6 @@ public class FireflyScript : Entity
 
         currentState = nextState;
     }
-
-    //IEnumerator Attack()
-    //{
-
-    //}
 
     IEnumerator Die()
     {

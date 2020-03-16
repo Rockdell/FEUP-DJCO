@@ -30,7 +30,7 @@ public class ZombieScript : Entity
 
     void Start()
     {
-        StartCoroutine("Attack");
+        StartCoroutine(Attack());
     }
 
     void Update()

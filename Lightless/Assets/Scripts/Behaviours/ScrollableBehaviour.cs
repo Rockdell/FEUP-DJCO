@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ScrollableBehaviour : IBehaviour 
 {
-    public float scrollSpeed { get; set; }
+    private float scrollSpeed;
 
     public ScrollableBehaviour(float speed = 10.0f)
     {
