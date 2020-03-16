@@ -43,6 +43,11 @@ public class FireflyScript : Entity
         SetState(State.Idle);
     }
 
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        Debug.Log("Hit");
+    }
+
     public void ChangeHealth(float value)
     {
         currentHealth = Mathf.Clamp(currentHealth + value, 0, enemyData.maxHealth);
