@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator SpawnWaves()
     {
-        IWave currentWave = new WaveI();
+        IWave currentWave = new WaveII();
 
         while (true)
         {

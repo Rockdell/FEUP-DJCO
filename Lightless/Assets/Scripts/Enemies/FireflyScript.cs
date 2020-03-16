@@ -26,6 +26,17 @@ public class FireflyScript : Entity
         deathAnimation = animator.runtimeAnimatorController.animationClips[1];
     }
 
+    void Start()
+    {
+        //StartCoroutine("Attack");
+    }
+
+    void Update()
+    {
+        if (currentState == State.Die)
+            return;
+    }
+
     void OnEnable()
     {
         currentHealth = enemyData.maxHealth;
@@ -36,9 +47,11 @@ public class FireflyScript : Entity
     {
         currentHealth = Mathf.Clamp(currentHealth + value, 0, enemyData.maxHealth);
 
+        Debug.Log(currentHealth);
+
         if (currentHealth <= 0)
         {
-            Die();
+            StartCoroutine(Die());
         }
     }
 
@@ -50,10 +63,10 @@ public class FireflyScript : Entity
         switch (nextState)
         {
             case State.Idle:
-                Behaviour = new ScrollableBehaviour(10.0f);
+                Behaviour = new ScrollableBehaviour(0);
                 break;
             case State.Chase:
-                Behaviour = new ScrollableBehaviour(10.0f);
+                Behaviour = new ScrollableBehaviour(0);
                 GetComponent<SpriteRenderer>().flipX = false;
                 break;
             case State.Die:
@@ -64,12 +77,19 @@ public class FireflyScript : Entity
         currentState = nextState;
     }
 
+    //IEnumerator Attack()
+    //{
+
+    //}
+
     IEnumerator Die()
     {
         SetState(State.Die);
 
+        EntityBody.constraints = RigidbodyConstraints2D.FreezeAll;
         animator.SetBool("isDead", true);
         yield return new WaitForSeconds(deathAnimation.length);
+        EntityBody.constraints = RigidbodyConstraints2D.None;
         gameObject.SetActive(false);
     }
 }
