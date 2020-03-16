@@ -18,7 +18,7 @@ public class PlayerScript : MonoBehaviour {
     public WeaponData lightBullet;
     private float currentLightBulletCooldown = 0;
     private bool lightBulletOnCooldown = false;
-    
+
     public WeaponData grenade;
     private float currentGrenadeCooldown = 0;
     private bool grenadeOnCooldown = false;
@@ -39,6 +39,7 @@ public class PlayerScript : MonoBehaviour {
     /* Inputs */
     private Vector2 movementInput;
     private Vector2 crosshairInput;
+    private bool powerUpActivated = false;
 
     //private bool isAiming = false;
 
@@ -139,6 +140,14 @@ public class PlayerScript : MonoBehaviour {
         //}
     }
 
+    public Vector2 GetCrosshairInput() {
+        return crosshairInput;
+    }
+
+    public bool GetPowerUpInput() {
+        return powerUpActivated;
+    }
+
     public void UpdateMovement(Vector2 input) {
         movementInput = input;
     }
@@ -147,9 +156,12 @@ public class PlayerScript : MonoBehaviour {
         crosshairInput = GameManager.Instance.gameCamera.ScreenToWorldPoint(new Vector3(input.x, input.y, 0));
     }
 
-    public void SetIsAimingToTrue()
-    {
+    public void SetIsAimingToTrue() {
         //isAiming = true;
+    }
+
+    public void UpdatePowerUpInput() {
+        powerUpActivated = !powerUpActivated;
     }
 
 }

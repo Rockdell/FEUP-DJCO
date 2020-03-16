@@ -12,6 +12,8 @@ TagManager:
   - ZombieBullet
   - Firefly
   - Zombie
+  - PowerUpUI
+  - ForceField
   layers:
   - Default
   - TransparentFX

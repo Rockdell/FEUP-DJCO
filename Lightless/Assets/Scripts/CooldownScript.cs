@@ -11,29 +11,42 @@ public class CooldownScript : MonoBehaviour
     public RectTransform cooldownIcon;
 
     private float maxCooldown;
+    private bool isTimer;
     private Image imageCircle;
     private Image imageIcon;
-    private Color onCooldownColor;
-    private Color offCooldownColor;
+    private Color opaque;
+    private Color transparent;
 
     void Awake() {
         imageCircle = cooldownCircle.GetComponent<Image>();
         imageIcon = cooldownIcon.GetComponent<Image>();
-        onCooldownColor = new Color(1, 1, 1, opacity);
-        offCooldownColor = new Color(1, 1, 1, 1);
+        transparent = new Color(1, 1, 1, opacity);
+        opaque = new Color(1, 1, 1, 1);
     }
 
-    public void SetMaxCooldown(float cooldown) {
+    public void SetMaxCooldown(float cooldown, bool behaveAsTimer = false) {
         maxCooldown = cooldown;
+        isTimer = behaveAsTimer;
         imageCircle.fillAmount = 1;
+
+        if (isTimer)
+            imageIcon.color = opaque;
     }
 
     public void SetCooldown(float cooldown) {
         imageCircle.fillAmount = cooldown / maxCooldown;
 
-        if (cooldown < maxCooldown)
-            imageIcon.color = onCooldownColor;
-        else
-            imageIcon.color = offCooldownColor;
+        if (isTimer) {
+            if (cooldown > 0)
+                imageIcon.color = opaque;
+            else
+                imageIcon.color = transparent;
+        }
+        else {
+            if (cooldown < maxCooldown)
+                imageIcon.color = transparent;
+            else
+                imageIcon.color = opaque;
+        }
     }
 }

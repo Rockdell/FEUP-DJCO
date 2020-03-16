@@ -18,6 +18,8 @@ public class InputManager : MonoBehaviour {
         inputActions.Player.Look.performed += ctx => playerScript.UpdateCrosshair(ctx.ReadValue<Vector2>());
         inputActions.Player.Shoot.performed += _ => playerScript.Shoot();
         inputActions.Player.Pause.performed += _ => pauseMenuScript.PauseKeyPressed();
+        inputActions.Player.PowerUp.performed += _ => playerScript.UpdatePowerUpInput();
+        inputActions.Player.PowerUp.canceled += _ => playerScript.UpdatePowerUpInput();
         
         //TODO remove?
         inputActions.Player.GrenadeThrow.performed += _ => playerScript.SetIsAimingToTrue();
