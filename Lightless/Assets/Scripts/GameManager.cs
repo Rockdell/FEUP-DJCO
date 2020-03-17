@@ -80,9 +80,14 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             if (!currentWave.isOver())
-                yield return new WaitForSeconds(2.5f);
+            {
+                yield return new WaitForSeconds(1.0f);
+            }
             else
+            {
+                yield return new WaitForSeconds(2.5f);
                 currentWave = new WaveI();
+            }
         }
     }
 }

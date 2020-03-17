@@ -41,7 +41,6 @@ public class WaveII : IWave
             GameObject firefly = GameManager.Instance.GetObject(GameManager.ObjectType.Firefly);
 
             var fireflyScript = firefly.GetComponent<FireflyScript>();
-            fireflyScript.sleep = 0;
             fireflyScript.Spawn(new Vector2(spawningPosition, Random.Range(lowerHeight, upperHeight)), Quaternion.identity);
             firefly.SetActive(true);
 

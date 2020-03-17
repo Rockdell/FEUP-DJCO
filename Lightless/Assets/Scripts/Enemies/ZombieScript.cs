@@ -19,18 +19,20 @@ public class ZombieScript : Entity
 
     // Animations
     private Animator animator;
+    private AnimationClip jumpAnimation;
     private AnimationClip deathAnimation;
 
     protected override void Awake()
     {
         base.Awake();
         animator = GetComponent<Animator>();
-        deathAnimation = animator.runtimeAnimatorController.animationClips[1];
+        jumpAnimation = animator.runtimeAnimatorController.animationClips[1];
+        deathAnimation = animator.runtimeAnimatorController.animationClips[2];
     }
 
     void Start()
     {
-        StartCoroutine(Attack());
+        StartCoroutine(Act());
     }
 
     void Update()
@@ -77,7 +79,7 @@ public class ZombieScript : Entity
 
         if (currentHealth <= 0)
         {
-            StartCoroutine(Die());
+            SetState(State.Die);
         }
     }
 
@@ -101,22 +103,18 @@ public class ZombieScript : Entity
                 break;
             case State.Die:
                 Behaviour = new ScrollableBehaviour(2 * enemyData.moveSpeed);
+                currentHealth = 0;
                 break;
         }
 
         currentState = nextState;
     }
 
-    IEnumerator Attack()
+    IEnumerator Act()
     {
         while (true)
         {
-
-            if (currentState == State.Run)  
-            {
-                animator.SetTrigger("jump");
-            }
-            else if (currentState == State.Idle || currentState == State.Chase)
+            if (currentState == State.Idle || currentState == State.Chase)
             {
                 var targetPosition = GameManager.Instance.GetPlayer().transform.position;
 
@@ -129,22 +127,22 @@ public class ZombieScript : Entity
                         zombieBullet.GetComponent<ZombieBulletScript>().Spawn(EntityBody.position, Quaternion.identity);
                         zombieBullet.SetActive(true);
                         zombieBullet.GetComponent<ZombieBulletScript>().Shoot(targetPosition);
-
                     }
                 }
+
+                yield return new WaitForSeconds(Random.Range(0, 2));
             }
-
-            yield return new WaitForSeconds(Random.Range(0, 2));
+            else if (currentState == State.Run)
+            {
+                animator.SetTrigger("jump");
+                yield return new WaitForSeconds(jumpAnimation.length);
+            }
+            else if (currentState == State.Die)
+            {
+                animator.SetBool("isDead", true);
+                yield return new WaitForSeconds(deathAnimation.length);
+                gameObject.SetActive(false);
+            }
         }
-    }
-
-    IEnumerator Die()
-    {
-        SetState(State.Die);
-        currentHealth = 0;
-
-        animator.SetBool("isDead", true);
-        yield return new WaitForSeconds(deathAnimation.length);
-        gameObject.SetActive(false);
     }
 }

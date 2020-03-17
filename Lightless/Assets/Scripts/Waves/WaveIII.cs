@@ -1,18 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveIII : MonoBehaviour
+public class WaveIII : IWave
 {
-    // Start is called before the first frame update
-    void Start()
+    private List<GameObject> zombies;
+    private List<GameObject> fireflies;
+
+    public WaveIII()
     {
-        
+        zombies = new List<GameObject>();
+        fireflies = new List<GameObject>();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Spawn()
     {
-        
+        throw new System.NotImplementedException();
+    }
+
+    public override bool isOver()
+    {
+        foreach (var zombie in zombies)
+        {
+            if (zombie.activeInHierarchy)
+                return false;
+        }
+
+        foreach (var firefly in fireflies)
+        {
+            if (firefly.activeInHierarchy)
+                return false;
+        }
+
+        return true;
     }
 }
