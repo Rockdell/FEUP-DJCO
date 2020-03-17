@@ -1,7 +1,13 @@
-﻿
+﻿using System.Collections;
+
 public abstract class IWave
 {
-    protected abstract void Spawn();
+    public bool isOver { get; protected set; }
 
-    public abstract bool isOver();
+    public IWave()
+    {
+        isOver = false;
+    }
+
+    protected abstract IEnumerator Spawn();
 }

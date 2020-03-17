@@ -1,36 +1,30 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 public class WaveIII : IWave
 {
-    private List<GameObject> zombies;
-    private List<GameObject> fireflies;
+    private WaveI zombiesWave;
+    private WaveII firefliesWave;
 
     public WaveIII()
     {
-        zombies = new List<GameObject>();
-        fireflies = new List<GameObject>();
+        GameManager.Instance.StartCoroutine(Spawn());
     }
 
-    protected override void Spawn()
+    protected override IEnumerator Spawn()
     {
-        throw new System.NotImplementedException();
-    }
-
-    public override bool isOver()
-    {
-        foreach (var zombie in zombies)
+        for (int wave = 0; wave < 3; wave++)
         {
-            if (zombie.activeInHierarchy)
-                return false;
+            zombiesWave = new WaveI(3 + wave);
+            firefliesWave = new WaveII(5 + 2 * wave);
+
+            while (!zombiesWave.isOver || !firefliesWave.isOver)
+            {
+                yield return new WaitForSeconds(1.0f);
+            }
         }
 
-        foreach (var firefly in fireflies)
-        {
-            if (firefly.activeInHierarchy)
-                return false;
-        }
-
-        return true;
+        isOver = true;
+        yield return null;
     }
 }

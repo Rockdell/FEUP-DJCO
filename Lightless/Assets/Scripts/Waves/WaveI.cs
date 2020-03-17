@@ -1,45 +1,62 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveI : IWave
 {
-    private const int numberZombies = 5;
+    private int numberZombies = 5;
     private List<GameObject> zombies;
 
-    public WaveI()
+    public WaveI(int enemies = 5)
     {
+        numberZombies = enemies;
         zombies = new List<GameObject>();
 
-        Spawn();
+        GameManager.Instance.StartCoroutine(Spawn());
     }
 
-    protected override void Spawn()
+    protected override IEnumerator Spawn()
     {
         var spawningPosition = GameManager.Instance.screenBounds.x + 20;
         var closestPosition = -GameManager.Instance.screenBounds.x + 20;
         var spacePerZombie = (GameManager.Instance.screenBounds.x + Mathf.Abs(closestPosition)) / numberZombies;
 
-        for (int i = 0; i < numberZombies; i++)
+        while (zombies.Count != numberZombies)
         {
             GameObject zombie = GameManager.Instance.GetObject(GameManager.ObjectType.Zombie);
 
             var zombieScript = zombie.GetComponent<ZombieScript>();
-            zombieScript.targetPosition = closestPosition + i * spacePerZombie;
-            zombieScript.Spawn(new Vector2(spawningPosition + i * 10, -12.0f), Quaternion.identity);
+            zombieScript.targetPosition = closestPosition + zombies.Count * spacePerZombie;
+            zombieScript.Spawn(new Vector2(spawningPosition + zombies.Count, -12.0f), Quaternion.identity);
             zombie.SetActive(true);
 
             zombies.Add(zombie);
-        }
-    }
 
-    public override bool isOver()
-    {
-        foreach (var zombie in zombies)
+            yield return new WaitForSeconds(0.8f);
+        }
+
+        while (true)
         {
-            if (zombie.activeInHierarchy)
-                return false;
-        }
+            bool active = false;
 
-        return true;
+            foreach (var zombie in zombies)
+            {
+                if (zombie.activeInHierarchy)
+                {
+                    active = true;
+                    break;
+                }
+            }
+
+            if (active)
+            {
+                yield return new WaitForSeconds(1.0f);
+            }
+            else
+            {
+                isOver = true;
+                yield return null;
+            }
+        }
     }
 }

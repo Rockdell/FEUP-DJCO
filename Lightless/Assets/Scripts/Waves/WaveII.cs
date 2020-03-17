@@ -4,33 +4,18 @@ using UnityEngine;
 
 public class WaveII : IWave
 {
-    private const int numberFireflies = 25;
+    private int numberFireflies;
     private List<GameObject> fireflies;
 
-    public WaveII()
+    public WaveII(int enemies = 25)
     {
+        numberFireflies = enemies;
         fireflies = new List<GameObject>();
 
-        Spawn();
+        GameManager.Instance.StartCoroutine(Spawn());
     }
 
-    protected override void Spawn()
-    {
-        GameManager.Instance.StartCoroutine(SpawnOverTime());
-    }
-
-    public override bool isOver()
-    {
-        foreach (var firefly in fireflies)
-        {
-            if (firefly.activeInHierarchy)
-                return false;
-        }
-
-        return true;
-    }
-
-    IEnumerator SpawnOverTime()
+    protected override IEnumerator Spawn()
     {
         var spawningPosition = GameManager.Instance.screenBounds.x + 20;
         var upperHeight = GameManager.Instance.screenBounds.y - 10;
@@ -49,6 +34,28 @@ public class WaveII : IWave
             yield return new WaitForSeconds(0.8f);
         }
 
-        yield return null;
+        while (true)
+        {
+            bool active = false;
+
+            foreach (var firefly in fireflies)
+            {
+                if (firefly.activeInHierarchy)
+                {
+                    active = true;
+                    break;
+                }
+            }
+
+            if (active)
+            {
+                yield return new WaitForSeconds(1.0f);
+            }
+            else
+            {
+                isOver = true;
+                yield return null;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -75,19 +76,28 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator SpawnWaves()
     {
-        IWave currentWave = new WaveII();
+        Queue<Lazy<IWave>> waves = new Queue<Lazy<IWave>>();
+        
+        // WaveI, WaveII, WaveIII
+        waves.Enqueue(new Lazy<IWave>(() => { return new WaveI(); }));
+        waves.Enqueue(new Lazy<IWave>(() => { return new WaveII(); }));
+        waves.Enqueue(new Lazy<IWave>(() => { return new WaveIII(); }));
 
-        while (true)
+        IWave currentWave = waves.Dequeue().Value;
+
+        while (waves.Count > 0)
         {
-            if (!currentWave.isOver())
+            if (!currentWave.isOver)
             {
                 yield return new WaitForSeconds(1.0f);
             }
             else
             {
                 yield return new WaitForSeconds(2.5f);
-                currentWave = new WaveI();
+                currentWave = waves.Dequeue().Value;
             }
         }
+
+        yield return null;
     }
 }
