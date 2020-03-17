@@ -30,11 +30,6 @@ public class ZombieScript : Entity
         deathAnimation = animator.runtimeAnimatorController.animationClips[2];
     }
 
-    void Start()
-    {
-        StartCoroutine(Act());
-    }
-
     void Update()
     {
         if (currentState == State.Die)
@@ -71,6 +66,7 @@ public class ZombieScript : Entity
     {
         currentHealth = enemyData.maxHealth;
         SetState(State.Chase);
+        StartCoroutine(Act());
     }
 
     public void ChangeHealth(float value)
