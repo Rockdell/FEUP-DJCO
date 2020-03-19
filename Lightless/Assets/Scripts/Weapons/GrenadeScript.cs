@@ -49,6 +49,19 @@ public class GrenadeScript : Entity {
         gameObject.SetActive(false);
     }
 
+    IEnumerator OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("RedLight"))
+        {
+            collider.gameObject.GetComponent<RedLightScript>().ChangeHealth();
+            EntityBody.constraints = RigidbodyConstraints2D.FreezeAll;
+            animator.SetBool("collided", true);
+            yield return new WaitForSeconds(explosionAnimation.length);
+            EntityBody.constraints = RigidbodyConstraints2D.None;
+            gameObject.SetActive(false);
+        }
+    }
+
     public void Throw(Vector2 targetLocation) {
         EntityBody.AddForce(Tools.CalculateVelocity(transform.position, targetLocation, (Mathf.Abs(transform.position.x - targetLocation.x) / weaponData.distancePerTimeUnit) + minTime), ForceMode2D.Impulse);
     }

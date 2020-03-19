@@ -14,6 +14,7 @@ TagManager:
   - Zombie
   - PowerUpUI
   - ForceField
+  - RedLight
   layers:
   - Default
   - TransparentFX

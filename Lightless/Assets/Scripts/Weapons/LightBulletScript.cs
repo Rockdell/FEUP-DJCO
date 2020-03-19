@@ -45,7 +45,20 @@ public class LightBulletScript : Entity
         EntityBody.constraints = RigidbodyConstraints2D.None;
         gameObject.SetActive(false);
     }
-    
+
+    IEnumerator OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("RedLight"))
+        {
+            collider.gameObject.GetComponent<RedLightScript>().ChangeHealth();
+            EntityBody.constraints = RigidbodyConstraints2D.FreezeAll;
+            animator.SetBool("collided", true);
+            yield return new WaitForSeconds(explosionAnimation.length);
+            EntityBody.constraints = RigidbodyConstraints2D.None;
+            gameObject.SetActive(false);
+        }    
+    }
+
     public void Shoot(Vector2 targetLocation) {
         EntityBody.AddForce((targetLocation - new Vector2(transform.position.x, transform.position.y)).normalized * weaponData.distancePerTimeUnit, ForceMode2D.Impulse);
     }

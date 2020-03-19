@@ -10,7 +10,7 @@ public abstract class Entity : MonoBehaviour
         EntityBody = GetComponent<Rigidbody2D>();
     }
 
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         Behaviour?.Action(EntityBody);
     }
