@@ -12,7 +12,7 @@ public class FireflyScript : Entity
 
     // State
     private enum State { Init, Chase, Die };
-    private State currentState = State.Init;
+    private State currentState;
     private bool playerHit;
 
     // Animations
@@ -41,12 +41,23 @@ public class FireflyScript : Entity
 
     void OnEnable()
     {
+        currentState = State.Init;
+
         currentHealth = enemyData.maxHealth;
         SetState(State.Chase);
         playerHit = false;
     }
 
     void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (!playerHit && collider.gameObject.CompareTag("Player"))
+        {
+            collider.gameObject.GetComponent<PlayerScript>().ChangeHealth(-fireflyExplosion.weaponDamage);
+            playerHit = true;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collider)
     {
         if (!playerHit && collider.gameObject.CompareTag("Player"))
         {

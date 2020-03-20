@@ -77,10 +77,10 @@ public class GameManager : MonoBehaviour
     private IEnumerator SpawnWaves()
     {
         Queue<Lazy<IWave>> waves = new Queue<Lazy<IWave>>();
-        
+
         // WaveI, WaveII, WaveIII
-        waves.Enqueue(new Lazy<IWave>(() => { return new WaveI(); }));
-        waves.Enqueue(new Lazy<IWave>(() => { return new WaveII(); }));
+        //waves.Enqueue(new Lazy<IWave>(() => { return new WaveI(5); }));
+        //waves.Enqueue(new Lazy<IWave>(() => { return new WaveII(25); }));
         waves.Enqueue(new Lazy<IWave>(() => { return new WaveIII(); }));
 
         IWave currentWave = waves.Dequeue().Value;

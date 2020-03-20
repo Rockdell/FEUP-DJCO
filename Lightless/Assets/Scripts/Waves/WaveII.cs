@@ -7,7 +7,7 @@ public class WaveII : IWave
     private int numberFireflies;
     private List<GameObject> fireflies;
 
-    public WaveII(int enemies = 25)
+    public WaveII(int enemies)
     {
         numberFireflies = enemies;
         fireflies = new List<GameObject>();

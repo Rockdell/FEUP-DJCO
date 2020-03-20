@@ -10,12 +10,12 @@ public class ZombieScript : Entity
 
     [Header("Zombie Weapons")]
     public WeaponData zombieBullet;
-    private float currentZombieBulletCooldown = 0;
-    private bool zombieBulletOnCooldown = false;
+    private float currentZombieBulletCooldown;
+    private bool zombieBulletOnCooldown;
 
     // State
     private enum State { Init, Idle, Chase, Run, Die };
-    private State currentState = State.Init;
+    private State currentState;
 
     // Animations
     private Animator animator;
@@ -32,7 +32,7 @@ public class ZombieScript : Entity
 
     void Update()
     {
-        if (currentState == State.Die)
+        if (currentState == State.Run || currentState == State.Die)
             return;
 
         if (currentState == State.Idle && currentHealth <= 30)
@@ -64,9 +64,18 @@ public class ZombieScript : Entity
 
     void OnEnable()
     {
+        currentZombieBulletCooldown = 0;
+        zombieBulletOnCooldown = false;
+        currentState = State.Init;
+
         currentHealth = enemyData.maxHealth;
         SetState(State.Chase);
         StartCoroutine(Act());
+    }
+
+    void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
     public void ChangeHealth(float value)
@@ -108,6 +117,8 @@ public class ZombieScript : Entity
 
     IEnumerator Act()
     {
+        yield return new WaitForFixedUpdate();
+
         while (true)
         {
             if (currentState == State.Idle || currentState == State.Chase)
@@ -126,7 +137,7 @@ public class ZombieScript : Entity
                     }
                 }
 
-                yield return new WaitForSeconds(Random.Range(0, 2));
+                yield return new WaitForSeconds(Random.Range(0.0f, 0.5f));
             }
             else if (currentState == State.Run)
             {

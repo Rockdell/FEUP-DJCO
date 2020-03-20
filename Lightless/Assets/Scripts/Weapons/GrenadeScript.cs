@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
@@ -11,6 +12,8 @@ public class GrenadeScript : Entity {
     private Animator animator;
     private AnimationClip explosionAnimation;
     private float lightRadius;
+
+    private Dictionary<int, bool> enemiesHit;
 
     void Start() {
         SetBehaviour(new ArchBehaviour());
@@ -25,28 +28,46 @@ public class GrenadeScript : Entity {
 
     void OnEnable() {
         Spawn(GameObject.FindGameObjectWithTag("PlayerProjectileStart").transform.position, Quaternion.identity);
+        enemiesHit = new Dictionary<int, bool>();
     }
 
     void OnDisable() {
         GetComponentInChildren<Light2D>().pointLightOuterRadius = lightRadius;
     }
 
-    IEnumerator OnCollisionEnter2D(Collision2D collision) 
+    IEnumerator OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Zombie"))
-        {
-            collision.gameObject.GetComponent<ZombieScript>().ChangeHealth(-weaponData.weaponDamage);
-        }
-        else if (collision.gameObject.CompareTag("Firefly"))
-        {
-            collision.gameObject.GetComponent<FireflyScript>().ChangeHealth(-weaponData.weaponDamage);
-        }
-
-        EntityBody.constraints = RigidbodyConstraints2D.FreezeAll;
         animator.SetBool("collided", true);
         yield return new WaitForSeconds(explosionAnimation.length);
-        EntityBody.constraints = RigidbodyConstraints2D.None;
         gameObject.SetActive(false);
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (!enemiesHit.ContainsKey(collider.GetInstanceID()) && collider.gameObject.CompareTag("Zombie"))
+        {
+            collider.gameObject.GetComponent<ZombieScript>().ChangeHealth(-weaponData.weaponDamage);
+            enemiesHit.Add(collider.GetInstanceID(), true);
+        }
+        else if (!enemiesHit.ContainsKey(collider.GetInstanceID()) && collider.gameObject.CompareTag("Firefly"))
+        {
+            collider.gameObject.GetComponent<FireflyScript>().ChangeHealth(-weaponData.weaponDamage);
+            enemiesHit.Add(collider.GetInstanceID(), true);
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collider)
+    {
+        if (!enemiesHit.ContainsKey(collider.GetInstanceID()) && collider.gameObject.CompareTag("Zombie"))
+        {
+            collider.gameObject.GetComponent<ZombieScript>().ChangeHealth(-weaponData.weaponDamage);
+            enemiesHit.Add(collider.GetInstanceID(), true);
+        }
+        else if (!enemiesHit.ContainsKey(collider.GetInstanceID()) && collider.gameObject.CompareTag("Firefly"))
+        {
+            collider.gameObject.GetComponent<FireflyScript>().ChangeHealth(-weaponData.weaponDamage);
+            enemiesHit.Add(collider.GetInstanceID(), true);
+        }
     }
 
     IEnumerator OnTriggerEnter2D(Collider2D collider)

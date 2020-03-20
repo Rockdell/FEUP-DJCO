@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class WaveI : IWave
 {
-    private int numberZombies = 5;
+    private int numberZombies;
     private List<GameObject> zombies;
 
-    public WaveI(int enemies = 5)
+    public WaveI(int enemies)
     {
         numberZombies = enemies;
         zombies = new List<GameObject>();
