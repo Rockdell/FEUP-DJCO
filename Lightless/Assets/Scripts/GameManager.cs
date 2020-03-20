@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public enum ObjectType
     {
         LightBullet, Grenade, Zombie, ZombieBullet,
-        Firefly, DropLight
+        Firefly, RedLight, DropLight
     };
 
     public static GameManager Instance { get; private set; }
@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject zombiePrefab;
     public GameObject zombieBulletPrefab;
     public GameObject fireflyPrefab;
+    public GameObject redLightPrefab;
 
 
     //public GameObject grenadeFirePrefab;
@@ -44,8 +45,8 @@ public class GameManager : MonoBehaviour
         AddPool(ObjectType.Zombie, zombiePrefab);
         AddPool(ObjectType.ZombieBullet, zombieBulletPrefab);
         AddPool(ObjectType.Firefly, fireflyPrefab);
+        AddPool(ObjectType.RedLight, redLightPrefab);
         //AddPool(ObjectType.GrenadeFire, grenadeFirePrefab);
-        //AddPool(ObjectType.Enemy, enemyPrefab);
         //AddPool(ObjectType.Obstacle, obstaclePrefab);
         AddPool(ObjectType.DropLight, dropLightPrefab);
     }
@@ -76,28 +77,72 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator SpawnWaves()
     {
-        Queue<Lazy<IWave>> waves = new Queue<Lazy<IWave>>();
+        List<IWave> activeWaves = new List<IWave>();
 
-        // WaveI, WaveII, WaveIII
-        //waves.Enqueue(new Lazy<IWave>(() => { return new WaveI(5); }));
-        //waves.Enqueue(new Lazy<IWave>(() => { return new WaveII(25); }));
-        waves.Enqueue(new Lazy<IWave>(() => { return new WaveIII(); }));
+        Queue<Action> waves = new Queue<Action>();
 
-        IWave currentWave = waves.Dequeue().Value;
+        // Wave I
+        waves.Enqueue(() =>
+        {
+            activeWaves.Add(new ZombieWave(3, true));
+        });
+
+        // Wave II
+        waves.Enqueue(() =>
+        {
+            activeWaves.Add(new FireflyWave(25, true));
+        });
+
+        // Wave III
+        waves.Enqueue(() =>
+        {
+            activeWaves.Add(new ZombieWave(3, true));
+            activeWaves.Add(new FireflyWave(25));
+        });
+
+        waves.Dequeue()();
 
         while (waves.Count > 0)
         {
-            if (!currentWave.isOver)
+            foreach (var wave in activeWaves.ToArray())
             {
-                yield return new WaitForSeconds(1.0f);
+                if (wave.isOver)
+                    activeWaves.Remove(wave);
+            }
+
+            if (activeWaves.Count == 0)
+            {
+                yield return new WaitForSeconds(2.5f);
+
+                waves.Dequeue()();
             }
             else
             {
-                yield return new WaitForSeconds(2.5f);
-                currentWave = waves.Dequeue().Value;
+                yield return new WaitForSeconds(1.0f);
             }
         }
 
-        yield return null;
+
+        //Queue<Lazy<IWave>> waves = new Queue<Lazy<IWave>>();
+
+        //// WaveI, WaveII, WaveIII
+        //waves.Enqueue(new Lazy<IWave>(() => { return new ZombieWave(3); }));
+        //waves.Enqueue(new Lazy<IWave>(() => { return new FireflyWave(25); }));
+        //waves.Enqueue(new Lazy<IWave>(() => { return new ZombieFireflyWave(); }));
+
+        //IWave currentWave = waves.Dequeue().Value;
+
+        //while (waves.Count > 0)
+        //{
+        //    if (!currentWave.isOver)
+        //    {
+        //        yield return new WaitForSeconds(1.0f);
+        //    }
+        //    else
+        //    {
+        //        yield return new WaitForSeconds(2.5f);
+        //        currentWave = waves.Dequeue().Value;
+        //    }
+        //}
     }
 }

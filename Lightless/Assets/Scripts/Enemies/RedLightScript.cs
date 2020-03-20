@@ -21,6 +21,7 @@ public class RedLightScript : Entity
 
     private Light2D ambientLight;
     private Light2D redLight;
+    private float innerAngle, outerAngle;
 
     protected override void Awake()
     {
@@ -28,9 +29,10 @@ public class RedLightScript : Entity
         initialRotation = EntityBody.rotation;
         ambientLight = transform.GetChild(0).GetComponent<Light2D>();
         redLight = transform.GetChild(1).GetComponent<Light2D>();
+
+        (innerAngle, outerAngle) = (redLight.pointLightInnerAngle, redLight.pointLightOuterAngle);
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         SetBehaviour(new ScrollableBehaviour(enemyData.moveSpeed));
@@ -64,32 +66,33 @@ public class RedLightScript : Entity
                 // If it hits the player
                 if (hit.collider != null && hit.collider.CompareTag("Player"))
                 {
-                    Debug.Log("red light hit");
-                    //Debug.DrawRay(redLight.transform.position, direction * hit.distance, Color.yellow);
                     hit.collider.gameObject.GetComponent<PlayerScript>().ChangeHealth(-lightRay.weaponDamage);
                     currentWeaponCooldown = lightRay.weaponCooldown;
                 }
-                //else
-                //{
-                //    Debug.DrawRay(redLight.transform.position, direction * 50, Color.white);
-                //}
             }
         }
         else
-            currentWeaponCooldown -= Time.fixedDeltaTime;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject.CompareTag("Player"))
         {
-            collider.gameObject.GetComponent<PlayerScript>().ChangeHealth(-15);
+            currentWeaponCooldown -= Time.fixedDeltaTime;
         }
     }
 
-    private void OnEnable()
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Boundary") && collider.gameObject.name == "Boundary Left")
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    void OnEnable()
     {
         currentHealth = enemyData.maxHealth;
+        ambientLight.gameObject.SetActive(true);
+        redLight.gameObject.SetActive(true);
+
+        redLight.pointLightInnerAngle = innerAngle;
+        redLight.pointLightOuterAngle = outerAngle;
     }
 
     public void ChangeHealth()
@@ -103,11 +106,10 @@ public class RedLightScript : Entity
         if (currentHealth <= 0.1f)
         {
             currentHealth = 0;
-            GetComponent<CapsuleCollider2D>().enabled = false;
         }
 
-        redLight.pointLightOuterAngle *= currentHealth;
         redLight.pointLightInnerAngle *= currentHealth;
+        redLight.pointLightOuterAngle *= currentHealth;
 
         if (currentHealth == 0)
         {
@@ -115,5 +117,4 @@ public class RedLightScript : Entity
             redLight.gameObject.SetActive(false);
         }
     }
-
 }

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: LightBulletData
   m_EditorClassIdentifier: Assembly-CSharp::IWeapon
   weaponDamage: 20
-  weaponCooldown: 0.5
+  weaponCooldown: 0.2
+  weaponRange: 0
   distancePerTimeUnit: 40
