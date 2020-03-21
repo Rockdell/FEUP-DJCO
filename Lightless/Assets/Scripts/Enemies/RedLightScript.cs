@@ -93,6 +93,12 @@ public class RedLightScript : Entity
 
         redLight.pointLightInnerAngle = innerAngle;
         redLight.pointLightOuterAngle = outerAngle;
+        AudioManager.Instance.Play("LightbulbSound");
+    }
+
+    private void OnDisable()
+    {
+        AudioManager.Instance.Stop("LightbulbSound");
     }
 
     public void ChangeHealth()
@@ -115,6 +121,9 @@ public class RedLightScript : Entity
         {
             ambientLight.gameObject.SetActive(false);
             redLight.gameObject.SetActive(false);
+            AudioManager.Instance.Stop("LightbulbSound");
         }
+
+        AudioManager.Instance.Play("LightbulbHit");
     }
 }

@@ -16,15 +16,11 @@ public class InputManager : MonoBehaviour {
         pauseMenuScript = pauseMenuCanvas.GetComponent<PauseMenu>();
         inputActions.Player.Move.performed += ctx => playerScript.UpdateMovement(ctx.ReadValue<Vector2>());
         inputActions.Player.Look.performed += ctx => playerScript.UpdateCrosshair(ctx.ReadValue<Vector2>());
-        inputActions.Player.Shoot.performed += _ => playerScript.Shoot();
+        inputActions.Player.Shoot.performed += _ => playerScript.UpdateShootInput();
+        inputActions.Player.Shoot.canceled += _ => playerScript.UpdateShootInput();
         inputActions.Player.Pause.performed += _ => pauseMenuScript.PauseKeyPressed();
         inputActions.Player.PowerUp.performed += _ => playerScript.UpdatePowerUpInput();
         inputActions.Player.PowerUp.canceled += _ => playerScript.UpdatePowerUpInput();
-        
-        //TODO remove?
-        inputActions.Player.GrenadeThrow.performed += _ => playerScript.SetIsAimingToTrue();
-        //
-
         inputActions.Player.GrenadeThrow.canceled += _ => playerScript.ThrowGrenade();
     }
 

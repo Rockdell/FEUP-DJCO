@@ -27,26 +27,27 @@ public class PlayerScript : MonoBehaviour {
     public HealthBarScript healthBarUI;
     public CooldownScript grenadeCooldownUI;
     public GameObject crosshair;
-    //public GameObject grenadeStart;
+    public int flashCount;
+    public float flashDuration;
     private Rigidbody2D rb;
     private Light2D light2D;
-
-    /* Trajectory */
-    [Header("Trajectory Settings")]
-    public LineRenderer lineVisual;
-    public int linePrecision;
+    private float currentFlashDuration = 0;
+    private int currentFlashCount = 0;
 
     /* Inputs */
     private Vector2 movementInput;
     private Vector2 crosshairInput;
+    private bool isShooting = false;
     private bool powerUpActivated = false;
 
     //private bool isAiming = false;
+    private SpriteRenderer sprite;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         light2D = GetComponent<Light2D>();
         light2D.pointLightOuterRadius = maxLightRadius;
+        sprite = GetComponent<SpriteRenderer>();
 
         //Cursor.visible = false;
 
@@ -59,9 +60,6 @@ public class PlayerScript : MonoBehaviour {
     void Update() {
         crosshair.transform.position = new Vector2(crosshairInput.x, crosshairInput.y);
         light2D.pointLightOuterRadius = minLightRadius + (maxLightRadius - minLightRadius) * (currentHealth / maxHealth);
-
-        //if (isAiming)
-        //    DrawTrajectory();
 
         //Update HP (Light)
         if (currentHealth <= 0)
@@ -98,17 +96,39 @@ public class PlayerScript : MonoBehaviour {
                 grenadeCooldownUI.SetCooldown(grenade.weaponCooldown);
             }
         }
+
+        // Flash
+        if (currentFlashCount > 0) {
+            AudioManager.Instance.Play("PlayerTakingDamage");
+            if (currentFlashDuration > 0)
+                currentFlashDuration -= Time.deltaTime;
+            else {
+                currentFlashDuration = flashDuration;
+                sprite.enabled = !sprite.enabled;
+                currentFlashCount--;
+            }
+        }
+        else {
+            currentFlashDuration = 0;
+            sprite.enabled = true;
+        }
+
     }
 
     void FixedUpdate() {
         //Update Rigibody position
         Vector2 nextPosition = rb.position + movementInput * moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(new Vector2(Mathf.Clamp(nextPosition.x, -GameManager.Instance.screenBounds.x, GameManager.Instance.screenBounds.x), Mathf.Clamp(nextPosition.y, -GameManager.Instance.screenBounds.y, GameManager.Instance.screenBounds.y)));
+
+        if (isShooting)
+            Shoot();
     }
 
     public void ChangeHealth(float value)
     {
         currentHealth = Mathf.Clamp(currentHealth + value, 0, maxHealth);
+        if (value < 0)
+            currentFlashCount = flashCount;
     }
 
     public void Shoot() {
@@ -121,23 +141,12 @@ public class PlayerScript : MonoBehaviour {
     }
 
     public void ThrowGrenade() {
-        //isAiming = false;
-        //lineVisual.positionCount = 0;
-
         if (!grenadeOnCooldown) {
             grenadeOnCooldown = true;
             GameObject grenade = GameManager.Instance.GetObject(GameManager.ObjectType.Grenade);
             grenade.SetActive(true);
             grenade.GetComponent<GrenadeScript>().Throw(crosshairInput);
         }
-    }
-
-    private void DrawTrajectory() {
-        //float timePerSegment = (crosshairInput.x - grenadeStart.transform.position.x) / (horizontalVelocity * linePrecision);
-        //Vector3 initialPosition = grenadeStart.transform.position;
-        //for (int i = 0; i < linePrecision; i++) {
-        //    lineVisual.SetPosition(i, Tools.CalculatePositionInTime(initialPosition, Tools.CalculateVerticalVelocity(initialPosition, crosshairInput, horizontalVelocity), i * timePerSegment));
-        //}
     }
 
     public Vector2 GetCrosshairInput() {
@@ -156,12 +165,12 @@ public class PlayerScript : MonoBehaviour {
         crosshairInput = GameManager.Instance.gameCamera.ScreenToWorldPoint(new Vector3(input.x, input.y, 0));
     }
 
-    public void SetIsAimingToTrue() {
-        //isAiming = true;
-    }
-
     public void UpdatePowerUpInput() {
         powerUpActivated = !powerUpActivated;
+    }
+    
+    public void UpdateShootInput() {
+        isShooting = !isShooting;
     }
 
 }

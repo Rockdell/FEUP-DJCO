@@ -15,6 +15,7 @@ TagManager:
   - PowerUpUI
   - ForceField
   - RedLight
+  - AudioManager
   layers:
   - Default
   - TransparentFX

@@ -15,6 +15,7 @@ public class ForceFieldPickUpScript : Entity {
         if (collision.gameObject.CompareTag("Player")) {
             if (collision.gameObject.GetComponentInChildren<ForceFieldScript>() == null) {
                 Instantiate(forceFieldPrefab, collision.gameObject.transform);
+                AudioManager.Instance.Play("PowerUpCatch");
                 Destroy(gameObject);
             }
         }

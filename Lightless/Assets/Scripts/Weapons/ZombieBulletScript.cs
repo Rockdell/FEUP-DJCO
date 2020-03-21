@@ -14,6 +14,7 @@ public class ZombieBulletScript : Entity
             var direction = Vector3.Reflect(EntityBody.velocity, collision.contacts[0].normal).normalized;
             transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg, Vector3.forward);
             EntityBody.velocity = direction * weaponData.distancePerTimeUnit;
+            AudioManager.Instance.Play("ShieldDeflect");
         }
         else
             gameObject.SetActive(false);

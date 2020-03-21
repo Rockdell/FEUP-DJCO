@@ -28,7 +28,7 @@ public class LightBulletScript : Entity
         GetComponentInChildren<Light2D>().pointLightOuterRadius = lightRadius;
     }
 
-    private IEnumerator OnCollisionEnter2D(Collision2D collision) 
+    void OnCollisionEnter2D(Collision2D collision) 
     {
         if (collision.gameObject.CompareTag("Zombie"))
         {
@@ -39,27 +39,31 @@ public class LightBulletScript : Entity
             collision.gameObject.GetComponent<FireflyScript>().ChangeHealth(-weaponData.weaponDamage);
         }
 
+        StartCoroutine(CollisionEffect());
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("RedLight"))
+        {
+            collider.gameObject.GetComponent<RedLightScript>().ChangeHealth();
+            StartCoroutine(CollisionEffect());
+        }    
+    }
+    
+    IEnumerator CollisionEffect()
+    {
         EntityBody.constraints = RigidbodyConstraints2D.FreezeAll;
         animator.SetBool("collided", true);
+        AudioManager.Instance.Stop("LightBulletShoot");
+        AudioManager.Instance.Play("LightBulletHit");
         yield return new WaitForSeconds(explosionAnimation.length);
         EntityBody.constraints = RigidbodyConstraints2D.None;
         gameObject.SetActive(false);
     }
 
-    IEnumerator OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject.CompareTag("RedLight"))
-        {
-            collider.gameObject.GetComponent<RedLightScript>().ChangeHealth();
-            EntityBody.constraints = RigidbodyConstraints2D.FreezeAll;
-            animator.SetBool("collided", true);
-            yield return new WaitForSeconds(explosionAnimation.length);
-            EntityBody.constraints = RigidbodyConstraints2D.None;
-            gameObject.SetActive(false);
-        }    
-    }
-
     public void Shoot(Vector2 targetLocation) {
+        AudioManager.Instance.Play("LightBulletShoot");
         EntityBody.AddForce((targetLocation - new Vector2(transform.position.x, transform.position.y)).normalized * weaponData.distancePerTimeUnit, ForceMode2D.Impulse);
     }
 }

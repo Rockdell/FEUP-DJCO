@@ -22,6 +22,9 @@ public class ZombieScript : Entity
     private AnimationClip jumpAnimation;
     private AnimationClip deathAnimation;
 
+    // Sounds
+    private string soundName;
+
     protected override void Awake()
     {
         base.Awake();
@@ -71,10 +74,13 @@ public class ZombieScript : Entity
         currentHealth = enemyData.maxHealth;
         SetState(State.Chase);
         StartCoroutine(Act());
+        soundName = "ZombieSound" + Random.Range(1, 2);
+        AudioManager.Instance.Play(soundName);
     }
 
     void OnDisable()
     {
+        AudioManager.Instance.Stop(soundName);
         StopAllCoroutines();
     }
 

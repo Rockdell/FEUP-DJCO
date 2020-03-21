@@ -35,11 +35,9 @@ public class GrenadeScript : Entity {
         GetComponentInChildren<Light2D>().pointLightOuterRadius = lightRadius;
     }
 
-    IEnumerator OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        animator.SetBool("collided", true);
-        yield return new WaitForSeconds(explosionAnimation.length);
-        gameObject.SetActive(false);
+        StartCoroutine(CollisionEffect());
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -54,6 +52,12 @@ public class GrenadeScript : Entity {
             collider.gameObject.GetComponent<FireflyScript>().ChangeHealth(-weaponData.weaponDamage);
             enemiesHit.Add(collider.GetInstanceID(), true);
         }
+        else if (!enemiesHit.ContainsKey(collider.GetInstanceID()) && collider.gameObject.CompareTag("RedLight"))
+        {
+            StartCoroutine(CollisionEffect());
+            collider.gameObject.GetComponent<RedLightScript>().ChangeHealth();
+            enemiesHit.Add(collider.GetInstanceID(), true);
+        }
     }
 
     void OnTriggerStay2D(Collider2D collider)
@@ -66,6 +70,12 @@ public class GrenadeScript : Entity {
         else if (!enemiesHit.ContainsKey(collider.GetInstanceID()) && collider.gameObject.CompareTag("Firefly"))
         {
             collider.gameObject.GetComponent<FireflyScript>().ChangeHealth(-weaponData.weaponDamage);
+            enemiesHit.Add(collider.GetInstanceID(), true);
+        }
+        else if (!enemiesHit.ContainsKey(collider.GetInstanceID()) && collider.gameObject.CompareTag("RedLight")) 
+        {
+            StartCoroutine(CollisionEffect());
+            collider.gameObject.GetComponent<RedLightScript>().ChangeHealth();
             enemiesHit.Add(collider.GetInstanceID(), true);
         }
     }
@@ -83,8 +93,17 @@ public class GrenadeScript : Entity {
     //    }
     //}
 
-    public void Throw(Vector2 targetLocation) 
+    IEnumerator CollisionEffect()
     {
+        animator.SetBool("collided", true);
+        AudioManager.Instance.Stop("GrenadeThrow");
+        AudioManager.Instance.Play("Explosion");
+        yield return new WaitForSeconds(explosionAnimation.length);
+        gameObject.SetActive(false);
+    }
+
+    public void Throw(Vector2 targetLocation) {
+        AudioManager.Instance.Play("GrenadeThrow");
         EntityBody.AddForce(Tools.CalculateVelocity(transform.position, targetLocation, (Mathf.Abs(transform.position.x - targetLocation.x) / weaponData.distancePerTimeUnit) + minTime), ForceMode2D.Impulse);
     }
 }

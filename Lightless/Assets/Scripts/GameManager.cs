@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     public GameObject fireflyPrefab;
     public GameObject redLightPrefab;
 
-
     //public GameObject grenadeFirePrefab;
     //public GameObject enemyPrefab;
     //public GameObject obstaclePrefab;
