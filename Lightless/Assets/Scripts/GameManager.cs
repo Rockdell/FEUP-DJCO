@@ -83,19 +83,19 @@ public class GameManager : MonoBehaviour
         // Wave I
         waves.Enqueue(() =>
         {
-            activeWaves.Add(new ZombieWave(3, true));
+            activeWaves.Add(new ZombieWave(3, true, true));
         });
 
         // Wave II
         waves.Enqueue(() =>
         {
-            activeWaves.Add(new FireflyWave(25, true));
+            activeWaves.Add(new FireflyWave(25, true, true));
         });
 
         // Wave III
         waves.Enqueue(() =>
         {
-            activeWaves.Add(new ZombieWave(3, true));
+            activeWaves.Add(new ZombieWave(3, true, true));
             activeWaves.Add(new FireflyWave(25));
         });
 
@@ -120,28 +120,5 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(1.0f);
             }
         }
-
-
-        //Queue<Lazy<IWave>> waves = new Queue<Lazy<IWave>>();
-
-        //// WaveI, WaveII, WaveIII
-        //waves.Enqueue(new Lazy<IWave>(() => { return new ZombieWave(3); }));
-        //waves.Enqueue(new Lazy<IWave>(() => { return new FireflyWave(25); }));
-        //waves.Enqueue(new Lazy<IWave>(() => { return new ZombieFireflyWave(); }));
-
-        //IWave currentWave = waves.Dequeue().Value;
-
-        //while (waves.Count > 0)
-        //{
-        //    if (!currentWave.isOver)
-        //    {
-        //        yield return new WaitForSeconds(1.0f);
-        //    }
-        //    else
-        //    {
-        //        yield return new WaitForSeconds(2.5f);
-        //        currentWave = waves.Dequeue().Value;
-        //    }
-        //}
     }
 }

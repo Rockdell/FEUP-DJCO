@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ZombieWave : IWave
 {
-    public ZombieWave(int nrEnemies, bool spawnObstacles = false) : base(nrEnemies, spawnObstacles)
+    public ZombieWave(int nrEnemies, bool spawnObstacles = false, bool spawnPickups = false) : base(nrEnemies, spawnObstacles, spawnPickups)
     {
     }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class FireflyWave : IWave
 {
-    public FireflyWave(int nrEnemies, bool spawnObstacles = false) : base(nrEnemies, spawnObstacles)
+    public FireflyWave(int nrEnemies, bool spawnObstacles = false, bool spawnPickups = false) : base(nrEnemies, spawnObstacles, spawnPickups)
     {
     }
 

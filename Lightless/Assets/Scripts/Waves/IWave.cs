@@ -9,7 +9,7 @@ public abstract class IWave
     protected int numberEnemies;
     protected List<GameObject> enemies;
 
-    public IWave(int nrEnemies, bool spawnObstacles)
+    public IWave(int nrEnemies, bool spawnObstacles, bool spawnPickups)
     {
         isOver = false;
 
@@ -90,7 +90,7 @@ public abstract class IWave
             dropLight.GetComponent<DropLightScript>().Spawn(new Vector2(spawningPosition, Random.Range(lowerHeight, upperHeight)), Quaternion.identity);
             dropLight.SetActive(true);
 
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(Random.Range(5, 10));
         }
     }
 }
