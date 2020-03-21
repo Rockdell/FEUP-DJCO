@@ -21,6 +21,8 @@ public abstract class IWave
         if (spawnObstacles)
             GameManager.Instance.StartCoroutine(SpawnObstacles());
 
+        GameManager.Instance.StartCoroutine(SpawnPickups());
+
         GameManager.Instance.StartCoroutine(CheckIfOver());
     }
 
@@ -60,6 +62,8 @@ public abstract class IWave
     {
         var spawningPosition = GameManager.Instance.screenBounds.x + 20;
 
+        yield return new WaitForSeconds(Random.Range(4, 10));
+
         while (!isOver)
         {
             GameObject redLight = GameManager.Instance.GetObject(GameManager.ObjectType.RedLight);
@@ -67,6 +71,26 @@ public abstract class IWave
             redLight.SetActive(true);
 
             yield return new WaitForSeconds(Random.Range(7, 15));
+        }
+    }
+
+    protected virtual IEnumerator SpawnPickups()
+    {
+        var spawningPosition = GameManager.Instance.screenBounds.x + 20;
+        var upperHeight = GameManager.Instance.screenBounds.y - 10;
+        var lowerHeight = -GameManager.Instance.screenBounds.y + 10;
+
+        yield return new WaitForSeconds(5.0f);
+
+        // TODO add cooldown for pick ups
+
+        while (!isOver)
+        {
+            GameObject dropLight = GameManager.Instance.GetObject(GameManager.ObjectType.DropLight);
+            dropLight.GetComponent<DropLightScript>().Spawn(new Vector2(spawningPosition, Random.Range(lowerHeight, upperHeight)), Quaternion.identity);
+            dropLight.SetActive(true);
+
+            yield return new WaitForSeconds(5.0f);
         }
     }
 }
