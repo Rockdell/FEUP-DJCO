@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
-using System;
-using System.Collections;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour {
 
     public AudioMixer masterMixer;
     public float initialMusicVolume;
     public float initialEfxVolume;
-    public Sound[] sounds;
+    public List<Sound> sounds;
 
     public static AudioManager Instance { get; private set; }
 
@@ -39,10 +38,13 @@ public class AudioManager : MonoBehaviour {
     }
 
     public void Play(string name) {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        Sound s = sounds.Find(sound => sound.name == name);
         if (s == null)
+        {
             Debug.LogWarning("Sound: " + name + " not found!");
-        else {
+        }
+        else 
+        {
             if (s.alwaysFinish && s.source.isPlaying)
                 return;
 
@@ -51,11 +53,15 @@ public class AudioManager : MonoBehaviour {
     }
 
     public void Stop(string name) {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        Sound s = sounds.Find(sound => sound.name == name);
         if (s == null)
+        {
             Debug.LogWarning("Sound: " + name + " not found!");
+        }
         else
+        {
             s.source.Stop();
+        }
     }
 
     public void SetMusicLevel(float sliderValue) {
