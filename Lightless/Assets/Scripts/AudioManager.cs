@@ -22,7 +22,6 @@ public class AudioManager : MonoBehaviour {
             return;
         }
 
-
         foreach (Sound s in sounds) {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
@@ -34,7 +33,6 @@ public class AudioManager : MonoBehaviour {
     }
 
     void Start() {
-        //masterMixer.outputAudioMixerGroup.audioMixer.updateMode = AudioMixerUpdateMode.Normal
         masterMixer.SetFloat("MusicVol", Mathf.Log10(initialMusicVolume) * 20);
         masterMixer.SetFloat("EfxVol", Mathf.Log10(initialEfxVolume) * 20);
         Play("MainTheme");

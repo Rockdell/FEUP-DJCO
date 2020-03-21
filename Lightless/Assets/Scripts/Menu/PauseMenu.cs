@@ -32,6 +32,7 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("MenuScene");
         gameObject.SetActive(false);
         Time.timeScale = 1f;
+        AudioListener.pause = false;
     }
 
     public void QuitGame() {
