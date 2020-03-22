@@ -21,7 +21,8 @@ public abstract class IWave
         if (spawnObstacles)
             GameManager.Instance.StartCoroutine(SpawnObstacles());
 
-        GameManager.Instance.StartCoroutine(SpawnPickups());
+        if (spawnPickups)
+            GameManager.Instance.StartCoroutine(SpawnPickups());
 
         GameManager.Instance.StartCoroutine(CheckIfOver());
     }
