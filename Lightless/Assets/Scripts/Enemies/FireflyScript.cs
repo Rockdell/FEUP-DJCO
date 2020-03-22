@@ -87,7 +87,7 @@ public class FireflyScript : Entity
                 Behaviour = new HomingBehaviour(enemyData.moveSpeed);
                 break;
             case State.Die:
-                Behaviour = new HomingBehaviour(enemyData.moveSpeed / 3);
+                Behaviour = new HomingBehaviour(enemyData.moveSpeed / 2f);
                 currentHealth = 0;
                 StartCoroutine(Die());
                 break;

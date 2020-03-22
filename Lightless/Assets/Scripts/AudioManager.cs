@@ -39,12 +39,10 @@ public class AudioManager : MonoBehaviour {
 
     public void Play(string name) {
         Sound s = sounds.Find(sound => sound.name == name);
-        if (s == null)
-        {
+        if (s == null) {
             Debug.LogWarning("Sound: " + name + " not found!");
         }
-        else 
-        {
+        else {
             if (s.alwaysFinish && s.source.isPlaying)
                 return;
 
@@ -54,12 +52,10 @@ public class AudioManager : MonoBehaviour {
 
     public void Stop(string name) {
         Sound s = sounds.Find(sound => sound.name == name);
-        if (s == null)
-        {
+        if (s == null) {
             Debug.LogWarning("Sound: " + name + " not found!");
         }
-        else
-        {
+        else {
             s.source?.Stop();
         }
     }
@@ -68,7 +64,7 @@ public class AudioManager : MonoBehaviour {
         masterMixer.SetFloat("MusicVol", Mathf.Log10(sliderValue) * 20);
     }
 
-     public void SetEfxLevel(float sliderValue) {
+    public void SetEfxLevel(float sliderValue) {
         masterMixer.SetFloat("EfxVol", Mathf.Log10(sliderValue) * 20);
     }
 

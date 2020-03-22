@@ -23,7 +23,7 @@ public class FireflyWave : IWave
 
             enemies.Add(firefly);
 
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(1.8f);
         }
     }
 }

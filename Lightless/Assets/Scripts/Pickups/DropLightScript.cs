@@ -14,6 +14,7 @@ public class DropLightScript : Entity
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerScript>().ChangeHealth(healthRegen);
+            AudioManager.Instance.Play("FireDropPickup");
         }
 
         gameObject.SetActive(false);
