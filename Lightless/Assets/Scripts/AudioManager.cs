@@ -48,7 +48,7 @@ public class AudioManager : MonoBehaviour {
             if (s.alwaysFinish && s.source.isPlaying)
                 return;
 
-            s.source.Play();
+            s.source?.Play();
         }
     }
 
@@ -60,7 +60,7 @@ public class AudioManager : MonoBehaviour {
         }
         else
         {
-            s.source.Stop();
+            s.source?.Stop();
         }
     }
 

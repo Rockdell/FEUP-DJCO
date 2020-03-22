@@ -43,7 +43,8 @@ public class PlayerScript : MonoBehaviour {
     //private bool isAiming = false;
     private SpriteRenderer sprite;
 
-    void Start() {
+    void Start() 
+    {
         rb = GetComponent<Rigidbody2D>();
         light2D = GetComponent<Light2D>();
         light2D.pointLightOuterRadius = maxLightRadius;
@@ -57,18 +58,19 @@ public class PlayerScript : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update() 
+    {
         crosshair.transform.position = new Vector2(crosshairInput.x, crosshairInput.y);
         light2D.pointLightOuterRadius = minLightRadius + (maxLightRadius - minLightRadius) * (currentHealth / maxHealth);
 
         //Update HP (Light)
         if (currentHealth <= 0)
         {
-            Debug.Log("You Died");
             currentHealth = 0;
             healthBarUI.SetHealth((int)currentHealth);
         }
-        else {
+        else 
+        {
             currentHealth -= healthLossPerSecond * Time.deltaTime;
             healthBarUI.SetHealth((int)currentHealth);
         }
@@ -76,21 +78,26 @@ public class PlayerScript : MonoBehaviour {
         //Cooldowns
         if (lightBulletOnCooldown) 
         {
-            if (currentLightBulletCooldown < lightBullet.weaponCooldown) {
+            if (currentLightBulletCooldown < lightBullet.weaponCooldown)
+            {
                 currentLightBulletCooldown += Time.deltaTime;
             }
-            else {
+            else 
+            {
                 lightBulletOnCooldown = false;
                 currentLightBulletCooldown = 0;
             }
         }
 
-        if (grenadeOnCooldown) {
-            if (currentGrenadeCooldown < grenade.weaponCooldown) {
+        if (grenadeOnCooldown) 
+        {
+            if (currentGrenadeCooldown < grenade.weaponCooldown) 
+            {
                 currentGrenadeCooldown += Time.deltaTime;
                 grenadeCooldownUI.SetCooldown(currentGrenadeCooldown);
             }
-            else {
+            else 
+            {
                 grenadeOnCooldown = false;
                 currentGrenadeCooldown = 0;
                 grenadeCooldownUI.SetCooldown(grenade.weaponCooldown);
@@ -98,24 +105,29 @@ public class PlayerScript : MonoBehaviour {
         }
 
         // Flash
-        if (currentFlashCount > 0) {
+        if (currentFlashCount > 0) 
+        {
             AudioManager.Instance.Play("PlayerTakingDamage");
             if (currentFlashDuration > 0)
+            {
                 currentFlashDuration -= Time.deltaTime;
-            else {
+            }
+            else 
+            {
                 currentFlashDuration = flashDuration;
                 sprite.enabled = !sprite.enabled;
                 currentFlashCount--;
             }
         }
-        else {
+        else 
+        {
             currentFlashDuration = 0;
             sprite.enabled = true;
         }
-
     }
 
-    void FixedUpdate() {
+    void FixedUpdate() 
+    {
         //Update Rigibody position
         Vector2 nextPosition = rb.position + movementInput * moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(new Vector2(Mathf.Clamp(nextPosition.x, -GameManager.Instance.screenBounds.x, GameManager.Instance.screenBounds.x), Mathf.Clamp(nextPosition.y, -GameManager.Instance.screenBounds.y, GameManager.Instance.screenBounds.y)));
@@ -131,8 +143,10 @@ public class PlayerScript : MonoBehaviour {
             currentFlashCount = flashCount;
     }
 
-    public void Shoot() {
-        if (!lightBulletOnCooldown) {
+    public void Shoot() 
+    {
+        if (!lightBulletOnCooldown) 
+        {
             lightBulletOnCooldown = true;
             GameObject lightBullet = GameManager.Instance.GetObject(GameManager.ObjectType.LightBullet);
             lightBullet.SetActive(true);
@@ -140,8 +154,10 @@ public class PlayerScript : MonoBehaviour {
         }
     }
 
-    public void ThrowGrenade() {
-        if (!grenadeOnCooldown) {
+    public void ThrowGrenade() 
+    {
+        if (!grenadeOnCooldown) 
+        {
             grenadeOnCooldown = true;
             GameObject grenade = GameManager.Instance.GetObject(GameManager.ObjectType.Grenade);
             grenade.SetActive(true);
@@ -149,27 +165,34 @@ public class PlayerScript : MonoBehaviour {
         }
     }
 
-    public Vector2 GetCrosshairInput() {
+
+    public Vector2 GetCrosshairInput()
+    {
         return crosshairInput;
     }
 
-    public bool GetPowerUpInput() {
+    public bool GetPowerUpInput() 
+    {
         return powerUpActivated;
     }
 
-    public void UpdateMovement(Vector2 input) {
+    public void UpdateMovement(Vector2 input) 
+    {
         movementInput = input;
     }
 
-    public void UpdateCrosshair(Vector2 input) {
+    public void UpdateCrosshair(Vector2 input) 
+    {
         crosshairInput = GameManager.Instance.gameCamera.ScreenToWorldPoint(new Vector3(input.x, input.y, 0));
     }
 
-    public void UpdatePowerUpInput() {
+    public void UpdatePowerUpInput() 
+    {
         powerUpActivated = !powerUpActivated;
     }
     
-    public void UpdateShootInput() {
+    public void UpdateShootInput() 
+    {
         isShooting = !isShooting;
     }
 
