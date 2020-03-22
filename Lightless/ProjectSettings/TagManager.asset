@@ -16,6 +16,8 @@ TagManager:
   - ForceField
   - RedLight
   - AudioManager
+  - Boss
+  - BossProjectileStart
   layers:
   - Default
   - TransparentFX
