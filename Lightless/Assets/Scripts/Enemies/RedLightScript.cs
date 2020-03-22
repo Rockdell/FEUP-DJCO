@@ -101,13 +101,17 @@ public class RedLightScript : Entity
         AudioManager.Instance.Stop("LightbulbSound");
     }
 
-    public void ChangeHealth()
+    public void ChangeHealth(bool isGrenade = false)
     {
         if (currentHealth <= 0)
             return;
 
         currentShakeDuration = shakeDuration;
-        currentHealth = Mathf.Clamp(currentHealth - 0.3f, 0, enemyData.maxHealth);
+
+        if (isGrenade)
+            currentHealth = 0f;
+        else
+            currentHealth = Mathf.Clamp(currentHealth - 0.3f, 0, enemyData.maxHealth);
 
         if (currentHealth <= 0.1f)
         {

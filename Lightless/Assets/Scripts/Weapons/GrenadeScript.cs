@@ -55,7 +55,7 @@ public class GrenadeScript : Entity {
         else if (!enemiesHit.ContainsKey(collider.GetInstanceID()) && collider.gameObject.CompareTag("RedLight"))
         {
             StartCoroutine(CollisionEffect());
-            collider.gameObject.GetComponent<RedLightScript>().ChangeHealth();
+            collider.gameObject.GetComponent<RedLightScript>().ChangeHealth(true);
             enemiesHit.Add(collider.GetInstanceID(), true);
         }
     }
@@ -75,23 +75,10 @@ public class GrenadeScript : Entity {
         else if (!enemiesHit.ContainsKey(collider.GetInstanceID()) && collider.gameObject.CompareTag("RedLight")) 
         {
             StartCoroutine(CollisionEffect());
-            collider.gameObject.GetComponent<RedLightScript>().ChangeHealth();
+            collider.gameObject.GetComponent<RedLightScript>().ChangeHealth(true);
             enemiesHit.Add(collider.GetInstanceID(), true);
         }
     }
-
-    //IEnumerator OnTriggerEnter2D(Collider2D collider)
-    //{
-    //    if (collider.gameObject.CompareTag("RedLight"))
-    //    {
-    //        collider.gameObject.GetComponent<RedLightScript>().ChangeHealth();
-    //        EntityBody.constraints = RigidbodyConstraints2D.FreezeAll;
-    //        animator.SetBool("collided", true);
-    //        yield return new WaitForSeconds(explosionAnimation.length);
-    //        EntityBody.constraints = RigidbodyConstraints2D.None;
-    //        gameObject.SetActive(false);
-    //    }
-    //}
 
     IEnumerator CollisionEffect()
     {
