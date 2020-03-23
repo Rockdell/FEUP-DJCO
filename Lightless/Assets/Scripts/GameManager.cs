@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public enum ObjectType
     {
         LightBullet, Grenade, Zombie, ZombieBullet,
-        Firefly, RedLight, Boss, DropLight
+        Firefly, RedLight, Boss, DarkBullet, DropLight
     };
 
     public static GameManager Instance { get; private set; }
@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public GameObject fireflyPrefab;
     public GameObject redLightPrefab;
     public GameObject bossPrefab;
+    public GameObject darkBulletPrefab;
     public GameObject dropLightPrefab;
 
     private Dictionary<ObjectType, ObjectPool> _objectPools;
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
         AddPool(ObjectType.Firefly, fireflyPrefab);
         AddPool(ObjectType.RedLight, redLightPrefab);
         AddPool(ObjectType.Boss, bossPrefab);
+        AddPool(ObjectType.DarkBullet, darkBulletPrefab);
         AddPool(ObjectType.DropLight, dropLightPrefab);
     }
 
@@ -96,12 +98,12 @@ public class GameManager : MonoBehaviour
         //});
 
         // Wave IV
-        //waves.Enqueue(() =>
-        //{
-        //    activeWaves.Add(new BossWave());
-        //});
+        waves.Enqueue(() =>
+        {
+            activeWaves.Add(new BossWave());
+        });
 
-        //waves.Dequeue()();
+        waves.Dequeue()();
 
         while (waves.Count > 0)
         {

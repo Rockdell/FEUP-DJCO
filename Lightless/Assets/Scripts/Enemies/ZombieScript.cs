@@ -138,7 +138,7 @@ public class ZombieScript : Entity
                     }
                 }
 
-                yield return new WaitForSeconds(Random.Range(0.0f, 0.5f));
+                yield return new WaitForSeconds(0.5f);
             }
             else if (currentState == State.Run)
             {

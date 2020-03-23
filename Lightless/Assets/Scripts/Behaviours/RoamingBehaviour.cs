@@ -12,7 +12,7 @@ public class RoamingBehaviour : IBehaviour
     {
         roamingSpeed = speed;
 
-        float angle = Random.Range(0.0f, 360.0f);
+        float angle = Random.Range(135.0f, 225.0f) * Mathf.Deg2Rad;
         direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
     }
 

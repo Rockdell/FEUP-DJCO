@@ -284,6 +284,7 @@ MonoBehaviour:
   maxHealth: 1000
   maxLightRadius: 150
   minLightRadius: 5
+  darkBullet: {fileID: 0}
 --- !u!1 &9149321490915461893
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +309,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9149321490915461893}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.46, y: 0, z: 0}
+  m_LocalPosition: {x: -2.36, y: -0.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7654424209468664192}

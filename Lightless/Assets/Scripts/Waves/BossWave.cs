@@ -10,7 +10,7 @@ public class BossWave : IWave
 
     protected override IEnumerator Spawn()
     {
-        var spawningPosition = GameManager.Instance.screenBounds.x + 20;
+        var spawningPosition = GameManager.Instance.screenBounds.x + 40;
 
         GameObject boss = GameManager.Instance.GetObject(GameManager.ObjectType.Boss);
         boss.GetComponent<BossScript>().Spawn(new Vector2(spawningPosition, 0.0f), Quaternion.identity);
