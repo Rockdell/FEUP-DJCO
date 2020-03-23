@@ -66,17 +66,18 @@ public class ZombieScript : Entity
     {
         currentZombieBulletCooldown = 0;
         zombieBulletOnCooldown = false;
+        
         currentState = State.Init;
-
         currentHealth = enemyData.maxHealth;
+
         SetState(State.Chase);
         StartCoroutine(Act());
     }
 
-    void OnDisable()
-    {
-        StopAllCoroutines();
-    }
+    //void OnDisable()
+    //{
+    //    StopAllCoroutines();
+    //}
 
     public void ChangeHealth(float value)
     {
@@ -149,6 +150,7 @@ public class ZombieScript : Entity
                 animator.SetBool("isDead", true);
                 yield return new WaitForSeconds(deathAnimation.length);
                 gameObject.SetActive(false);
+                break;
             }
         }
     }

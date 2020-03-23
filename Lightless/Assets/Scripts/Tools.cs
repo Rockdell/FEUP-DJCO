@@ -20,12 +20,12 @@ public static class Tools {
         return new Vector2(initialPosition.x + velocity.x * time, initialPosition.y + velocity.y * time + (Physics2D.gravity.y * time * time) / 2f);
     }
 
-    public static bool IsPositionInScreen(Vector2 position)
-    {
-        return
-            position.x >= -GameManager.Instance.screenBounds.x && position.x <= GameManager.Instance.screenBounds.x 
-            && 
-            position.y >= -GameManager.Instance.screenBounds.y && position.y <= GameManager.Instance.screenBounds.y;
-    }
+    //public static bool IsPositionInScreen(Vector2 begin, Vector2 end)
+    //{
+    //    return
+    //        begin.x >= -GameManager.Instance.screenBounds.x && posibegintion.x <= GameManager.Instance.screenBounds.x
+    //        &&
+    //        position.y >= -GameManager.Instance.screenBounds.y && position.y <= GameManager.Instance.screenBounds.y;
+    //}
 
 }

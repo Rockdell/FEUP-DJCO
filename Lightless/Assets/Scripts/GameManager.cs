@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public enum ObjectType
     {
         LightBullet, Grenade, Zombie, ZombieBullet,
-        Firefly, RedLight, DropLight
+        Firefly, RedLight, Boss, DropLight
     };
 
     public static GameManager Instance { get; private set; }
@@ -22,10 +22,7 @@ public class GameManager : MonoBehaviour
     public GameObject zombieBulletPrefab;
     public GameObject fireflyPrefab;
     public GameObject redLightPrefab;
-
-    //public GameObject grenadeFirePrefab;
-    //public GameObject enemyPrefab;
-    //public GameObject obstaclePrefab;
+    public GameObject bossPrefab;
     public GameObject dropLightPrefab;
 
     private Dictionary<ObjectType, ObjectPool> _objectPools;
@@ -45,14 +42,13 @@ public class GameManager : MonoBehaviour
         AddPool(ObjectType.ZombieBullet, zombieBulletPrefab);
         AddPool(ObjectType.Firefly, fireflyPrefab);
         AddPool(ObjectType.RedLight, redLightPrefab);
-        //AddPool(ObjectType.GrenadeFire, grenadeFirePrefab);
-        //AddPool(ObjectType.Obstacle, obstaclePrefab);
+        AddPool(ObjectType.Boss, bossPrefab);
         AddPool(ObjectType.DropLight, dropLightPrefab);
     }
 
     void Start()
     {
-        StartCoroutine("SpawnWaves");
+        StartCoroutine(SpawnWaves());
     }
 
     void AddPool(ObjectType type, GameObject prefab)
@@ -80,26 +76,32 @@ public class GameManager : MonoBehaviour
 
         Queue<Action> waves = new Queue<Action>();
 
-        // Wave I
-        waves.Enqueue(() =>
-        {
-            activeWaves.Add(new ZombieWave(3, true, true));
-        });
+        //// Wave I
+        //waves.Enqueue(() =>
+        //{
+        //    activeWaves.Add(new ZombieWave(3, true, true));
+        //});
 
-        // Wave II
-        waves.Enqueue(() =>
-        {
-            activeWaves.Add(new FireflyWave(25, true, true));
-        });
+        //// Wave II
+        //waves.Enqueue(() =>
+        //{
+        //    activeWaves.Add(new FireflyWave(25, true, true));
+        //});
 
-        // Wave III
-        waves.Enqueue(() =>
-        {
-            activeWaves.Add(new ZombieWave(3, true, true));
-            activeWaves.Add(new FireflyWave(25));
-        });
+        //// Wave III
+        //waves.Enqueue(() =>
+        //{
+        //    activeWaves.Add(new ZombieWave(3, true, true));
+        //    activeWaves.Add(new FireflyWave(25));
+        //});
 
-        waves.Dequeue()();
+        // Wave IV
+        //waves.Enqueue(() =>
+        //{
+        //    activeWaves.Add(new BossWave());
+        //});
+
+        //waves.Dequeue()();
 
         while (waves.Count > 0)
         {

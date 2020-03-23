@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3265,9 +3265,9 @@ GameObject:
   - component: {fileID: 612696857}
   - component: {fileID: 612696858}
   - component: {fileID: 612696855}
-  - component: {fileID: 612696856}
   - component: {fileID: 612696859}
   - component: {fileID: 612696861}
+  - component: {fileID: 612696856}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -13927,6 +13927,8 @@ MonoBehaviour:
     type: 3}
   redLightPrefab: {fileID: 8192711267434442412, guid: bb061e421a48e9845a4591fb54712b80,
     type: 3}
+  bossPrefab: {fileID: 6510667452333299338, guid: 59f0c22c235b10a4db46b76891f8a6cb,
+    type: 3}
   dropLightPrefab: {fileID: 7813916188050199904, guid: 2eb0b5ce1946e9142bda5fe87d8a2bcc,
     type: 3}
 --- !u!114 &2022817467
@@ -13950,46 +13952,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1814704625925487916, guid: 59f0c22c235b10a4db46b76891f8a6cb,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1528882431
-      objectReference: {fileID: 0}
-    - target: {fileID: 1814704625925487916, guid: 59f0c22c235b10a4db46b76891f8a6cb,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2406451539040353810, guid: 59f0c22c235b10a4db46b76891f8a6cb,
-        type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 4.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2406451539040353810, guid: 59f0c22c235b10a4db46b76891f8a6cb,
-        type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 4.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2616579861606239196, guid: 59f0c22c235b10a4db46b76891f8a6cb,
-        type: 3}
-      propertyPath: healthBarUI
-      value: 
-      objectReference: {fileID: 1408492360}
-    - target: {fileID: 2616579861606239196, guid: 59f0c22c235b10a4db46b76891f8a6cb,
-        type: 3}
-      propertyPath: grenadeCooldownUI
-      value: 
-      objectReference: {fileID: 122797777}
-    - target: {fileID: 2616579861606239196, guid: 59f0c22c235b10a4db46b76891f8a6cb,
-        type: 3}
-      propertyPath: crosshair
-      value: 
-      objectReference: {fileID: 616673630}
-    - target: {fileID: 2616579861606239196, guid: 59f0c22c235b10a4db46b76891f8a6cb,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6510667452333299338, guid: 59f0c22c235b10a4db46b76891f8a6cb,
         type: 3}
       propertyPath: m_Name
@@ -13998,12 +13960,12 @@ PrefabInstance:
     - target: {fileID: 7654424209468664192, guid: 59f0c22c235b10a4db46b76891f8a6cb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 36.55
+      value: 82.2
       objectReference: {fileID: 0}
     - target: {fileID: 7654424209468664192, guid: 59f0c22c235b10a4db46b76891f8a6cb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.93
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 7654424209468664192, guid: 59f0c22c235b10a4db46b76891f8a6cb,
         type: 3}
@@ -14049,21 +14011,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7654424209468664192, guid: 59f0c22c235b10a4db46b76891f8a6cb,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.942
-      objectReference: {fileID: 0}
-    - target: {fileID: 7654424209468664192, guid: 59f0c22c235b10a4db46b76891f8a6cb,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.942
-      objectReference: {fileID: 0}
-    - target: {fileID: 7654424209468664192, guid: 59f0c22c235b10a4db46b76891f8a6cb,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.942
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59f0c22c235b10a4db46b76891f8a6cb, type: 3}

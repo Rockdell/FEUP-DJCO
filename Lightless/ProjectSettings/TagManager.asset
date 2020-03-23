@@ -18,6 +18,7 @@ TagManager:
   - AudioManager
   - Boss
   - BossProjectileStart
+  - DarkBullet
   layers:
   - Default
   - TransparentFX

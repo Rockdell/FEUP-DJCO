@@ -38,6 +38,10 @@ public class LightBulletScript : Entity
         {
             collision.gameObject.GetComponent<FireflyScript>().ChangeHealth(-weaponData.weaponDamage);
         }
+        else if (collision.gameObject.CompareTag("Boss"))
+        {
+            collision.gameObject.GetComponent<BossScript>().ChangeHealth(-weaponData.weaponDamage);
+        }
 
         StartCoroutine(CollisionEffect());
     }

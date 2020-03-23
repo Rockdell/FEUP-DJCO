@@ -165,7 +165,6 @@ public class PlayerScript : MonoBehaviour {
         }
     }
 
-
     public Vector2 GetCrosshairInput()
     {
         return crosshairInput;

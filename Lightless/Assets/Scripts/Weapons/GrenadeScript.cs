@@ -42,41 +42,61 @@ public class GrenadeScript : Entity {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (!enemiesHit.ContainsKey(collider.GetInstanceID()) && collider.gameObject.CompareTag("Zombie"))
+        if (!enemiesHit.ContainsKey(collider.gameObject.GetInstanceID()))
         {
-            collider.gameObject.GetComponent<ZombieScript>().ChangeHealth(-weaponData.weaponDamage);
-            enemiesHit.Add(collider.GetInstanceID(), true);
-        }
-        else if (!enemiesHit.ContainsKey(collider.GetInstanceID()) && collider.gameObject.CompareTag("Firefly"))
-        {
-            collider.gameObject.GetComponent<FireflyScript>().ChangeHealth(-weaponData.weaponDamage);
-            enemiesHit.Add(collider.GetInstanceID(), true);
-        }
-        else if (!enemiesHit.ContainsKey(collider.GetInstanceID()) && collider.gameObject.CompareTag("RedLight"))
-        {
-            StartCoroutine(CollisionEffect());
-            collider.gameObject.GetComponent<RedLightScript>().ChangeHealth(true);
-            enemiesHit.Add(collider.GetInstanceID(), true);
+            if (collider.gameObject.CompareTag("Zombie"))
+            {
+                collider.gameObject.GetComponent<ZombieScript>().ChangeHealth(-weaponData.weaponDamage);
+            }
+            else if (collider.gameObject.CompareTag("Firefly"))
+            {
+                collider.gameObject.GetComponent<FireflyScript>().ChangeHealth(-weaponData.weaponDamage);
+            }
+            else if (collider.gameObject.CompareTag("Boss"))
+            {
+                collider.gameObject.GetComponent<BossScript>().ChangeHealth(-weaponData.weaponDamage);
+            }
+            else if (collider.gameObject.CompareTag("RedLight"))
+            {
+                StartCoroutine(CollisionEffect());
+                collider.gameObject.GetComponent<RedLightScript>().ChangeHealth(true);
+            }
+            else
+            {
+                return;
+            }
+
+            enemiesHit.Add(collider.gameObject.GetInstanceID(), true);
         }
     }
 
     void OnTriggerStay2D(Collider2D collider)
     {
-        if (!enemiesHit.ContainsKey(collider.GetInstanceID()) && collider.gameObject.CompareTag("Zombie"))
+        if (!enemiesHit.ContainsKey(collider.gameObject.GetInstanceID()))
         {
-            collider.gameObject.GetComponent<ZombieScript>().ChangeHealth(-weaponData.weaponDamage);
-            enemiesHit.Add(collider.GetInstanceID(), true);
-        }
-        else if (!enemiesHit.ContainsKey(collider.GetInstanceID()) && collider.gameObject.CompareTag("Firefly"))
-        {
-            collider.gameObject.GetComponent<FireflyScript>().ChangeHealth(-weaponData.weaponDamage);
-            enemiesHit.Add(collider.GetInstanceID(), true);
-        }
-        else if (!enemiesHit.ContainsKey(collider.GetInstanceID()) && collider.gameObject.CompareTag("RedLight")) 
-        {
-            StartCoroutine(CollisionEffect());
-            collider.gameObject.GetComponent<RedLightScript>().ChangeHealth(true);
-            enemiesHit.Add(collider.GetInstanceID(), true);
+            if (collider.gameObject.CompareTag("Zombie"))
+            {
+                collider.gameObject.GetComponent<ZombieScript>().ChangeHealth(-weaponData.weaponDamage);
+            }
+            else if (collider.gameObject.CompareTag("Firefly"))
+            {
+                collider.gameObject.GetComponent<FireflyScript>().ChangeHealth(-weaponData.weaponDamage);
+            }
+            else if (collider.gameObject.CompareTag("Boss"))
+            {
+                collider.gameObject.GetComponent<BossScript>().ChangeHealth(-weaponData.weaponDamage);
+            }
+            else if (collider.gameObject.CompareTag("RedLight")) 
+            {
+                StartCoroutine(CollisionEffect());
+                collider.gameObject.GetComponent<RedLightScript>().ChangeHealth(true);
+            }
+            else
+            {
+                return;
+            }
+
+            enemiesHit.Add(collider.gameObject.GetInstanceID(), true);
         }
     }
 

@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveIV : MonoBehaviour
+public class BossWave : IWave
 {
-    // Start is called before the first frame update
-    void Start()
+    public BossWave() : base(1, false, false)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override IEnumerator Spawn()
     {
-        
+        var spawningPosition = GameManager.Instance.screenBounds.x + 20;
+
+        GameObject boss = GameManager.Instance.GetObject(GameManager.ObjectType.Boss);
+        boss.GetComponent<BossScript>().Spawn(new Vector2(spawningPosition, 0.0f), Quaternion.identity);
+        boss.SetActive(true);
+
+        enemies.Add(boss);
+
+        yield return null;
     }
 }

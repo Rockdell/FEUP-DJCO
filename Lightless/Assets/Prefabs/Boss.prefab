@@ -83,10 +83,10 @@ GameObject:
   - component: {fileID: 7654424209468664192}
   - component: {fileID: 8295438495428033523}
   - component: {fileID: 7879253503272797394}
-  - component: {fileID: 2616579861606239196}
   - component: {fileID: 8201540460013360676}
   - component: {fileID: 1814704625925487916}
   - component: {fileID: 7235766021514466883}
+  - component: {fileID: -4878619293259617638}
   m_Layer: 10
   m_Name: Boss
   m_TagString: Boss
@@ -101,9 +101,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6510667452333299338}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.942, y: 1.942, z: 1.942}
   m_Children:
   - {fileID: 707586965662028271}
   - {fileID: 5203881152384774806}
@@ -118,7 +118,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6510667452333299338}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -157,30 +157,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.7667027, y: 3.2636466}
   m_EdgeRadius: 0
---- !u!114 &2616579861606239196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6510667452333299338}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d778beb212c4e1742a25d812d8c33e92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 30
-  maxHealth: 100
-  healthLossPerSecond: 2
-  maxLightRadius: 15
-  minLightRadius: 2.5
-  lightBullet: {fileID: 11400000, guid: 24707219a05dd5640bd56f0ae3683214, type: 2}
-  grenade: {fileID: 11400000, guid: 072cdfb5c8e6d80499e626236e96a922, type: 2}
-  healthBarUI: {fileID: 0}
-  grenadeCooldownUI: {fileID: 0}
-  crosshair: {fileID: 0}
-  flashCount: 3
-  flashDuration: 0.15
 --- !u!114 &8201540460013360676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +268,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-4878619293259617638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6510667452333299338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bff68369540d9645ae8f9e1afdefe52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 35
+  maxHealth: 1000
+  maxLightRadius: 150
+  minLightRadius: 5
 --- !u!1 &9149321490915461893
 GameObject:
   m_ObjectHideFlags: 0
