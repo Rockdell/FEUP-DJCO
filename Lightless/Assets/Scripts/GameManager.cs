@@ -67,6 +67,14 @@ public class GameManager : MonoBehaviour
         _objectPools.Add(type, new ObjectPool(prefab, child.transform, size));
     }
 
+    public void CleanPools()
+    {
+        foreach (var entry in _objectPools)
+        {
+            entry.Value.Clean();
+        }
+    }
+
     public GameObject GetObject(ObjectType type)
     {
         return _objectPools[type].GetObject();

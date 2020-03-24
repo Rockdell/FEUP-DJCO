@@ -34,4 +34,12 @@ public class ObjectPool
 
         return GetObject();
     }
+
+    public void Clean()
+    {
+        for (int i = 0; i < pool.Count; i++)
+        {
+            pool[i].SetActive(false);
+        }
+    }
 }
