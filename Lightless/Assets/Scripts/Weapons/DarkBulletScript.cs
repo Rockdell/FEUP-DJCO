@@ -19,6 +19,11 @@ public class DarkBulletScript : Entity
         //lightRadius = GetComponentInChildren<Light2D>().pointLightOuterRadius;
     }
 
+    void OnEnable()
+    {
+        gameObject.layer = 11;
+    }
+
     //void OnDisable()
     //{
     //    GetComponentInChildren<Light2D>().pointLightOuterRadius = lightRadius;
@@ -31,12 +36,29 @@ public class DarkBulletScript : Entity
             collision.gameObject.GetComponent<PlayerScript>().ChangeHealth(-weaponData.weaponDamage);
             StartCoroutine(CollisionEffect());
         }
+        else if (collision.gameObject.CompareTag("Zombie"))
+        {
+            collision.gameObject.GetComponent<ZombieScript>().ChangeHealth(-weaponData.weaponDamage);
+            StartCoroutine(CollisionEffect());
+        }
+        else if (collision.gameObject.CompareTag("Firefly"))
+        {
+            collision.gameObject.GetComponent<FireflyScript>().ChangeHealth(-weaponData.weaponDamage);
+            StartCoroutine(CollisionEffect());
+        }
+        else if (collision.collider.CompareTag("Boss"))
+        {
+            collision.gameObject.GetComponent<BossScript>().ChangeHealth(-weaponData.weaponDamage);
+            StartCoroutine(CollisionEffect());
+        }
         else if (collision.collider.CompareTag("ForceField"))
         {
             var direction = Vector3.Reflect(EntityBody.velocity, collision.contacts[0].normal).normalized;
             transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg, Vector3.forward);
             EntityBody.velocity = direction * weaponData.distancePerTimeUnit;
             AudioManager.Instance.Play("ShieldDeflect");
+
+            gameObject.layer = 9;
         }
         else
         {

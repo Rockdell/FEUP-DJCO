@@ -78,11 +78,11 @@ public class GameManager : MonoBehaviour
 
         Queue<Action> waves = new Queue<Action>();
 
-        //// Wave I
-        //waves.Enqueue(() =>
-        //{
-        //    activeWaves.Add(new ZombieWave(3, true, true));
-        //});
+        // Wave I
+        waves.Enqueue(() =>
+        {
+            activeWaves.Add(new ZombieWave(3, true, true));
+        });
 
         //// Wave II
         //waves.Enqueue(() =>
