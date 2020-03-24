@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adca2fbd700545d45a2b6855dec4869d, type: 3}
   m_Name: DarkBulletData
   m_EditorClassIdentifier: 
-  weaponDamage: 20
+  weaponDamage: 15
   weaponCooldown: 0.5
   weaponRange: 0
-  distancePerTimeUnit: 60
+  distancePerTimeUnit: 40

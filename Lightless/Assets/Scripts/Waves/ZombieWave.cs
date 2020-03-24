@@ -3,8 +3,14 @@ using UnityEngine;
 
 public class ZombieWave : IWave
 {
-    public ZombieWave(int nrEnemies, bool spawnObstacles = false, bool spawnPickups = false) : base(nrEnemies, spawnObstacles, spawnPickups)
+    public ZombieWave(int nrEnemies, bool spawnObstacles, bool spawnDropLights, bool spawnPickups) : base(nrEnemies)
     {
+        if (spawnObstacles)
+            GameManager.Instance.StartCoroutine(SpawnObstacles());
+        if (spawnDropLights)
+            GameManager.Instance.StartCoroutine(SpawnDropLights(5, 10));
+        if (spawnPickups)
+            GameManager.Instance.StartCoroutine(SpawnPickups(false, true));
     }
 
     protected override IEnumerator Spawn()

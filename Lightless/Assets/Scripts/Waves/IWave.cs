@@ -9,7 +9,7 @@ public abstract class IWave
     protected int numberEnemies;
     protected List<GameObject> enemies;
 
-    public IWave(int nrEnemies, bool spawnObstacles, bool spawnPickups)
+    public IWave(int nrEnemies)
     {
         isOver = false;
 
@@ -17,13 +17,6 @@ public abstract class IWave
         enemies = new List<GameObject>();
 
         GameManager.Instance.StartCoroutine(Spawn());
-
-        if (spawnObstacles)
-            GameManager.Instance.StartCoroutine(SpawnObstacles());
-
-        if (spawnPickups)
-            GameManager.Instance.StartCoroutine(SpawnPickups());
-
         GameManager.Instance.StartCoroutine(CheckIfOver());
     }
 
@@ -59,11 +52,11 @@ public abstract class IWave
 
     protected abstract IEnumerator Spawn();
 
-    protected virtual IEnumerator SpawnObstacles()
+    protected virtual IEnumerator SpawnObstacles(int lowerRange = 7, int upperRange = 15)
     {
         var spawningPosition = GameManager.Instance.screenBounds.x + 20;
 
-        yield return new WaitForSeconds(Random.Range(4, 10));
+        yield return new WaitForSeconds(lowerRange);
 
         while (!isOver)
         {
@@ -71,19 +64,17 @@ public abstract class IWave
             redLight.GetComponent<RedLightScript>().Spawn(new Vector2(spawningPosition, 19.6f), Quaternion.identity);
             redLight.SetActive(true);
 
-            yield return new WaitForSeconds(Random.Range(7, 15));
+            yield return new WaitForSeconds(Random.Range(lowerRange, upperRange));
         }
     }
 
-    protected virtual IEnumerator SpawnPickups()
+    protected virtual IEnumerator SpawnDropLights(int lowerRange = 5, int upperRange = 10)
     {
         var spawningPosition = GameManager.Instance.screenBounds.x + 20;
         var upperHeight = GameManager.Instance.screenBounds.y - 10;
         var lowerHeight = -GameManager.Instance.screenBounds.y + 10;
 
-        yield return new WaitForSeconds(5.0f);
-
-        // TODO add cooldown for pick ups
+        yield return new WaitForSeconds(lowerRange);
 
         while (!isOver)
         {
@@ -91,7 +82,39 @@ public abstract class IWave
             dropLight.GetComponent<DropLightScript>().Spawn(new Vector2(spawningPosition, Random.Range(lowerHeight, upperHeight)), Quaternion.identity);
             dropLight.SetActive(true);
 
-            yield return new WaitForSeconds(Random.Range(5, 10));
+            yield return new WaitForSeconds(Random.Range(lowerRange, upperRange));
+        }
+    }
+
+    protected virtual IEnumerator SpawnPickups(bool burnEnabled, bool forceFieldEnabled)
+    {
+        var spawningPosition = GameManager.Instance.screenBounds.x + 20;
+        var upperHeight = GameManager.Instance.screenBounds.y - 10;
+        var lowerHeight = -GameManager.Instance.screenBounds.y + 10;
+
+        yield return new WaitForSeconds(2.0f);
+
+        float burnChance = 0.2f, forceFieldChance = 0.3f;
+
+        while (!isOver)
+        {
+            if (burnEnabled && Random.value <= burnChance)
+            {
+                GameObject burn = GameManager.Instance.GetObject(GameManager.ObjectType.Burn);
+                burn.GetComponent<PowerUpPickUpScript>().Spawn(new Vector2(spawningPosition, Random.Range(lowerHeight, upperHeight)), Quaternion.identity);
+                burn.SetActive(true);
+            }
+
+            yield return new WaitForSeconds(0.5f);
+
+            if (forceFieldEnabled && Random.value <= forceFieldChance)
+            {
+                GameObject forceField = GameManager.Instance.GetObject(GameManager.ObjectType.ForceField);
+                forceField.GetComponent<PowerUpPickUpScript>().Spawn(new Vector2(spawningPosition, Random.Range(lowerHeight, upperHeight)), Quaternion.identity);
+                forceField.SetActive(true);
+            }
+
+            yield return new WaitForSeconds(10);
         }
     }
 }

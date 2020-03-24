@@ -3,8 +3,14 @@ using UnityEngine;
 
 public class FireflyWave : IWave
 {
-    public FireflyWave(int nrEnemies, bool spawnObstacles = false, bool spawnPickups = false) : base(nrEnemies, spawnObstacles, spawnPickups)
+    public FireflyWave(int nrEnemies, bool spawnObstacles, bool spawnDropLights, bool spawnPickups) : base(nrEnemies)
     {
+        if (spawnObstacles)
+            GameManager.Instance.StartCoroutine(SpawnObstacles());
+        if (spawnDropLights)
+            GameManager.Instance.StartCoroutine(SpawnDropLights(5, 10));
+        if (spawnPickups)
+            GameManager.Instance.StartCoroutine(SpawnPickups(true, false));
     }
 
     protected override IEnumerator Spawn()
@@ -23,7 +29,7 @@ public class FireflyWave : IWave
 
             enemies.Add(firefly);
 
-            yield return new WaitForSeconds(1.8f);
+            yield return new WaitForSeconds(1.5f);
         }
     }
 }

@@ -150,7 +150,8 @@ public class BossScript : Entity
 
     void OnDisable()
     {
-        healthBarUI.SetActive(false);
+        if (healthBarUI != null)
+            healthBarUI.SetActive(false);
     }
 
     public void ChangeHealth(float value)

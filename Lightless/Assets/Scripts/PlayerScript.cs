@@ -59,7 +59,7 @@ public class PlayerScript : MonoBehaviour {
 
     void Update() 
     {
-        crosshair.transform.position = new Vector2(crosshairInput.x, crosshairInput.y);
+        crosshair.transform.position = new Vector3(crosshairInput.x, crosshairInput.y, -1);
         light2D.pointLightOuterRadius = minLightRadius + (maxLightRadius - minLightRadius) * (currentHealth / maxHealth);
 
         //Update HP (Light)
@@ -181,7 +181,7 @@ public class PlayerScript : MonoBehaviour {
 
     public void UpdateCrosshair(Vector2 input) 
     {
-        crosshairInput = GameManager.Instance.gameCamera.ScreenToWorldPoint(new Vector3(input.x, input.y, 0));
+        crosshairInput = GameManager.Instance.gameCamera.ScreenToWorldPoint(new Vector3(input.x, input.y));
     }
 
     public void UpdatePowerUpInput() 

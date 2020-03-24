@@ -29,7 +29,7 @@ public class PowerUpPickUpScript : Entity {
             if (!doesPlayerHavePowerUp) {
                 Instantiate(powerUpPrefab, collision.gameObject.transform);
                 AudioManager.Instance.Play("PowerUpCatch");
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }

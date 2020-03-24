@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ZombieBulletData
   m_EditorClassIdentifier: 
   weaponDamage: 20
-  weaponCooldown: 2.5
+  weaponCooldown: 1.5
   weaponRange: 55
   distancePerTimeUnit: 50

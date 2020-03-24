@@ -1,11 +1,16 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BossWave : IWave
 {
-    public BossWave() : base(1, false, false)
+    public BossWave(int nrEnemies, bool spawnObstacles, bool spawnDropLights, bool spawnPickups) : base(nrEnemies)
     {
+        if (spawnObstacles)
+            GameManager.Instance.StartCoroutine(SpawnObstacles());
+        if (spawnDropLights)
+            GameManager.Instance.StartCoroutine(SpawnDropLights(3, 5));
+        if (spawnPickups)
+            GameManager.Instance.StartCoroutine(SpawnPickups(true, true));
     }
 
     protected override IEnumerator Spawn()
