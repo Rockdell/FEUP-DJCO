@@ -69,9 +69,9 @@ public class GameManager : MonoBehaviour
 
     public void CleanPools()
     {
-        foreach (var entry in _objectPools)
+        foreach (var entry in _objectPools.Values)
         {
-            entry.Value.Clean();
+            entry.Clean();
         }
     }
 
