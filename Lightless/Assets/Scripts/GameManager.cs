@@ -37,15 +37,15 @@ public class GameManager : MonoBehaviour
 
         // Initialize object pools
         _objectPools = new Dictionary<ObjectType, ObjectPool>();
-        AddPool(ObjectType.LightBullet, lightBulletPrefab);
-        AddPool(ObjectType.Grenade, grenadePrefab);
-        AddPool(ObjectType.Zombie, zombiePrefab);
-        AddPool(ObjectType.ZombieBullet, zombieBulletPrefab);
-        AddPool(ObjectType.Firefly, fireflyPrefab);
-        AddPool(ObjectType.RedLight, redLightPrefab);
-        AddPool(ObjectType.Boss, bossPrefab);
-        AddPool(ObjectType.DarkBullet, darkBulletPrefab);
-        AddPool(ObjectType.DropLight, dropLightPrefab);
+        AddPool(ObjectType.LightBullet, lightBulletPrefab, 10);
+        AddPool(ObjectType.Grenade, grenadePrefab, 5);
+        AddPool(ObjectType.Zombie, zombiePrefab, 5);
+        AddPool(ObjectType.ZombieBullet, zombieBulletPrefab, 10);
+        AddPool(ObjectType.Firefly, fireflyPrefab, 5);
+        AddPool(ObjectType.RedLight, redLightPrefab, 3);
+        AddPool(ObjectType.Boss, bossPrefab, 1);
+        AddPool(ObjectType.DarkBullet, darkBulletPrefab, 10);
+        AddPool(ObjectType.DropLight, dropLightPrefab, 5);
     }
 
     void Start()
@@ -53,13 +53,13 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnWaves());
     }
 
-    void AddPool(ObjectType type, GameObject prefab)
+    void AddPool(ObjectType type, GameObject prefab, int size)
     {
         // Create new child component to hold pool objects
         GameObject child = new GameObject(type + " Pool");
         child.transform.parent = transform;
 
-        _objectPools.Add(type, new ObjectPool(prefab, child.transform));
+        _objectPools.Add(type, new ObjectPool(prefab, child.transform, size));
     }
 
     public GameObject GetObject(ObjectType type)

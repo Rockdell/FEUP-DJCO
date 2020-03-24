@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class ObjectPool
 {
-    private readonly int DEFAULT_POOL_SIZE = 5;
+    private int poolSize;
     private List<GameObject> pool;
 
     private GameObject prefab;
     private Transform holder;
 
-    public ObjectPool(GameObject prefab, Transform holder)
+    public ObjectPool(GameObject prefab, Transform holder, int poolSize)
     {
         pool = new List<GameObject>();
-        (this.prefab, this.holder) = (prefab, holder);
+        (this.prefab, this.holder, this.poolSize) = (prefab, holder, poolSize);
     }
 
     public GameObject GetObject()
@@ -25,7 +25,7 @@ public class ObjectPool
             }
         }
 
-        for (int i = 0; i < DEFAULT_POOL_SIZE; i++)
+        for (int i = 0; i < poolSize; i++)
         {
             GameObject obj = Object.Instantiate(prefab, holder);
             obj.SetActive(false);
