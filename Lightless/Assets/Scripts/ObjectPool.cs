@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ObjectPool
 {
-    private const int DEFAULT_POOL_SIZE = 10;
+    private readonly int DEFAULT_POOL_SIZE = 5;
     private List<GameObject> pool;
 
     private GameObject prefab;
