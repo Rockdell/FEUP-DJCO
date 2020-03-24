@@ -8,7 +8,7 @@ public class FireflyWave : IWave
         if (spawnObstacles)
             GameManager.Instance.StartCoroutine(SpawnObstacles());
         if (spawnDropLights)
-            GameManager.Instance.StartCoroutine(SpawnDropLights(5, 10));
+            GameManager.Instance.StartCoroutine(SpawnDropLights(4, 8));
         if (spawnPickups)
             GameManager.Instance.StartCoroutine(SpawnPickups(true, false));
     }
