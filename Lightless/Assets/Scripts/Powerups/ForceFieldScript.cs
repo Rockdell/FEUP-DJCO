@@ -6,8 +6,7 @@ public class ForceFieldScript : MonoBehaviour {
 
     public PowerUpData forceFieldData;
 
-    public CooldownScript powerUpUI;
-
+    private CooldownScript powerUpUI;
     private float remainingForceFieldTime;
     private PlayerScript player;
     private SpriteRenderer spriteRenderer;
@@ -26,8 +25,8 @@ public class ForceFieldScript : MonoBehaviour {
     void FixedUpdate() {
 
         if (remainingForceFieldTime <= 0) {
+            powerUpUI.SetCooldown(0f);
             Destroy(gameObject);
-            // Remove UI
         }
 
         if (player.GetPowerUpInput()) {

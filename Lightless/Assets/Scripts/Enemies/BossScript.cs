@@ -40,6 +40,10 @@ public class BossScript : Entity
     private float currentFlashDuration = 0.0f;
     private int currentFlashCount = 0;
 
+    private GameObject healthBarUI;
+    private BossHealthBarScript healthBar;
+    private Animator healthBarAnimator;
+
     protected override void Awake()
     {
         base.Awake();
@@ -47,7 +51,12 @@ public class BossScript : Entity
         animator = GetComponent<Animator>();
         deathAnimation = animator.runtimeAnimatorController.animationClips[1];
         sprite = GetComponent<SpriteRenderer>();
+
+        healthBarUI = GameObject.FindGameObjectWithTag("BossHealthBar");
+        healthBar = healthBarUI.GetComponent<BossHealthBarScript>();
+        healthBarAnimator = healthBarUI.GetComponent<Animator>();
     }
+
 
     void Update()
     {
@@ -125,18 +134,29 @@ public class BossScript : Entity
 
     void OnEnable()
     {
+        healthBarUI.SetActive(true);
+
         light2D.pointLightOuterRadius = maxLightRadius;
 
         currentHealth = maxHealth;
         currentState = State.Init;
 
+        healthBarAnimator.SetBool("showUp", true);
+        healthBar.SetMaxHealth(maxHealth);
+
         SetState(State.Chase);
         StartCoroutine(Act());
+    }
+
+    void OnDisable()
+    {
+        healthBarUI.SetActive(false);
     }
 
     public void ChangeHealth(float value)
     {
         currentHealth = Mathf.Clamp(currentHealth + value, 0, maxHealth);
+        healthBar.SetHealth(currentHealth);
 
         currentFlashCount = flashCount;
 

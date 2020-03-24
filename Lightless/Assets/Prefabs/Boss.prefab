@@ -284,7 +284,7 @@ MonoBehaviour:
   maxHealth: 1000
   maxLightRadius: 150
   minLightRadius: 5
-  darkBullet: {fileID: 0}
+  darkBullet: {fileID: 11400000, guid: 1650a19a840da0946a8c7b0000df64f2, type: 2}
 --- !u!1 &9149321490915461893
 GameObject:
   m_ObjectHideFlags: 0

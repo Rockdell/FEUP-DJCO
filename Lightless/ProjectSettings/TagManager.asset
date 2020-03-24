@@ -19,6 +19,8 @@ TagManager:
   - Boss
   - BossProjectileStart
   - DarkBullet
+  - BossHealthBar
+  - BurnPowerUpUI
   layers:
   - Default
   - TransparentFX
@@ -53,6 +55,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackgroundFarAway
+    uniqueID: 301954063
+    locked: 0
   - name: Background
     uniqueID: 3011935765
     locked: 0
