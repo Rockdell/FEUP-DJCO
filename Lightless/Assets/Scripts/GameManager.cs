@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
 
             if (activeWaves.Count == 0)
             {
-                yield return new WaitForSeconds(2.5f);
+                yield return new WaitForSeconds(1.5f);
 
                 waves.Dequeue()();
             }

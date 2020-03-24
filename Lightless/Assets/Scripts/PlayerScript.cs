@@ -57,7 +57,6 @@ public class PlayerScript : MonoBehaviour {
         grenadeCooldownUI.SetMaxCooldown(grenade.weaponCooldown);
     }
 
-    // Update is called once per frame
     void Update() 
     {
         crosshair.transform.position = new Vector2(crosshairInput.x, crosshairInput.y);

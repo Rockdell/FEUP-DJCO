@@ -33,12 +33,20 @@ public class BossScript : Entity
     private Animator animator;
     private AnimationClip deathAnimation;
 
+    // Flash
+    private SpriteRenderer sprite;
+    private int flashCount = 5;
+    private float flashDuration = 0.1f;
+    private float currentFlashDuration = 0.0f;
+    private int currentFlashCount = 0;
+
     protected override void Awake()
     {
         base.Awake();
         light2D = GetComponent<Light2D>();
         animator = GetComponent<Animator>();
         deathAnimation = animator.runtimeAnimatorController.animationClips[1];
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -92,6 +100,26 @@ public class BossScript : Entity
             }
         }
 
+        // Flash
+        if (currentFlashCount > 0)
+        {
+            if (currentFlashDuration > 0)
+            {
+                currentFlashDuration -= Time.deltaTime;
+            }
+            else
+            {
+                currentFlashDuration = flashDuration;
+                sprite.enabled = !sprite.enabled;
+                currentFlashCount--;
+            }
+        }
+        else
+        {
+            currentFlashDuration = 0;
+            sprite.enabled = true;
+        }
+
         light2D.pointLightOuterRadius = minLightRadius + (maxLightRadius - minLightRadius) * (currentHealth / maxHealth);
     }
 
@@ -109,6 +137,8 @@ public class BossScript : Entity
     public void ChangeHealth(float value)
     {
         currentHealth = Mathf.Clamp(currentHealth + value, 0, maxHealth);
+
+        currentFlashCount = flashCount;
 
         if (currentHealth <= 0)
         {

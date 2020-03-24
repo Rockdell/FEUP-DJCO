@@ -22,24 +22,32 @@ public class ZombieScript : Entity
     private AnimationClip jumpAnimation;
     private AnimationClip deathAnimation;
 
+    // Flash
+    private SpriteRenderer sprite;
+    private int flashCount = 5;
+    private float flashDuration = 0.1f;
+    private float currentFlashDuration = 0.0f;
+    private int currentFlashCount = 0;
+
     protected override void Awake()
     {
         base.Awake();
         animator = GetComponent<Animator>();
         jumpAnimation = animator.runtimeAnimatorController.animationClips[1];
         deathAnimation = animator.runtimeAnimatorController.animationClips[2];
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        if (currentState == State.Run || currentState == State.Die)
+        if (currentState == State.Die)
             return;
 
         if (currentState == State.Idle && currentHealth <= 30)
         {
             SetState(State.Run);
         }
-        else
+        else if (currentState != State.Run)
         {
             if (EntityBody.position.x - targetPosition <= Mathf.Epsilon)
             {
@@ -60,6 +68,26 @@ public class ZombieScript : Entity
                 currentZombieBulletCooldown = 0;
             }
         }
+
+        // Flash
+        if (currentFlashCount > 0)
+        {
+            if (currentFlashDuration > 0)
+            {
+                currentFlashDuration -= Time.deltaTime;
+            }
+            else
+            {
+                currentFlashDuration = flashDuration;
+                sprite.enabled = !sprite.enabled;
+                currentFlashCount--;
+            }
+        }
+        else
+        {
+            currentFlashDuration = 0;
+            sprite.enabled = true;
+        }
     }
 
     void OnEnable()
@@ -74,14 +102,11 @@ public class ZombieScript : Entity
         StartCoroutine(Act());
     }
 
-    //void OnDisable()
-    //{
-    //    StopAllCoroutines();
-    //}
-
     public void ChangeHealth(float value)
     {
         currentHealth = Mathf.Clamp(currentHealth + value, 0, enemyData.maxHealth);
+
+        currentFlashCount = flashCount;
 
         if (currentHealth <= 0)
         {
