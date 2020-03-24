@@ -34,14 +34,18 @@ public class PlayerScript : MonoBehaviour {
     private float currentFlashDuration = 0;
     private int currentFlashCount = 0;
 
+    [Header("Player Game Over")]
+    public GameObject gameOverScreen;
+
     /* Inputs */
     private Vector2 movementInput;
     private Vector2 crosshairInput;
     private bool isShooting = false;
     private bool powerUpActivated = false;
 
-    //private bool isAiming = false;
     private SpriteRenderer sprite;
+
+    private bool isGameOver = false;
 
     void Start() 
     {
@@ -59,6 +63,9 @@ public class PlayerScript : MonoBehaviour {
 
     void Update() 
     {
+        if (isGameOver)
+            return;
+
         crosshair.transform.position = new Vector3(crosshairInput.x, crosshairInput.y, -1);
         light2D.pointLightOuterRadius = minLightRadius + (maxLightRadius - minLightRadius) * (currentHealth / maxHealth);
 
@@ -67,6 +74,11 @@ public class PlayerScript : MonoBehaviour {
         {
             currentHealth = 0;
             healthBarUI.SetHealth((int)currentHealth);
+            if (!isGameOver) {
+                isGameOver = true;
+                GameOver();
+                return;
+            }
         }
         else 
         {
@@ -144,7 +156,7 @@ public class PlayerScript : MonoBehaviour {
 
     public void Shoot() 
     {
-        if (!lightBulletOnCooldown) 
+        if (!lightBulletOnCooldown && !powerUpActivated) 
         {
             lightBulletOnCooldown = true;
             GameObject lightBullet = GameManager.Instance.GetObject(GameManager.ObjectType.LightBullet);
@@ -153,7 +165,7 @@ public class PlayerScript : MonoBehaviour {
         }
     }
 
-    public void ThrowGrenade() 
+    public void ThrowGrenade()
     {
         if (!grenadeOnCooldown) 
         {
@@ -192,6 +204,20 @@ public class PlayerScript : MonoBehaviour {
     public void UpdateShootInput() 
     {
         isShooting = !isShooting;
+    }
+
+    public bool isDead() {
+        return currentHealth <= 0;
+    }
+
+    private void GameOver()
+    {
+        Time.timeScale = 0f;
+        GameManager.Instance.CleanPools();
+        AudioManager.Instance.StopAll();
+        AudioManager.Instance.Play("GameOver");
+        gameOverScreen.transform.parent.gameObject.SetActive(true);
+        gameOverScreen.SetActive(true);
     }
 
 }

@@ -8,20 +8,24 @@ public class PauseMenu : MonoBehaviour
     private bool isGamePaused = false;
 
     public void PauseKeyPressed() {
-        if (isGamePaused = !isGamePaused)
-            Pause();
-        else
-            Resume();
+        if (!GameManager.Instance.GetPlayer().GetComponent<PlayerScript>().isDead()) {
+            if (isGamePaused = !isGamePaused)
+                Pause();
+            else
+                Resume();
+        }
     }
 
     private void Pause() {
         gameObject.SetActive(true);
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
         isGamePaused = true;
         Time.timeScale = 0f;
         AudioListener.pause = true;
     }
 
     public void Resume() {
+        gameObject.transform.GetChild(0).gameObject.SetActive(false);
         gameObject.SetActive(false);
         isGamePaused = false;
         Time.timeScale = 1f;

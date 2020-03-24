@@ -34,7 +34,6 @@ public class AudioManager : MonoBehaviour {
     void Start() {
         masterMixer.SetFloat("MusicVol", Mathf.Log10(initialMusicVolume) * 20);
         masterMixer.SetFloat("EfxVol", Mathf.Log10(initialEfxVolume) * 20);
-        Play("MainTheme");
     }
 
     public void Play(string name) {
@@ -57,6 +56,12 @@ public class AudioManager : MonoBehaviour {
         }
         else {
             s.source?.Stop();
+        }
+    }
+
+    public void StopAll() {
+        foreach (Sound s in sounds) {
+            s.source.Stop();
         }
     }
 
