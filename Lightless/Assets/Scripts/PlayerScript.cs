@@ -54,8 +54,6 @@ public class PlayerScript : MonoBehaviour {
         light2D.pointLightOuterRadius = maxLightRadius;
         sprite = GetComponent<SpriteRenderer>();
 
-        //Cursor.visible = false;
-
         currentHealth = maxHealth;
         healthBarUI.SetMaxHealth(maxHealth);
         grenadeCooldownUI.SetMaxCooldown(grenade.weaponCooldown);
@@ -213,6 +211,7 @@ public class PlayerScript : MonoBehaviour {
     private void GameOver()
     {
         Time.timeScale = 0f;
+        Cursor.visible = true;
         GameManager.Instance.CleanPools();
         AudioManager.Instance.StopAll();
         AudioManager.Instance.Play("GameOver");

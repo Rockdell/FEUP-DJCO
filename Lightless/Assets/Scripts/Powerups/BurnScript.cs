@@ -64,7 +64,11 @@ public class BurnScript : MonoBehaviour {
             }
 
             if (currentBurnCooldown == burnCooldown) {
-                Destroy(Instantiate(burnEffectPrefab, collision.gameObject.transform), burnAnimationTime);
+                GameObject burn = Instantiate(burnEffectPrefab, collision.gameObject.transform.GetChild(0));
+                Vector3 parentScale = burn.gameObject.transform.parent.transform.parent.localScale;
+                Vector3 burnScale = burn.gameObject.transform.localScale;
+                burn.gameObject.transform.localScale = new Vector3(burnScale.x / parentScale.x, burnScale.y / parentScale.y, burnScale.z / parentScale.z);
+                Destroy(burn, burnAnimationTime);
             }
         }
     }

@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
         AudioManager.Instance.Play("MainTheme");
     }
     public void PlayGame() {
+        Cursor.visible = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
