@@ -57,7 +57,6 @@ public class BossScript : Entity
         healthBarAnimator = healthBarUI.GetComponent<Animator>();
     }
 
-
     void Update()
     {
         if (currentState == State.Die)
@@ -234,6 +233,8 @@ public class BossScript : Entity
                 animator.SetBool("isDead", true);
                 yield return new WaitForSeconds(deathAnimation.length);
                 gameObject.SetActive(false);
+
+                GameManager.Instance.Win();
                 break;
             }
             else

@@ -31,6 +31,14 @@ public class GameManager : MonoBehaviour
 
     private Dictionary<ObjectType, ObjectPool> _objectPools;
 
+    public bool isGameOver { get; private set; }
+
+    [Header("Player Game Over")]
+    public GameObject gameOverScreen;
+
+    [Header("Player Win")]
+    public GameObject winScreen;
+
     void Awake()
     {
         Instance = this;
@@ -107,7 +115,7 @@ public class GameManager : MonoBehaviour
             activeWaves.Add(new FireflyWave(10, false, false, false));
         });
 
-        //// Wave IV
+        // Wave IV
         waves.Enqueue(() => {
             activeWaves.Add(new BossWave(1, false, true, true));
         });
@@ -133,5 +141,31 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(1.0f);
             }
         }
+    }
+
+    public void GameOver()
+    {
+        isGameOver = true;
+
+        Time.timeScale = 0f;
+        Cursor.visible = true;
+        CleanPools();
+        AudioManager.Instance.StopAll();
+        AudioManager.Instance.Play("GameOver");
+        gameOverScreen.transform.parent.gameObject.SetActive(true);
+        gameOverScreen.SetActive(true);
+    }
+
+    public void Win()
+    {
+        isGameOver = true;
+
+        Time.timeScale = 0f;
+        Cursor.visible = true;
+        CleanPools();
+        AudioManager.Instance.StopAll();
+        //AudioManager.Instance.Play("GameOver");
+        winScreen.transform.parent.gameObject.SetActive(true);
+        winScreen.SetActive(true);
     }
 }

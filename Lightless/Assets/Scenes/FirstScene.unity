@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3730,7 +3730,6 @@ MonoBehaviour:
   crosshair: {fileID: 616673630}
   flashCount: 3
   flashDuration: 0.15
-  gameOverScreen: {fileID: 903413775}
 --- !u!50 &612696857
 Rigidbody2D:
   serializedVersion: 4
@@ -15630,6 +15629,8 @@ MonoBehaviour:
     type: 3}
   dropLightPrefab: {fileID: 7813916188050199904, guid: 2eb0b5ce1946e9142bda5fe87d8a2bcc,
     type: 3}
+  gameOverScreen: {fileID: 903413775}
+  winScreen: {fileID: 104391654}
 --- !u!114 &2022817467
 MonoBehaviour:
   m_ObjectHideFlags: 0
