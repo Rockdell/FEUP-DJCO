@@ -31,7 +31,7 @@ public class DarkBulletScript : Entity
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerScript>().ChangeHealth(-weaponData.weaponDamage);
             StartCoroutine(CollisionEffect());
@@ -46,7 +46,7 @@ public class DarkBulletScript : Entity
             collision.gameObject.GetComponent<FireflyScript>().ChangeHealth(-weaponData.weaponDamage);
             StartCoroutine(CollisionEffect());
         }
-        else if (collision.collider.CompareTag("Boss"))
+        else if (collision.gameObject.CompareTag("Boss"))
         {
             collision.gameObject.GetComponent<BossScript>().ChangeHealth(-weaponData.weaponDamage);
             StartCoroutine(CollisionEffect());

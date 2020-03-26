@@ -100,23 +100,27 @@ public class GameManager : MonoBehaviour
         Queue<Action> waves = new Queue<Action>();
 
         // Wave I
-        waves.Enqueue(() => {
+        waves.Enqueue(() =>
+        {
             activeWaves.Add(new ZombieWave(3, true, true, true));
         });
 
         //Wave II
-        waves.Enqueue(() => {
+        waves.Enqueue(() =>
+        {
             activeWaves.Add(new FireflyWave(25, true, true, true));
         });
 
         // Wave III
-        waves.Enqueue(() => {
+        waves.Enqueue(() =>
+        {
             activeWaves.Add(new ZombieWave(3, true, true, true));
             activeWaves.Add(new FireflyWave(10, false, false, false));
         });
 
         // Wave IV
-        waves.Enqueue(() => {
+        waves.Enqueue(() =>
+        {
             activeWaves.Add(new BossWave(1, false, true, true));
         });
 

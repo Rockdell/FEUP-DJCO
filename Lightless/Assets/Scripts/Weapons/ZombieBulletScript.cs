@@ -11,17 +11,17 @@ public class ZombieBulletScript : Entity
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Player")) 
+        if (collision.gameObject.CompareTag("Player")) 
         {
             collision.collider.GetComponent<PlayerScript>().ChangeHealth(-weaponData.weaponDamage);
             gameObject.SetActive(false);
         }
-        else if (collision.collider.CompareTag("Zombie"))
+        else if (collision.gameObject.CompareTag("Zombie"))
         {
             collision.collider.GetComponent<ZombieScript>().ChangeHealth(-weaponData.weaponDamage);
             gameObject.SetActive(false);
         }
-        else if (collision.collider.CompareTag("Firefly"))
+        else if (collision.gameObject.CompareTag("Firefly"))
         {
             collision.collider.GetComponent<FireflyScript>().ChangeHealth(-weaponData.weaponDamage);
             gameObject.SetActive(false);

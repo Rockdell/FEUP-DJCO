@@ -3730,6 +3730,8 @@ MonoBehaviour:
   crosshair: {fileID: 616673630}
   flashCount: 3
   flashDuration: 0.15
+  collisionDamage: 10
+  collisionDamangeCooldown: 0.5
 --- !u!50 &612696857
 Rigidbody2D:
   serializedVersion: 4

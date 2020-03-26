@@ -33,6 +33,11 @@ public class PlayerScript : MonoBehaviour {
     private Light2D light2D;
     private float currentFlashDuration = 0;
     private int currentFlashCount = 0;
+    
+    public float collisionDamage;
+    public float collisionDamangeCooldown;
+    private float currentCollisionDamageCooldown = 0;
+    private bool collisionDamageOnCooldown = false;
 
     /* Inputs */
     private Vector2 movementInput;
@@ -125,6 +130,20 @@ public class PlayerScript : MonoBehaviour {
             currentFlashDuration = 0;
             sprite.enabled = true;
         }
+
+        // Collision damage
+        if (collisionDamageOnCooldown)
+        {
+            if (currentCollisionDamageCooldown < collisionDamangeCooldown)
+            {
+                currentCollisionDamageCooldown += Time.deltaTime;
+            }
+            else
+            {
+                collisionDamageOnCooldown = false;
+                currentCollisionDamageCooldown = 0;
+            }
+        }
     }
 
     void FixedUpdate() 
@@ -135,6 +154,24 @@ public class PlayerScript : MonoBehaviour {
 
         if (isShooting)
             Shoot();
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!collisionDamageOnCooldown && (collision.gameObject.CompareTag("Zombie") || collision.gameObject.CompareTag("Firefly") || collision.gameObject.CompareTag("Boss")))
+        {
+            collisionDamageOnCooldown = true;
+            ChangeHealth(-collisionDamage);
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!collisionDamageOnCooldown && (collision.gameObject.CompareTag("Zombie") || collision.gameObject.CompareTag("Firefly") || collision.gameObject.CompareTag("Boss")))
+        {
+            collisionDamageOnCooldown = true;
+            ChangeHealth(-collisionDamage);
+        }
     }
 
     public void ChangeHealth(float value)
